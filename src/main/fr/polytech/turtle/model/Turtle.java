@@ -1,4 +1,4 @@
-package tortue;// package logo;
+package fr.polytech.turtle.model;// package logo;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import java.util.Iterator;
 **************************************************************************/
 
 
-public class Tortue
+public class Turtle
 {
 
 	protected class Segment {
@@ -43,7 +43,7 @@ public class Tortue
 	protected static final int rp=10, rb=5; // Taille de la pointe et de la base de la fleche
 	protected static final double ratioDegRad = 0.0174533; // Rapport radians/degres (pour la conversion)
 	
-	protected ArrayList<Segment> listSegments; // Trace de la tortue
+	protected ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
 	
 	protected int x, y;	
 	protected int dir;	
@@ -53,7 +53,7 @@ public class Tortue
 	public void setColor(int n) {coul = n;}
 	public int getColor() {return coul;}
 
-	public Tortue() { 
+	public Turtle() {
 		listSegments = new ArrayList<Segment>();
 		reset();
 	}
@@ -83,7 +83,7 @@ public class Tortue
 		}
 
 		//Calcule les 3 coins du triangle a partir de
-		// la position de la tortue p
+		// la position de la fr.polytech.turtle p
 		Point p = new Point(x,y);
 		Polygon arrow = new Polygon();
 

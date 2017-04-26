@@ -1,4 +1,6 @@
-package tortue;// package logo;
+package fr.polytech.turtle.view;// package logo;
+
+import fr.polytech.turtle.model.Turtle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +31,7 @@ public class SimpleLogo extends JFrame implements ActionListener {
 	public static final Dimension HGAP = new Dimension(5,1);
 
 	private FeuilleDessin feuille;
-	private Tortue courante;
+	private Turtle courante;
 	private JTextField inputValue;
 
 
@@ -150,14 +152,14 @@ public class SimpleLogo extends JFrame implements ActionListener {
 			
 		getContentPane().add(feuille,"Center");
 		
-		// Creation de la tortue
-		Tortue tortue = new Tortue();
+		// Creation de la fr.polytech.turtle
+		Turtle turtle = new Turtle();
 		
-		// Deplacement de la tortue au centre de la feuille
-		tortue.setPosition(500/2, 400/2); 		
+		// Deplacement de la fr.polytech.turtle au centre de la feuille
+		turtle.setPosition(500/2, 400/2);
 		
-		courante = tortue;
-		feuille.addTortue(tortue);
+		courante = turtle;
+		feuille.addTortue(turtle);
 
 		pack();
 		setVisible(true);
@@ -237,7 +239,7 @@ public class SimpleLogo extends JFrame implements ActionListener {
 		feuille.reset();
 		feuille.repaint();
 
-		// Replace la tortue au centre
+		// Replace la fr.polytech.turtle au centre
 		Dimension size = feuille.getSize();
 		courante.setPosition(size.width/2, size.height/2);
 	}
