@@ -1,4 +1,4 @@
-// package logo;
+package java;// package logo;
 
 import javax.swing.*;
 import java.awt.*;
