@@ -1,6 +1,6 @@
-**Nom/Prénom Etudiant 1 :**
+**MARTIN Gaetan :**
 
-**Nom/Prénom Etudiant 2 :**
+**JOYMANGUL Jensen :**
 
 # Rapport TP4
 
