@@ -30,7 +30,7 @@ public class SimpleLogo extends JFrame implements ActionListener {
 	public static final Dimension VGAP = new Dimension(1,5);
 	public static final Dimension HGAP = new Dimension(5,1);
 
-	private FeuilleDessin feuille;
+	private Sheet feuille;
 	private Turtle courante;
 	private JTextField inputValue;
 
@@ -145,7 +145,7 @@ public class SimpleLogo extends JFrame implements ActionListener {
 
 		getContentPane().add(p2,"South");
 
-		feuille = new FeuilleDessin(); //500, 400);
+		feuille = new Sheet(); //500, 400);
 		feuille.setBackground(Color.white);
 		feuille.setSize(new Dimension(600,400));
 		feuille.setPreferredSize(new Dimension(600,400));
