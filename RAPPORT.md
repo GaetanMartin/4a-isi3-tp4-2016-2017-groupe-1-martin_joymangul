@@ -5,7 +5,8 @@
 # Rapport TP4
 
 ## Question 1
-*Exprimer les données de test*
+Les améliorations possibles sont répertoriées dans les issues de GitHub
+https://github.com/PolytechLyon/4a-isi3-tp4-2016-2017-groupe-1-martin_joymangul/issues
 
 ## Question 2
 *Rien à rédiger*
