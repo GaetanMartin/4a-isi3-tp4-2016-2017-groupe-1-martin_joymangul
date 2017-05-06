@@ -1,4 +1,4 @@
-package fr.polytech.turtle.model;// package logo;
+package main.com.polytech.turtle.model;// package logo;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -30,6 +30,16 @@ public class Turtle extends Observable
 	
 	protected int x;
 
+	private Point previousPoint;
+
+	public Point getPreviousPoint() {
+		return previousPoint;
+	}
+
+	public void setPreviousPoint(Point previousPoint) {
+		this.previousPoint = previousPoint;
+	}
+
 	public int getX() {
 		return x;
 	}
@@ -56,6 +66,16 @@ public class Turtle extends Observable
 		reset();
 	}
 
+	public Turtle(int x, int y) {
+		listSegments = new ArrayList<Segment>();
+		this.setPreviousPoint(new Point(x, y));
+		this.x = x;
+		this.y = y;
+		dir = -90;
+		coul = 0;
+		crayon = true;
+	}
+
 	private void notifyView() {
 		this.setChanged();
 		this.notifyObservers();
@@ -72,10 +92,13 @@ public class Turtle extends Observable
   	}
 
 	public void setPosition(int newX, int newY) {
+		this.setPreviousPoint(new Point(this.getX(), this.getY()));
 		x = newX;
 		y = newY;
 		notifyView();
 	}
+
+
 
 	public void avancer(int dist) {
 		int newX = (int) Math.round(x+dist*Math.cos(ratioDegRad*dir));

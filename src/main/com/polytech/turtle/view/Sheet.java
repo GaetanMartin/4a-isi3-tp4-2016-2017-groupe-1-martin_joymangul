@@ -1,6 +1,6 @@
-package fr.polytech.turtle.view;// package logo;
+package main.com.polytech.turtle.view;// package logo;
 
-import fr.polytech.turtle.model.Turtle;
+import main.com.polytech.turtle.model.Turtle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -104,6 +104,7 @@ public class Sheet extends JPanel implements Observer {
 //			.draw(turtleView.getShape());
 			g.fillPolygon(arrow);
 			g.setColor(decodeColor(t.getColor()));
+			g.drawLine(t.getPreviousPoint().getX(), t.getPreviousPoint().getY(), t.getX(), t.getY());
 //			t.drawTurtle(g);
 		}
 	}

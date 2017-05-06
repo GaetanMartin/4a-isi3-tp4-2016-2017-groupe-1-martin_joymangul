@@ -1,6 +1,6 @@
-package fr.polytech.turtle.view;// package logo;
+package main.com.polytech.turtle.view;// package logo;
 
-import fr.polytech.turtle.model.Turtle;
+import main.com.polytech.turtle.model.Turtle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -153,10 +153,10 @@ public class SimpleLogo extends JFrame implements ActionListener {
 		getContentPane().add(feuille,"Center");
 		
 		// Creation de la fr.polytech.turtle
-		Turtle turtle = new Turtle();
+		Turtle turtle = new Turtle(500/2, 400/2);
 		
 		// Deplacement de la fr.polytech.turtle au centre de la feuille
-		turtle.setPosition(500/2, 400/2);
+		//turtle.setPosition(500/2, 400/2);
 		
 		courante = turtle;
 		feuille.addTortue(turtle);

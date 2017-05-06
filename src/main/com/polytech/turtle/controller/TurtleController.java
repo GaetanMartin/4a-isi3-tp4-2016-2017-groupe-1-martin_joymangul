@@ -1,4 +1,4 @@
-package fr.polytech.turtle.controller;
+package main.com.polytech.turtle.controller;
 
 /**
  * Created by p1509413 on 26/04/2017.
