@@ -153,10 +153,10 @@ public class SimpleLogo extends JFrame implements ActionListener {
 		getContentPane().add(feuille,"Center");
 		
 		// Creation de la fr.polytech.turtle
-		Turtle turtle = new Turtle(500/2, 400/2);
+		Turtle turtle = new Turtle();
 		
 		// Deplacement de la fr.polytech.turtle au centre de la feuille
-		//turtle.setPosition(500/2, 400/2);
+		turtle.setPosition(500/2, 400/2);
 		
 		courante = turtle;
 		feuille.addTortue(turtle);

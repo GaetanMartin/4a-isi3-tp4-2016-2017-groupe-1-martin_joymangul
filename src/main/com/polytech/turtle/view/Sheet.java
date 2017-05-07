@@ -1,5 +1,6 @@
 package main.com.polytech.turtle.view;// package logo;
 
+import main.com.polytech.turtle.model.Segment;
 import main.com.polytech.turtle.model.Turtle;
 
 import javax.swing.*;
@@ -36,13 +37,7 @@ public class Sheet extends JPanel implements Observer {
 	}
 
 	/*
-	public void drawSegment(Graphics graph) {
-		if (graph==null)
-			return;
 
-		graph.setColor(color);
-		graph.drawLine(ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
-	}
 
 	public void drawTurtle (Graphics graph) {
 		if (graph==null)
@@ -104,9 +99,18 @@ public class Sheet extends JPanel implements Observer {
 //			.draw(turtleView.getShape());
 			g.fillPolygon(arrow);
 			g.setColor(decodeColor(t.getColor()));
-			g.drawLine(t.getPreviousPoint().getX(), t.getPreviousPoint().getY(), t.getX(), t.getY());
+			drawSegments(g, t.getListSegments());
 //			t.drawTurtle(g);
 		}
+	}
+
+	public void drawSegments(Graphics graph, ArrayList<Segment> listSegment)
+	{
+		listSegment.stream().forEach((Segment segment) -> drawSegment(graph, segment));
+	}
+
+	public void drawSegment(Graphics graph, Segment segment) {
+		graph.drawLine(segment.getStart().getX(), segment.getStart().getY(), segment.getEnd().getX(), segment.getEnd().getY());
 	}
 
 	@Override

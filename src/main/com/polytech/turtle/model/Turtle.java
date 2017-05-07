@@ -25,20 +25,10 @@ public class Turtle extends Observable
 
 	// TODO FIX THIS
 	public static final double ratioDegRad = 0.0174533; // Rapport radians/degres (pour la conversion)
-	
+
 	protected ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
 	
 	protected int x;
-
-	private Point previousPoint;
-
-	public Point getPreviousPoint() {
-		return previousPoint;
-	}
-
-	public void setPreviousPoint(Point previousPoint) {
-		this.previousPoint = previousPoint;
-	}
 
 	public int getX() {
 		return x;
@@ -54,6 +44,10 @@ public class Turtle extends Observable
 		return dir;
 	}
 
+	public ArrayList<Segment> getListSegments() {
+		return listSegments;
+	}
+
 	protected int dir;
 	protected boolean crayon; 
 	protected int coul;
@@ -64,16 +58,6 @@ public class Turtle extends Observable
 	public Turtle() {
 		listSegments = new ArrayList<Segment>();
 		reset();
-	}
-
-	public Turtle(int x, int y) {
-		listSegments = new ArrayList<Segment>();
-		this.setPreviousPoint(new Point(x, y));
-		this.x = x;
-		this.y = y;
-		dir = -90;
-		coul = 0;
-		crayon = true;
 	}
 
 	private void notifyView() {
@@ -92,7 +76,6 @@ public class Turtle extends Observable
   	}
 
 	public void setPosition(int newX, int newY) {
-		this.setPreviousPoint(new Point(this.getX(), this.getY()));
 		x = newX;
 		y = newY;
 		notifyView();
