@@ -97,18 +97,22 @@ public class Turtle extends Observable
 
 	public void droite(int ang) {
 		dir = (dir + ang) % 360;
+		notifyView();
 	}
 
 	public void gauche(int ang) {
 		dir = (dir - ang) % 360;
+		notifyView();
 	}
 
 	public void baisserCrayon() {
 		crayon = true;
+		notifyView();
 	}
 
 	public void leverCrayon() {
 		crayon = false;
+		notifyView();
 	}
 
 	public void couleur(int n) {

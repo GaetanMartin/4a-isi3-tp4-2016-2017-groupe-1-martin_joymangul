@@ -22,6 +22,9 @@ public class Sheet extends JPanel implements Observer {
 	
 	public Sheet() {
 		turtles = new ArrayList<Turtle>();
+		this.setBackground(Color.white);
+		this.setSize(new Dimension(600, 400));
+		this.setPreferredSize(new Dimension(600, 400));
 	}
 
 	public void addTortue(Turtle o) {
