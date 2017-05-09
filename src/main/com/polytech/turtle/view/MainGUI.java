@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -26,19 +25,36 @@ import java.awt.event.WindowEvent;
  **************************************************************************/
 
 
-public class MainGUI extends JFrame implements ActionListener {
+public class MainGUI extends JFrame {
     public static final Dimension VGAP = new Dimension(1, 5);
     public static final Dimension HGAP = new Dimension(5, 1);
 
     private Sheet sheet;
-    private Turtle courante;
-    private JTextField inputValue;
+    private JTextField textFieldStep = new JTextField();
     private JButton buttonMove = new JButton("Avancer");
     private JButton buttonRight = new JButton("Droite");
     private JButton buttonLeft = new JButton("Gauche");
     private JButton buttonUp = new JButton("Lever");
     private JButton buttonDown = new JButton("Baisser");
     private JButton buttonReset = new JButton("Effacer");
+
+    private JButton buttonSquare = new JButton("Carré");
+    private JButton buttonPolygon = new JButton("Polygone");
+    private JButton buttonSpiral = new JButton("Spiral");
+
+    private JMenuItem menuItemMove = new JMenuItem("Avancer");
+    private JMenuItem menuItemRight = new JMenuItem("Droite");
+    private JMenuItem menuItemLeft = new JMenuItem("Gauche");
+    private JMenuItem menuItemUp = new JMenuItem("Lever Crayon");
+    private JMenuItem menuItemDown = new JMenuItem("Baisser Crayon");
+
+    private JMenuItem menuItemReset = new JMenuItem("Effacer");
+    private JMenuItem menuItemQuit = new JMenuItem("Quitter");
+
+    private JMenuItem menuItemHelp = new JMenuItem("Aide");
+    private JMenuItem menuItemAbout = new JMenuItem("À propos");
+
+
 
     public void setSheet(Sheet sheet) {
         this.sheet = sheet;
@@ -74,21 +90,61 @@ public class MainGUI extends JFrame implements ActionListener {
         return buttonReset;
     }
 
-    /**
-     * @param args
-     */
-/*    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
+    public JMenuItem getMenuItemMove() {
+        return menuItemMove;
+    }
 
-                MainGUI fenetre = new MainGUI();
-                fenetre.setVisible(true);
-            }
-        });
-    }*/
+    public JMenuItem getMenuItemRight() {
+        return menuItemRight;
+    }
 
-    private void quitter() {
-        System.exit(0);
+    public JMenuItem getMenuItemLeft() {
+        return menuItemLeft;
+    }
+
+    public JMenuItem getMenuItemUp() {
+        return menuItemUp;
+    }
+
+    public JMenuItem getMenuItemDown() {
+        return menuItemDown;
+    }
+
+    public JTextField getTextFieldStep() {
+        return textFieldStep;
+    }
+
+    public JMenuItem getMenuItemReset() {
+        return menuItemReset;
+    }
+
+    public JMenuItem getMenuItemQuit() {
+        return menuItemQuit;
+    }
+
+    public JMenuItem getMenuItemHelp() {
+        return menuItemHelp;
+    }
+
+    public JMenuItem getMenuItemAbout() {
+        return menuItemAbout;
+    }
+
+    public JButton getButtonSquare() {
+        return buttonSquare;
+    }
+
+    public JButton getButtonPolygon() {
+        return buttonPolygon;
+    }
+
+    public JButton getButtonSpiral() {
+        return buttonSpiral;
+    }
+
+    public String getStepValue() {
+        String s = textFieldStep.getText();
+        return (s);
     }
 
     public MainGUI() {
@@ -117,8 +173,7 @@ public class MainGUI extends JFrame implements ActionListener {
         toolBar.add(initButton(buttonReset, "Nouveau dessin"));
 
         toolBar.add(Box.createRigidArea(HGAP));
-        inputValue = new JTextField("45", 5);
-        toolBar.add(inputValue);
+        toolBar.add(textFieldStep);
 
         toolBar.add(initButton(buttonMove,  "Avancer 50"));
         toolBar.add(initButton(buttonRight,  "Droite 45"));
@@ -152,122 +207,34 @@ public class MainGUI extends JFrame implements ActionListener {
         setJMenuBar(menubar);    // on installe le menu bar
         JMenu menuFile = new JMenu("File"); // on installe le premier menu
         menubar.add(menuFile);
-
-        addMenuItem(menuFile, "Effacer", "Effacer", KeyEvent.VK_N);
-        addMenuItem(menuFile, "Quitter", "Quitter", KeyEvent.VK_Q);
+        menuFile.add(menuItemReset);
+        menuFile.add(menuItemQuit);
 
         JMenu menuCommandes = new JMenu("Commandes"); // on installe le premier menu
         menubar.add(menuCommandes);
-        addMenuItem(menuCommandes, "Avancer", "Avancer", -1);
-        addMenuItem(menuCommandes, "Droite", "Droite", -1);
-        addMenuItem(menuCommandes, "Gauche", "Gauche", -1);
-        addMenuItem(menuCommandes, "Lever Crayon", "Lever", -1);
-        addMenuItem(menuCommandes, "Baisser Crayon", "Baisser", -1);
+        menuCommandes.add(menuItemMove);
+        menuCommandes.add(menuItemRight);
+        menuCommandes.add(menuItemLeft);
+        menuCommandes.add(menuItemUp);
+        menuCommandes.add(menuItemDown);
 
         JMenu menuHelp = new JMenu("Aide"); // on installe le premier menu
         menubar.add(menuHelp);
-        addMenuItem(menuHelp, "Aide", "Help", -1);
-        addMenuItem(menuHelp, "A propos", "About", -1);
+        menuHelp.add(menuItemHelp);
+        menuHelp.add(menuItemAbout);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         // les boutons du bas
         JPanel p2 = new JPanel(new GridLayout());
-        JButton b20 = new JButton("Proc1");
-        p2.add(b20);
-        b20.addActionListener(this);
-        JButton b21 = new JButton("Proc2");
-        p2.add(b21);
-        b21.addActionListener(this);
-        JButton b22 = new JButton("Proc3");
-        p2.add(b22);
-        b22.addActionListener(this);
+        p2.add(buttonSquare);
+        p2.add(buttonPolygon);
+        p2.add(buttonSpiral);
 
         getContentPane().add(p2, "South");
 
-        //getContentPane().add(sheet, "Center");
-
         pack();
         setVisible(true);
-    }
-
-    public String getInputValue() {
-        String s = inputValue.getText();
-        return (s);
-    }
-
-    /**
-     * la gestion des actions des boutons
-     */
-    public void actionPerformed(ActionEvent e) {
-        String c = e.getActionCommand();
-
-        // actions des boutons du haut
-        if (c.equals("Avancer")) {
-            System.out.println("command avancer");
-            try {
-                int v = Integer.parseInt(inputValue.getText());
-                courante.avancer(v);
-            } catch (NumberFormatException ex) {
-                System.err.println("ce n'est pas un nombre : " + inputValue.getText());
-            }
-
-        } else if (c.equals("Droite")) {
-            try {
-                int v = Integer.parseInt(inputValue.getText());
-                courante.droite(v);
-            } catch (NumberFormatException ex) {
-                System.err.println("ce n'est pas un nombre : " + inputValue.getText());
-            }
-        } else if (c.equals("Gauche")) {
-            try {
-                int v = Integer.parseInt(inputValue.getText());
-                courante.gauche(v);
-            } catch (NumberFormatException ex) {
-                System.err.println("ce n'est pas un nombre : " + inputValue.getText());
-            }
-        } else if (c.equals("Lever"))
-            courante.leverCrayon();
-        else if (c.equals("Baisser"))
-            courante.baisserCrayon();
-            // actions des boutons du bas
-        else if (c.equals("Proc1"))
-            proc1();
-        else if (c.equals("Proc2"))
-            proc2();
-        else if (c.equals("Proc3"))
-            proc3();
-        else if (c.equals("Effacer"))
-            effacer();
-        else if (c.equals("Quitter"))
-            quitter();
-
-        sheet.repaint();
-    }
-
-    /**
-     * les procedures Logo qui combine plusieurs commandes..
-     */
-    public void proc1() {
-        courante.carre();
-    }
-
-    public void proc2() {
-        courante.poly(60, 8);
-    }
-
-    public void proc3() {
-        courante.spiral(50, 40, 6);
-    }
-
-    // efface tout et reinitialise la feuille
-    public void effacer() {
-        sheet.reset();
-        sheet.repaint();
-
-        // Replace la fr.polytech.turtle au centre
-        Dimension size = sheet.getSize();
-        courante.setPosition(size.width / 2, size.height / 2);
     }
 
     public JButton initButton(JButton button, String tooltipText) {
@@ -275,43 +242,5 @@ public class MainGUI extends JFrame implements ActionListener {
         button.setBorder(BorderFactory.createRaisedBevelBorder());
         button.setMargin(new Insets(0, 0, 0, 0));
         return button;
-    }
-
-    //utilitaires pour installer des boutons et des menus
-/*	public void addButton(JComponent p, String name, String tooltiptext, String imageName) {
-        JButton b;
-		if ((imageName == null) || (imageName.equals(""))) {
-			b = (JButton)p.add(new JButton(name));
-		}
-		else {
-			java.net.URL u = this.getClass().getResource(imageName);
-			if (u != null) {
-				ImageIcon im = new ImageIcon (u);
-				b = (JButton) p.add(new JButton(im));
-			}
-			else
-				b = (JButton) p.add(new JButton(name));
-			b.setActionCommand(name);
-		}
-
-		b.setToolTipText(tooltiptext);
-		b.setBorder(BorderFactory.createRaisedBevelBorder());
-		b.setMargin(new Insets(0,0,0,0));
-		b.addActionListener(this);
-	}*/
-
-    public void addMenuItem(JMenu m, String label, String command, int key) {
-        JMenuItem menuItem;
-        menuItem = new JMenuItem(label);
-        m.add(menuItem);
-
-        menuItem.setActionCommand(command);
-        menuItem.addActionListener(this);
-        if (key > 0) {
-            if (key != KeyEvent.VK_DELETE)
-                menuItem.setAccelerator(KeyStroke.getKeyStroke(key, Event.CTRL_MASK, false));
-            else
-                menuItem.setAccelerator(KeyStroke.getKeyStroke(key, 0, false));
-        }
     }
 }
