@@ -21,7 +21,7 @@ import java.util.Observable;
 
 public class Turtle extends Observable {
 
-    public static final int ARROW_HEIGHT = 200, ARROW_BASE_WIDTH = 100; // Taille de la pointe et de la base de la fleche
+    public static final int ARROW_HEIGHT = 10, ARROW_BASE_WIDTH = 5; // Taille de la pointe et de la base de la fleche
 
     protected ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
     protected int x;

@@ -63,21 +63,21 @@ public class TurtleController {
         turtleView.getButtonSpiral().addActionListener(e -> spiral());
     }
 
-    private void move(int v)
+    protected void move(int length)
     {
         System.out.println("command moveForward");
-        turtleModel.moveForward(v);
+        turtleModel.moveForward(length);
     }
 
-    private void right(int v)
+    protected void right(int degree)
     {
-        turtleModel.turnRight(v);
+        turtleModel.turnRight(degree);
         //turtlePanel.repaint();
     }
 
-    private void left(int v)
+    protected void left(int degree)
     {
-        turtleModel.turnLeft(v);
+        turtleModel.turnLeft(degree);
     }
 
     private void setColor(ActionEvent e) {
