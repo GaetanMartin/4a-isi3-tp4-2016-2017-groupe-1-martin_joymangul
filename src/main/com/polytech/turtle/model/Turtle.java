@@ -22,9 +22,6 @@ public class Turtle extends Observable {
 
     public static final int rp = 10, rb = 5; // Taille de la pointe et de la base de la fleche
 
-    // TODO FIX THIS
-    public static final double ratioDegRad = 0.0174533; // Rapport radians/degres (pour la conversion)
-
     protected ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
 
     protected int x;
@@ -88,10 +85,10 @@ public class Turtle extends Observable {
 
 
     public void avancer(int dist) {
-        int newX = (int) Math.round(x + dist * Math.cos(ratioDegRad * dir));
-        int newY = (int) Math.round(y + dist * Math.sin(ratioDegRad * dir));
+        int newX = (int) Math.round(x + dist * Math.cos(Math.toRadians(dir)));
+        int newY = (int) Math.round(y + dist * Math.sin(Math.toRadians(dir)));
 
-        if (crayon == true) {
+        if (crayon) {
             Segment seg = new Segment(coul, new Point(x, y), new Point(newX, newY));
             listSegments.add(seg);
         }
