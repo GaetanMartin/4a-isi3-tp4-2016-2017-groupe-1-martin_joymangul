@@ -44,4 +44,9 @@ public enum Colors {
                 .map(Enum::name)
                 .collect(Collectors.toList());
     }
+
+    public Colors next()
+    {
+        return Colors.values()[(this.ordinal()+1) %  Colors.values().length];
+    }
 }
