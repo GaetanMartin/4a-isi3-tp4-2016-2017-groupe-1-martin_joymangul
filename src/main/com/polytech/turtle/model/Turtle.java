@@ -1,7 +1,5 @@
 package main.com.polytech.turtle.model;// package logo;
 
-import main.com.polytech.turtle.Utils.Colors;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -23,13 +21,13 @@ import java.util.Observable;
 
 public class Turtle extends Observable {
 
-    public static final int rp = 10, rb = 5; // Taille de la pointe et de la base de la fleche
+    public static final int ARROW_HEIGHT = 200, ARROW_BASE_WIDTH = 100; // Taille de la pointe et de la base de la fleche
 
     protected ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
     protected int x;
     protected int y;
     protected int dir;
-    protected boolean crayon;
+    protected boolean pen;
     protected Color color;
 
 
@@ -75,7 +73,7 @@ public class Turtle extends Observable {
         y = 0;
         dir = -90;
         this.setColor(Color.BLACK);
-        crayon = true;
+        pen = true;
         listSegments.clear();
         notifyView();
     }
@@ -87,11 +85,11 @@ public class Turtle extends Observable {
     }
 
 
-    public void avancer(int dist) {
+    public void moveForward(int dist) {
         int newX = (int) Math.round(x + dist * Math.cos(Math.toRadians(dir)));
         int newY = (int) Math.round(y + dist * Math.sin(Math.toRadians(dir)));
 
-        if (crayon) {
+        if (pen) {
             Segment seg = new Segment(this.color, new Point(x, y), new Point(newX, newY));
             listSegments.add(seg);
         }
@@ -99,27 +97,27 @@ public class Turtle extends Observable {
         this.setPosition(newX, newY);
     }
 
-    public void droite(int ang) {
+    public void turnRight(int ang) {
         dir = (dir + ang) % 360;
         notifyView();
     }
 
-    public void gauche(int ang) {
+    public void turnLeft(int ang) {
         dir = (dir - ang) % 360;
         notifyView();
     }
 
-    public void baisserCrayon() {
-        crayon = true;
+    public void lowerPen() {
+        pen = true;
         notifyView();
     }
 
-    public void leverCrayon() {
-        crayon = false;
+    public void liftPen() {
+        pen = false;
         notifyView();
     }
 
-    public void couleurSuivante() {
+    public void nextColor() {
         // TODO : this
     }
 }

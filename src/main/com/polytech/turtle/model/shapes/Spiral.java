@@ -16,9 +16,9 @@ public class Spiral extends AbstractShape {
     public Spiral(Turtle turtle, int n, int k, int a) {
         super(turtle);
         for (int i = 0; i < k; i++) {
-            turtle.couleurSuivante();
-            turtle.avancer(n);
-            turtle.droite(360 / a);
+            turtle.nextColor();
+            turtle.moveForward(n);
+            turtle.turnRight(360 / a);
             n = n + 1;
         }
     }

@@ -20,10 +20,10 @@ public class TurtleView {
 
         Polygon arrow = new Polygon();
 
-        //Angle de la droite
+        //Angle de la turnRight
         double theta= Math.toRadians(-turtle.getDir());
 
-        float rb = turtle.rb, rp = turtle.rp;
+        float rb = turtle.ARROW_BASE_WIDTH, rp = turtle.ARROW_HEIGHT;
 
         //Demi angle au sommet du triangle
         double alpha=Math.atan(rb / rp);

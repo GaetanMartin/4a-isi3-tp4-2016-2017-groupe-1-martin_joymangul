@@ -27,8 +27,8 @@ public class Polygon extends AbstractShape {
 
     protected void polygon(int sideSize, int nbSide) {
         for (int j = 0; j < nbSide; j++) {
-            turtle.avancer(sideSize);
-            turtle.droite(360 / nbSide);
+            turtle.moveForward(sideSize);
+            turtle.turnRight(360 / nbSide);
         }
     }
 }

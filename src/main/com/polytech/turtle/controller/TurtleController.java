@@ -65,19 +65,19 @@ public class TurtleController {
 
     private void move(int v)
     {
-        System.out.println("command avancer");
-        turtleModel.avancer(v);
+        System.out.println("command moveForward");
+        turtleModel.moveForward(v);
     }
 
     private void right(int v)
     {
-        turtleModel.droite(v);
+        turtleModel.turnRight(v);
         //turtlePanel.repaint();
     }
 
     private void left(int v)
     {
-        turtleModel.gauche(v);
+        turtleModel.turnLeft(v);
     }
 
     private void setColor(ActionEvent e) {
@@ -87,11 +87,11 @@ public class TurtleController {
     }
 
     private void up() {
-        turtleModel.leverCrayon();
+        turtleModel.liftPen();
     }
 
     private void down()  {
-        turtleModel.baisserCrayon();
+        turtleModel.lowerPen();
     }
 
     private void square() {
