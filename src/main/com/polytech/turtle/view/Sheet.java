@@ -87,7 +87,7 @@ public class Sheet extends JPanel implements Observer {
 		Dimension dim = getSize();
 		g.setColor(Color.white);
 		g.fillRect(0,0,dim.width, dim.height);
-		g.setColor(c);
+        g.setColor(c);
 
 //		graph.setColor(color);
 //		graph.drawLine(ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
@@ -97,11 +97,12 @@ public class Sheet extends JPanel implements Observer {
 	public void showTurtles(Graphics g) {
 		for(Iterator it = turtles.iterator(); it.hasNext();) {
 			Turtle t = (Turtle) it.next();
+            g.setColor(decodeColor(t.getColor()));
 			TurtleView turtleView = new TurtleView(t);
 			Polygon arrow = turtleView.getShape();
 //			.draw(turtleView.getShape());
 			g.fillPolygon(arrow);
-			g.setColor(decodeColor(t.getColor()));
+
 			drawSegments(g, t.getListSegments());
 //			t.drawTurtle(g);
 		}

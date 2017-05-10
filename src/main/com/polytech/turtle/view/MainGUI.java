@@ -54,6 +54,11 @@ public class MainGUI extends JFrame {
     private JMenuItem menuItemHelp = new JMenuItem("Aide");
     private JMenuItem menuItemAbout = new JMenuItem("À propos");
 
+    private String[] colorStrings = {"noir", "bleu", "cyan", "gris fonce", "rouge",
+            "vert", "gris clair", "magenta", "orange",
+            "gris", "rose", "jaune"};
+
+    private JComboBox colorList = new JComboBox(colorStrings);
 
 
     public void setSheet(Sheet sheet) {
@@ -142,6 +147,10 @@ public class MainGUI extends JFrame {
         return buttonSpiral;
     }
 
+    public JComboBox getColorList() {
+        return colorList;
+    }
+
     public String getStepValue() {
         String s = textFieldStep.getText();
         return (s);
@@ -182,24 +191,11 @@ public class MainGUI extends JFrame {
         toolBar.add(initButton(buttonDown, "Baisser Crayon"));
 
 
-        String[] colorStrings = {"noir", "bleu", "cyan", "gris fonce", "rouge",
-                "vert", "gris clair", "magenta", "orange",
-                "gris", "rose", "jaune"};
-
         // Create the combo box
         toolBar.add(Box.createRigidArea(HGAP));
         JLabel colorLabel = new JLabel("   Couleur: ");
         toolBar.add(colorLabel);
-        JComboBox colorList = new JComboBox(colorStrings);
         toolBar.add(colorList);
-
-        colorList.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JComboBox cb = (JComboBox) e.getSource();
-                int n = cb.getSelectedIndex();
-                courante.setColor(n);
-            }
-        });
 
 
         // Menus

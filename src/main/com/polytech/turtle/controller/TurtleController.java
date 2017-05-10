@@ -6,6 +6,7 @@ import main.com.polytech.turtle.view.Sheet;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 /**
@@ -41,11 +42,12 @@ public class TurtleController {
         turtleView.getMenuItemDown().addActionListener(e -> this.down());
         turtleView.getMenuItemUp().addActionListener(e -> this.up());
 
-
         this.initMenuItemKeyEvent(turtleView.getMenuItemReset(), KeyEvent.VK_N);
         this.initMenuItemKeyEvent(turtleView.getMenuItemQuit(), KeyEvent.VK_Q);
         turtleView.getMenuItemReset().addActionListener(e -> reset());
         turtleView.getMenuItemQuit().addActionListener(e -> quit());
+
+        turtleView.getColorList().addActionListener(e -> setColor(e));
 
         turtleView.getMenuItemAbout().addActionListener(e -> about());
         turtleView.getMenuItemHelp().addActionListener(e -> help());
@@ -85,6 +87,12 @@ public class TurtleController {
         } catch (NumberFormatException ex){
             System.err.println("ce n'est pas un nombre : " + step);
         }
+    }
+
+    private void setColor(ActionEvent e) {
+        JComboBox cb = (JComboBox) e.getSource();
+        int n = cb.getSelectedIndex();
+        turtleModel.setColor(n);
     }
 
     private void up() {
