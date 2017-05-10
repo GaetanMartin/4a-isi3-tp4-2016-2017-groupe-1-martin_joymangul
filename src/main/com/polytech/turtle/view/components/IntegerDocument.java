@@ -1,4 +1,4 @@
-package main.com.polytech.turtle.view.components;
+package com.polytech.turtle.view.components;
 
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;

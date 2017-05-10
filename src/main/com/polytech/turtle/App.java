@@ -1,8 +1,8 @@
-package main.com.polytech.turtle;
+package com.polytech.turtle;
 
-import main.com.polytech.turtle.controller.TurtleController;
-import main.com.polytech.turtle.model.Turtle;
-import main.com.polytech.turtle.view.MainGUI;
+import com.polytech.turtle.controller.TurtleController;
+import com.polytech.turtle.model.Turtle;
+import com.polytech.turtle.view.MainGUI;
 
 /**
  * Created by JOYMANGUL Jensen Selwyn

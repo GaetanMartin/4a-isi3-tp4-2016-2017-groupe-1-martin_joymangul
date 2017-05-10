@@ -1,4 +1,4 @@
-package main.com.polytech.turtle.Utils;
+package com.polytech.turtle.Utils;
 
 import java.awt.*;
 import java.util.stream.Collectors;

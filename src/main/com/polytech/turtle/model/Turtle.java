@@ -1,4 +1,4 @@
-package main.com.polytech.turtle.model;// package logo;
+package com.polytech.turtle.model;// package logo;
 
 import java.awt.*;
 import java.util.ArrayList;

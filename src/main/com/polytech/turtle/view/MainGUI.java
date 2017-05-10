@@ -1,6 +1,6 @@
-package main.com.polytech.turtle.view;// package logo;
+package com.polytech.turtle.view;// package logo;
 
-import main.com.polytech.turtle.view.components.JIntegerField;
+import com.polytech.turtle.view.components.JIntegerField;
 
 import javax.swing.*;
 import java.awt.*;

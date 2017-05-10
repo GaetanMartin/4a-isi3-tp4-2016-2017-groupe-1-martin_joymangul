@@ -1,6 +1,6 @@
-package main.com.polytech.turtle.view;
+package com.polytech.turtle.view;
 
-import main.com.polytech.turtle.model.Turtle;
+import com.polytech.turtle.model.Turtle;
 
 import java.awt.*;
 

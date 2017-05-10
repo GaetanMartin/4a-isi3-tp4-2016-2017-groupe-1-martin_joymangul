@@ -2,9 +2,10 @@ package main.com.polytech.turtle.controller;
 
 import static org.junit.Assert.*;
 
-import main.com.polytech.turtle.model.Turtle;
-import main.com.polytech.turtle.view.MainGUI;
-import main.com.polytech.turtle.view.Sheet;
+import com.polytech.turtle.controller.TurtleController;
+import com.polytech.turtle.model.Turtle;
+import com.polytech.turtle.view.MainGUI;
+import com.polytech.turtle.view.Sheet;
 
 import org.junit.After;
 import org.junit.Before;

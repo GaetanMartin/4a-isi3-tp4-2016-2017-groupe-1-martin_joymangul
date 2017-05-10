@@ -1,7 +1,7 @@
-package main.com.polytech.turtle.view;// package logo;
+package com.polytech.turtle.view;// package logo;
 
-import main.com.polytech.turtle.model.Segment;
-import main.com.polytech.turtle.model.Turtle;
+import com.polytech.turtle.model.Segment;
+import com.polytech.turtle.model.Turtle;
 
 import javax.swing.*;
 import java.awt.*;

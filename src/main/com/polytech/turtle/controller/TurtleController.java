@@ -1,12 +1,12 @@
-package main.com.polytech.turtle.controller;
+package com.polytech.turtle.controller;
 
-import main.com.polytech.turtle.Utils.Colors;
-import main.com.polytech.turtle.model.Turtle;
-import main.com.polytech.turtle.model.shapes.Hexagon;
-import main.com.polytech.turtle.model.shapes.Spiral;
-import main.com.polytech.turtle.model.shapes.Square;
-import main.com.polytech.turtle.view.MainGUI;
-import main.com.polytech.turtle.view.Sheet;
+import com.polytech.turtle.Utils.Colors;
+import com.polytech.turtle.model.Turtle;
+import com.polytech.turtle.model.shapes.Hexagon;
+import com.polytech.turtle.model.shapes.Spiral;
+import com.polytech.turtle.model.shapes.Square;
+import com.polytech.turtle.view.MainGUI;
+import com.polytech.turtle.view.Sheet;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,21 +63,21 @@ public class TurtleController {
         turtleView.getButtonSpiral().addActionListener(e -> spiral());
     }
 
-    protected void move(int length)
+    public void move(int v)
     {
         System.out.println("command moveForward");
-        turtleModel.moveForward(length);
+        turtleModel.moveForward(v);
     }
 
-    protected void right(int degree)
+    public void right(int v)
     {
-        turtleModel.turnRight(degree);
+        turtleModel.turnRight(v);
         //turtlePanel.repaint();
     }
 
-    protected void left(int degree)
+    public void left(int v)
     {
-        turtleModel.turnLeft(degree);
+        turtleModel.turnLeft(v);
     }
 
     private void setColor(ActionEvent e) {

@@ -1,4 +1,4 @@
-package main.com.polytech.turtle.model;
+package com.polytech.turtle.model;
 
 /**
  * Created by p1509413 on 26/04/2017.

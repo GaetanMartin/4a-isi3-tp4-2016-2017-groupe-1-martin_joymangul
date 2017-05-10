@@ -1,6 +1,6 @@
-package main.com.polytech.turtle.model.shapes;
+package com.polytech.turtle.model.shapes;
 
-import main.com.polytech.turtle.model.Turtle;
+import com.polytech.turtle.model.Turtle;
 
 /**
  * Created by p1509413 on 10/05/2017.
