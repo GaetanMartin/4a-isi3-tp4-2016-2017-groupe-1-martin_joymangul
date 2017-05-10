@@ -31,8 +31,8 @@ public class TurtleView {
         double r=Math.sqrt( rp*rp + rb*rb );
 
         //Pointe
-        Point p2=new Point((int) Math.round(turtle.getX() +r*Math.cos(theta)),
-                (int) Math.round(turtle.getY() -r*Math.sin(theta)));
+        Point p2=new Point((int) Math.round(turtle.getPosition().getX() +r*Math.cos(theta)),
+                (int) Math.round(turtle.getPosition().getY() -r*Math.sin(theta)));
         arrow.addPoint(p2.x,p2.y);
         arrow.addPoint((int) Math.round( p2.x-r*Math.cos(theta + alpha) ),
                 (int) Math.round( p2.y+r*Math.sin(theta + alpha) ));

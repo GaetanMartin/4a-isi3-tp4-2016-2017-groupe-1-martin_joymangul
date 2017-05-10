@@ -21,7 +21,7 @@ public class Sheet extends JPanel implements Observer {
 	private List<Turtle> turtles; // la liste des turtles enregistrees
 	
 	public Sheet() {
-		turtles = new ArrayList<Turtle>();
+		turtles = new ArrayList<>();
 		this.setBackground(Color.white);
 		this.setSize(new Dimension(600, 400));
 		this.setPreferredSize(new Dimension(600, 400));
@@ -30,38 +30,12 @@ public class Sheet extends JPanel implements Observer {
 	public void addTortue(Turtle o) {
 		o.addObserver(this);
 		turtles.add(o);
+		repaint();
 	}
 
 	public void reset() {
-		for (Iterator it = turtles.iterator(); it.hasNext();) {
-			Turtle t = (Turtle) it.next();
-			t.reset();
-		}
+		turtles.forEach(Turtle::reset);
 	}
-
-	/*
-
-
-	public void drawTurtle (Graphics graph) {
-		if (graph==null)
-			return;
-
-		// Dessine les segments
-		for(Iterator it = listSegments.iterator();it.hasNext();) {
-			Segment seg = (Segment) it.next();
-			seg.drawSegment(graph);
-		}
-
-
-
-		arrow.addPoint(p2.x,p2.y);
-		graph.setColor(Color.green);
-		graph.fillPolygon(arrow);
-    }
-
-*/
-
-
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -77,16 +51,12 @@ public class Sheet extends JPanel implements Observer {
 	}
 
 	public void showTurtles(Graphics g) {
-		for(Iterator it = turtles.iterator(); it.hasNext();) {
-			Turtle t = (Turtle) it.next();
+		for(Turtle t : turtles) {
             g.setColor(t.getColor());
 			TurtleView turtleView = new TurtleView(t);
 			Polygon arrow = turtleView.getShape();
-//			.draw(turtleView.getShape());
 			g.fillPolygon(arrow);
-
 			drawSegments(g, t.getListSegments());
-//			t.drawTurtle(g);
 		}
 	}
 
@@ -102,6 +72,7 @@ public class Sheet extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
+		System.out.println("Repaint");
 		repaint();
 	}
 }

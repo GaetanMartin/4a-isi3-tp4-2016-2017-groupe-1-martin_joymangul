@@ -18,20 +18,19 @@ import java.awt.event.KeyEvent;
  * Controller for a turtle
  */
 public class TurtleController {
-    private Turtle turtleModel;
+    private Turtle currentTurtle;
     private MainGUI turtleView;
-    private Sheet turtlePanel;
+    private Sheet sheet;
 
-    public TurtleController(Turtle turtleModel, MainGUI turtleView) {
-        this.turtleModel = turtleModel;
-        this.turtlePanel = new Sheet();
+    public TurtleController(Turtle turtle, MainGUI turtleView) {
+        this.currentTurtle = turtle;
+        this.sheet = new Sheet();
         this.turtleView = turtleView;
-        this.turtleModel.setPosition(600 / 2, 400 / 2);
-        this.turtlePanel.addTortue(turtleModel);
+        this.sheet.addTortue(turtle);
     }
 
     public void initController() {
-        turtleView.setSheet(turtlePanel);
+        turtleView.setSheet(sheet);
         turtleView.getTextFieldStep().setText("45");
         turtleView.getTextFieldStep().setColumns(5);
         turtleView.getButtonMove().addActionListener(e -> this.move(turtleView.getStepValue()));
@@ -40,12 +39,15 @@ public class TurtleController {
         turtleView.getButtonDown().addActionListener(e -> this.down());
         turtleView.getButtonUp().addActionListener(e -> this.up());
         turtleView.getButtonReset().addActionListener(e -> this.reset());
+        turtleView.getButtonAddTurtle().addActionListener(e -> this.addTurtle());
 
         turtleView.getMenuItemMove().addActionListener(e -> this.move(turtleView.getStepValue()));
         turtleView.getMenuItemRight().addActionListener(e -> this.right(turtleView.getStepValue()));
         turtleView.getMenuItemLeft().addActionListener(e -> this.left(turtleView.getStepValue()));
         turtleView.getMenuItemDown().addActionListener(e -> this.down());
         turtleView.getMenuItemUp().addActionListener(e -> this.up());
+        turtleView.getMenuItemAddTurtle().addActionListener(e -> this.addTurtle());
+
 
         this.initMenuItemKeyEvent(turtleView.getMenuItemReset(), KeyEvent.VK_N);
         this.initMenuItemKeyEvent(turtleView.getMenuItemQuit(), KeyEvent.VK_Q);
@@ -66,51 +68,58 @@ public class TurtleController {
     public void move(int v)
     {
         System.out.println("command moveForward");
-        turtleModel.moveForward(v);
+        currentTurtle.moveForward(v);
     }
 
     public void right(int v)
     {
-        turtleModel.turnRight(v);
-        //turtlePanel.repaint();
+        currentTurtle.turnRight(v);
+        //sheet.repaint();
+    }
+
+    public void addTurtle() {
+        System.out.println("Nouvelle Tortue");
+        Turtle t = new Turtle();
+        this.currentTurtle = t;
+        this.sheet.addTortue(t);
     }
 
     public void left(int v)
     {
-        turtleModel.turnLeft(v);
+        currentTurtle.turnLeft(v);
     }
 
     private void setColor(ActionEvent e) {
         JComboBox cb = (JComboBox) e.getSource();
         Color color = Colors.getColor((String) cb.getSelectedItem());
-        turtleModel.setColor(color);
+        currentTurtle.setColor(color);
     }
 
     private void up() {
-        turtleModel.liftPen();
+        currentTurtle.liftPen();
     }
 
     private void down()  {
-        turtleModel.lowerPen();
+        currentTurtle.lowerPen();
     }
 
     private void square() {
-        new Square(this.turtleModel, 100);
+        new Square(this.currentTurtle, 100);
     }
 
     private void polygon() {
-        new Hexagon(this.turtleModel,60);
+        new Hexagon(this.currentTurtle,60);
     }
 
     private void spiral() {
-        new Spiral(this.turtleModel, 50, 40, 6);
+        new Spiral(this.currentTurtle, 50, 40, 6);
     }
 
     private void reset() {
-        turtlePanel.reset();
+        sheet.reset();
         // Replace la fr.polytech.turtle au centre
-        Dimension size = turtlePanel.getSize();
-        turtleModel.setPosition(size.width/2, size.height/2);
+        Dimension size = sheet.getSize();
+        currentTurtle.setPosition(size.width/2, size.height/2);
     }
 
     private void help() {

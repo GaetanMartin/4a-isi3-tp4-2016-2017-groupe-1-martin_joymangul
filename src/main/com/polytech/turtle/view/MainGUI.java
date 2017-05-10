@@ -34,6 +34,7 @@ public class MainGUI extends JFrame {
     private JButton buttonUp = new JButton("Lever");
     private JButton buttonDown = new JButton("Baisser");
     private JButton buttonReset = new JButton("Effacer");
+    private JButton buttonAddTurtle = new JButton("Nouvelle tortue");
 
     private JButton buttonSquare = new JButton("Carré");
     private JButton buttonPolygon = new JButton("Polygone");
@@ -44,6 +45,8 @@ public class MainGUI extends JFrame {
     private JMenuItem menuItemLeft = new JMenuItem("Gauche");
     private JMenuItem menuItemUp = new JMenuItem("Lever Crayon");
     private JMenuItem menuItemDown = new JMenuItem("Baisser Crayon");
+    private JMenuItem menuItemAddTurtle = new JMenuItem("Nouvelle tortue");
+
 
     private JMenuItem menuItemReset = new JMenuItem("Effacer");
     private JMenuItem menuItemQuit = new JMenuItem("Quitter");
@@ -88,6 +91,8 @@ public class MainGUI extends JFrame {
         return buttonReset;
     }
 
+    public JButton getButtonAddTurtle() {return buttonAddTurtle; }
+
     public JMenuItem getMenuItemMove() {
         return menuItemMove;
     }
@@ -107,6 +112,8 @@ public class MainGUI extends JFrame {
     public JMenuItem getMenuItemDown() {
         return menuItemDown;
     }
+
+    public JMenuItem getMenuItemAddTurtle() {return menuItemAddTurtle;}
 
     public JTextField getTextFieldStep() {
         return textFieldStep;
@@ -181,6 +188,7 @@ public class MainGUI extends JFrame {
         toolBar.add(initButton(buttonLeft, "Gauche 45"));
         toolBar.add(initButton(buttonUp,  "Lever Crayon"));
         toolBar.add(initButton(buttonDown, "Baisser Crayon"));
+        toolBar.add(initButton(buttonAddTurtle, "Nouvelle tortue"));
 
 
         // Create the combo box
@@ -205,6 +213,7 @@ public class MainGUI extends JFrame {
         menuCommandes.add(menuItemLeft);
         menuCommandes.add(menuItemUp);
         menuCommandes.add(menuItemDown);
+        menuCommandes.add(menuItemAddTurtle);
 
         JMenu menuHelp = new JMenu("Aide"); // on installe le premier menu
         menubar.add(menuHelp);

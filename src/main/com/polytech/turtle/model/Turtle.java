@@ -32,16 +32,7 @@ public class Turtle extends Observable {
 
     public Turtle() {
         listSegments = new ArrayList<>();
-        position = new Point(0,0);
         reset();
-    }
-
-    public int getX() {
-        return position.getX();
-    }
-
-    public int getY() {
-        return position.getY();
     }
 
     public Point getPosition() {
@@ -73,7 +64,7 @@ public class Turtle extends Observable {
     }
 
     public void reset() {
-        this.position = new Point(0,0);
+        this.position = new Point(300, 200);
         dir = -90;
         this.setColor(Color.BLACK);
         pen = true;
