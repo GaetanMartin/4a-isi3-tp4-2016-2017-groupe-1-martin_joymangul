@@ -24,20 +24,28 @@ public class Turtle extends Observable {
     public static final int ARROW_HEIGHT = 10, ARROW_BASE_WIDTH = 5; // Taille de la pointe et de la base de la fleche
 
     protected ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
-    protected int x;
-    protected int y;
+    protected Point position;
     protected int dir;
     protected boolean pen;
     protected Color color;
 
 
+    public Turtle() {
+        listSegments = new ArrayList<>();
+        position = new Point(0,0);
+        reset();
+    }
 
     public int getX() {
-        return x;
+        return position.getX();
     }
 
     public int getY() {
-        return y;
+        return position.getY();
+    }
+
+    public Point getPosition() {
+        return position;
     }
 
     public int getDir() {
@@ -58,10 +66,6 @@ public class Turtle extends Observable {
         return listSegments;
     }
 
-    public Turtle() {
-        listSegments = new ArrayList<>();
-        reset();
-    }
 
     private void notifyView() {
         this.setChanged();
@@ -69,8 +73,7 @@ public class Turtle extends Observable {
     }
 
     public void reset() {
-        x = 0;
-        y = 0;
+        this.position = new Point(0,0);
         dir = -90;
         this.setColor(Color.BLACK);
         pen = true;
@@ -79,18 +82,18 @@ public class Turtle extends Observable {
     }
 
     public void setPosition(int newX, int newY) {
-        x = newX;
-        y = newY;
+        position.setX(newX);
+        position.setY(newY);
         notifyView();
     }
 
 
     public void moveForward(int dist) {
-        int newX = (int) Math.round(x + dist * Math.cos(Math.toRadians(dir)));
-        int newY = (int) Math.round(y + dist * Math.sin(Math.toRadians(dir)));
+        int newX = (int) Math.round(position.getX() + dist * Math.cos(Math.toRadians(dir)));
+        int newY = (int) Math.round(position.getY() + dist * Math.sin(Math.toRadians(dir)));
 
         if (pen) {
-            Segment seg = new Segment(this.color, new Point(x, y), new Point(newX, newY));
+            Segment seg = new Segment(this.color, new Point(position.getX(), position.getY()), new Point(newX, newY));
             listSegments.add(seg);
         }
 
