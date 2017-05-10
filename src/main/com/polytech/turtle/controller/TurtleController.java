@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 
 /**
  * Created by p1509413 on 26/04/2017.
+ * Controller for a turtle
  */
 public class TurtleController {
     private Turtle turtleModel;
@@ -47,7 +48,7 @@ public class TurtleController {
         turtleView.getMenuItemReset().addActionListener(e -> reset());
         turtleView.getMenuItemQuit().addActionListener(e -> quit());
 
-        turtleView.getColorList().addActionListener(e -> setColor(e));
+        turtleView.getColorList().addActionListener(this::setColor);
 
         turtleView.getMenuItemAbout().addActionListener(e -> about());
         turtleView.getMenuItemHelp().addActionListener(e -> help());
@@ -57,36 +58,21 @@ public class TurtleController {
         turtleView.getButtonSpiral().addActionListener(e -> spiral());
     }
 
-    public void move(String step)
+    private void move(int v)
     {
         System.out.println("command avancer");
-        try {
-            int v = Integer.parseInt(step);
-            turtleModel.avancer(v);
-        } catch (NumberFormatException ex){
-            System.err.println("ce n'est pas un nombre : " + step);
-        }
+        turtleModel.avancer(v);
     }
 
-    public void right(String step)
+    private void right(int v)
     {
-        try {
-            int v = Integer.parseInt(step);
-            turtleModel.droite(v);
-        } catch (NumberFormatException ex){
-            System.err.println("ce n'est pas un nombre : " + step);
-        }
+        turtleModel.droite(v);
         //turtlePanel.repaint();
     }
 
-    public void left(String step)
+    private void left(int v)
     {
-        try {
-            int v = Integer.parseInt(step);
-            turtleModel.gauche(v);
-        } catch (NumberFormatException ex){
-            System.err.println("ce n'est pas un nombre : " + step);
-        }
+        turtleModel.gauche(v);
     }
 
     private void setColor(ActionEvent e) {
@@ -115,7 +101,7 @@ public class TurtleController {
         this.turtleModel.spiral(50, 40, 6);
     }
 
-    public void reset() {
+    private void reset() {
         turtlePanel.reset();
         // Replace la fr.polytech.turtle au centre
         Dimension size = turtlePanel.getSize();

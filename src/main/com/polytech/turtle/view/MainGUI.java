@@ -1,11 +1,9 @@
 package main.com.polytech.turtle.view;// package logo;
 
-import main.com.polytech.turtle.model.Turtle;
+import main.com.polytech.turtle.view.components.JIntegerField;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -19,7 +17,6 @@ import java.awt.event.WindowEvent;
  Cours de DESS TNI - Montpellier II
 
  @version 2.0
- @date 25/09/
 
 
  **************************************************************************/
@@ -27,10 +24,10 @@ import java.awt.event.WindowEvent;
 
 public class MainGUI extends JFrame {
     public static final Dimension VGAP = new Dimension(1, 5);
-    public static final Dimension HGAP = new Dimension(5, 1);
+    private static final Dimension HGAP = new Dimension(5, 1);
 
     private Sheet sheet;
-    private JTextField textFieldStep = new JTextField();
+    private JIntegerField textFieldStep = new JIntegerField();
     private JButton buttonMove = new JButton("Avancer");
     private JButton buttonRight = new JButton("Droite");
     private JButton buttonLeft = new JButton("Gauche");
@@ -58,7 +55,7 @@ public class MainGUI extends JFrame {
             "vert", "gris clair", "magenta", "orange",
             "gris", "rose", "jaune"};
 
-    private JComboBox colorList = new JComboBox(colorStrings);
+    private JComboBox<String> colorList = new JComboBox<>(colorStrings);
 
 
     public void setSheet(Sheet sheet) {
@@ -147,13 +144,12 @@ public class MainGUI extends JFrame {
         return buttonSpiral;
     }
 
-    public JComboBox getColorList() {
-        return colorList;
+    public int getStepValue() {
+        return textFieldStep.getInt();
     }
 
-    public String getStepValue() {
-        String s = textFieldStep.getText();
-        return (s);
+    public JComboBox<String> getColorList() {
+        return colorList;
     }
 
     public MainGUI() {
@@ -169,7 +165,7 @@ public class MainGUI extends JFrame {
         });
     }
 
-    public void logoInit() {
+    private void logoInit() {
         getContentPane().setLayout(new BorderLayout(10, 10));
 
         // Boutons
@@ -219,7 +215,7 @@ public class MainGUI extends JFrame {
         menuHelp.add(menuItemHelp);
         menuHelp.add(menuItemAbout);
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // les boutons du bas
         JPanel p2 = new JPanel(new GridLayout());
@@ -233,7 +229,7 @@ public class MainGUI extends JFrame {
         setVisible(true);
     }
 
-    public JButton initButton(JButton button, String tooltipText) {
+    private JButton initButton(JButton button, String tooltipText) {
         button.setToolTipText(tooltipText);
         button.setBorder(BorderFactory.createRaisedBevelBorder());
         button.setMargin(new Insets(0, 0, 0, 0));
