@@ -1,5 +1,6 @@
 package main.com.polytech.turtle.model;// package logo;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -23,8 +24,13 @@ public class Turtle extends Observable {
     public static final int rp = 10, rb = 5; // Taille de la pointe et de la base de la fleche
 
     protected ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
-
     protected int x;
+    protected int y;
+    protected int dir;
+    protected boolean crayon;
+    protected Color color;
+
+
 
     public int getX() {
         return x;
@@ -34,27 +40,22 @@ public class Turtle extends Observable {
         return y;
     }
 
-    protected int y;
-
     public int getDir() {
         return dir;
     }
 
-    public ArrayList<Segment> getListSegments() {
-        return listSegments;
-    }
-
-    protected int dir;
-    protected boolean crayon;
-    protected int coul;
-
-    public void setColor(int n) {
-        coul = n;
+    public void setColor(Color color) {
+        this.color = color;
         notifyView();
     }
 
-    public int getColor() {
-        return coul;
+    public Color getColor() {
+        return color;
+    }
+
+
+    public ArrayList<Segment> getListSegments() {
+        return listSegments;
     }
 
     public Turtle() {
@@ -71,7 +72,7 @@ public class Turtle extends Observable {
         x = 0;
         y = 0;
         dir = -90;
-        coul = 0;
+        this.setColor(Color.BLACK);
         crayon = true;
         listSegments.clear();
         notifyView();
@@ -89,7 +90,7 @@ public class Turtle extends Observable {
         int newY = (int) Math.round(y + dist * Math.sin(Math.toRadians(dir)));
 
         if (crayon) {
-            Segment seg = new Segment(coul, new Point(x, y), new Point(newX, newY));
+            Segment seg = new Segment(this.color, new Point(x, y), new Point(newX, newY));
             listSegments.add(seg);
         }
 
@@ -116,14 +117,6 @@ public class Turtle extends Observable {
         notifyView();
     }
 
-    public void couleur(int n) {
-        coul = n % 12;
-    }
-
-    public void couleurSuivante() {
-        couleur(coul + 1);
-    }
-
     /**
      * quelques classiques
      */
@@ -144,7 +137,7 @@ public class Turtle extends Observable {
 
     public void spiral(int n, int k, int a) {
         for (int i = 0; i < k; i++) {
-            couleur(coul + 1);
+            //couleur(coul + 1);
             avancer(n);
             droite(360 / a);
             n = n + 1;

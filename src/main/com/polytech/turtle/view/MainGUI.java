@@ -51,11 +51,7 @@ public class MainGUI extends JFrame {
     private JMenuItem menuItemHelp = new JMenuItem("Aide");
     private JMenuItem menuItemAbout = new JMenuItem("À propos");
 
-    private String[] colorStrings = {"noir", "bleu", "cyan", "gris fonce", "rouge",
-            "vert", "gris clair", "magenta", "orange",
-            "gris", "rose", "jaune"};
-
-    private JComboBox<String> colorList = new JComboBox<>(colorStrings);
+    private JComboBox<String> colorList = new JComboBox<>();
 
 
     public void setSheet(Sheet sheet) {

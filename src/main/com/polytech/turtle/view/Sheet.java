@@ -60,23 +60,7 @@ public class Sheet extends JPanel implements Observer {
     }
 
 */
-    protected Color decodeColor(int c) {
-		switch(c) {
-			case 0: return(Color.black);
-			case 1: return(Color.blue);
-			case 2: return(Color.cyan);
-			case 3: return(Color.darkGray);
-			case 4: return(Color.red);
-			case 5: return(Color.green);
-			case 6: return(Color.lightGray);
-			case 7: return(Color.magenta);
-			case 8: return(Color.orange);
-			case 9: return(Color.gray);
-			case 10: return(Color.pink);
-			case 11: return(Color.yellow);
-			default : return(Color.black);
-		}
-	}
+
 
 
 	public void paintComponent(Graphics g) {
@@ -89,15 +73,13 @@ public class Sheet extends JPanel implements Observer {
 		g.fillRect(0,0,dim.width, dim.height);
         g.setColor(c);
 
-//		graph.setColor(color);
-//		graph.drawLine(ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
 		showTurtles(g);
 	}
 
 	public void showTurtles(Graphics g) {
 		for(Iterator it = turtles.iterator(); it.hasNext();) {
 			Turtle t = (Turtle) it.next();
-            g.setColor(decodeColor(t.getColor()));
+            g.setColor(t.getColor());
 			TurtleView turtleView = new TurtleView(t);
 			Polygon arrow = turtleView.getShape();
 //			.draw(turtleView.getShape());
@@ -114,6 +96,7 @@ public class Sheet extends JPanel implements Observer {
 	}
 
 	public void drawSegment(Graphics graph, Segment segment) {
+        graph.setColor(segment.getColor());
 		graph.drawLine(segment.getStart().getX(), segment.getStart().getY(), segment.getEnd().getX(), segment.getEnd().getY());
 	}
 

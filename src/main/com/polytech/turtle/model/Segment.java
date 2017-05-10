@@ -1,18 +1,20 @@
 package main.com.polytech.turtle.model;
 
+import java.awt.*;
+
 /**
  * Created by p1509413 on 26/04/2017.
  * Segment
  */
 public class Segment {
 
-    private int color;
+    private Color color;
 
     private Point start;
 
     private Point end;
 
-    public Segment(int color, Point start, Point end) {
+    public Segment(Color color, Point start, Point end) {
         this.color = color;
         this.start = start;
         this.end = end;
@@ -26,7 +28,7 @@ public class Segment {
         return end;
     }
 
-    public int getColor() {
+    public Color getColor() {
         return color;
     }
 }
