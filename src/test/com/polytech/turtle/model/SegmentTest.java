@@ -1,4 +1,4 @@
-package main.com.polytech.turtle.model;
+package com.polytech.turtle.model;
 
 import com.polytech.turtle.model.Point;
 import com.polytech.turtle.model.Segment;

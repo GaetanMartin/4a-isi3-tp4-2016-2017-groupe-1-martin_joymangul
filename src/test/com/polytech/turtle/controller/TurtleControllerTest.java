@@ -1,47 +1,41 @@
-package main.com.polytech.turtle.model;
+package com.polytech.turtle.controller;
 
-import com.polytech.turtle.model.Point;
-import com.polytech.turtle.model.Segment;
+import static org.junit.Assert.*;
+
+import com.polytech.turtle.controller.TurtleController;
 import com.polytech.turtle.model.Turtle;
+import com.polytech.turtle.view.MainGUI;
+import com.polytech.turtle.view.Sheet;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
 /**
  * Created by p1511785 on 10/05/2017.
  */
-public class TurtleTest {
-    private Turtle turtle;
+public class TurtleControllerTest {
+    private TurtleController turtleController;
 
-    private ArrayList<Segment> listSegments;
-    private Point position;
-    private int dir;
-    private boolean pen;
-    private Color color;
+    private Turtle turtleModel;
+    private MainGUI turtleView;
+    private Sheet turtlePanel;
 
     @Before
     public void setUp() {
 
-        this.listSegments = new ArrayList<Segment>();
-        for(int i = 0; i < 10; i++){
-            Segment segment = mock(Segment.class);
-            when(segment.getStart()).thenReturn(new Point(i,10-i));
-            when(segment.getEnd()).thenReturn(new Point(10-i,i));
-            when(segment.getColor()).thenReturn(new Color(173,255,47));
-            this.listSegments.add(segment);
-        }
-        this.position = new Point(28, 18);
-        this.color = new Color(173,255,47);
-        this.turtle = new Turtle();
+        this.turtleModel = mock(Turtle.class);
+        this.turtleView = mock(MainGUI.class);
+        this.turtlePanel = mock(Sheet.class);
+        this.turtleController = new TurtleController(this.turtleModel, this.turtleView);
     }
 
-/*
     @Test
     public void should_give_true_on_test_move(){
         //Given
@@ -93,10 +87,9 @@ public class TurtleTest {
         //Then
         verify(this.turtleModel, atLeastOnce()).setColor(any(Color.class));
     }
-
+*/
 
     @After
     public void testApresTeste(){
     }
-*/
 }

@@ -65,13 +65,13 @@ public class TurtleController {
         turtleView.getButtonSpiral().addActionListener(e -> spiral());
     }
 
-    public void move(int v)
+    protected void move(int v)
     {
         System.out.println("command moveForward");
         currentTurtle.moveForward(v);
     }
 
-    public void right(int v)
+    protected void right(int v)
     {
         currentTurtle.turnRight(v);
         //sheet.repaint();
@@ -84,7 +84,7 @@ public class TurtleController {
         this.sheet.addTortue(t);
     }
 
-    public void left(int v)
+    protected void left(int v)
     {
         currentTurtle.turnLeft(v);
     }

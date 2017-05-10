@@ -58,7 +58,7 @@ public class Turtle extends Observable {
     }
 
 
-    private void notifyView() {
+    protected void notifyView() {
         this.setChanged();
         this.notifyObservers();
     }
