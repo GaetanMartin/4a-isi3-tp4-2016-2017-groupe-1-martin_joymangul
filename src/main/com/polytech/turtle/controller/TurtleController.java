@@ -2,6 +2,9 @@ package main.com.polytech.turtle.controller;
 
 import main.com.polytech.turtle.Utils.Colors;
 import main.com.polytech.turtle.model.Turtle;
+import main.com.polytech.turtle.model.shapes.Hexagon;
+import main.com.polytech.turtle.model.shapes.Spiral;
+import main.com.polytech.turtle.model.shapes.Square;
 import main.com.polytech.turtle.view.MainGUI;
 import main.com.polytech.turtle.view.Sheet;
 
@@ -92,15 +95,15 @@ public class TurtleController {
     }
 
     private void square() {
-        this.turtleModel.carre();
+        new Square(this.turtleModel, 100);
     }
 
     private void polygon() {
-        this.turtleModel.poly(60, 8);
+        new Hexagon(this.turtleModel,60);
     }
 
     private void spiral() {
-        this.turtleModel.spiral(50, 40, 6);
+        new Spiral(this.turtleModel, 50, 40, 6);
     }
 
     private void reset() {
