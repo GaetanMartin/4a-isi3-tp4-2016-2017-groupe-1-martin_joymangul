@@ -23,30 +23,25 @@ public enum Colors {
     ROSE(Color.pink),
     JAUNE(Color.yellow);
 
-    private Color color;
+    private static Color color;
 
-    public Color getColor() {
+    public static Color getColor() {
         return color;
     }
 
     Colors(Color color) {
-        this.color = color;
+
     }
 
-    public Color getColor(String colorName)
+    public static Color getColor(String colorName)
     {
         return Colors.valueOf(colorName).getColor();
     }
 
 
-    public List<String> getAllColorsName(){
+    public static List<String> getAllColorsName(){
         return Stream.of(Colors.values())
                 .map(Enum::name)
                 .collect(Collectors.toList());
-    }
-
-    public Colors next()
-    {
-        return Colors.values()[(this.ordinal()+1) %  Colors.values().length];
     }
 }

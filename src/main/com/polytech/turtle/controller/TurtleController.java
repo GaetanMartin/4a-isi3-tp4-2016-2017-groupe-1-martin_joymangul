@@ -52,7 +52,7 @@ public class TurtleController {
         turtleView.getMenuItemReset().addActionListener(e -> reset());
         turtleView.getMenuItemQuit().addActionListener(e -> quit());
 
-        Colors.NOIRE.getAllColorsName().forEach((String colorName) -> turtleView.getColorList().addItem(colorName));
+        Colors.getAllColorsName().forEach((String colorName) -> turtleView.getColorList().addItem(colorName));
         turtleView.getColorList().addActionListener(this::setColor);
 
         turtleView.getMenuItemAbout().addActionListener(e -> about());
@@ -82,7 +82,7 @@ public class TurtleController {
 
     private void setColor(ActionEvent e) {
         JComboBox cb = (JComboBox) e.getSource();
-        Color color = Colors.NOIRE.getColor((String) cb.getSelectedItem());
+        Color color = Colors.getColor((String) cb.getSelectedItem());
         turtleModel.setColor(color);
     }
 
