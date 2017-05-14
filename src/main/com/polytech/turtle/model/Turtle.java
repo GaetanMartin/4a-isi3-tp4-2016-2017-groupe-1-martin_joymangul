@@ -84,22 +84,8 @@ public class Turtle extends Observable {
 
 
     public void moveForward(int dist) {
-        float width = 600;
-        float height = 400;
-
         int newX = (int) Math.round(position.getX() + dist * Math.cos(Math.toRadians(dir)));
         int newY = (int) Math.round(position.getY() + dist * Math.sin(Math.toRadians(dir)));
-
-        if(newX > width){
-            newX = ((int) (newX % width));
-        }else if(newX < 0){
-            newX = ((int) (width + newX));
-        }
-        if(newY > height){
-            newY = ((int) (newY % height));
-        }else if(newY < 0){
-            newY = ((int) (height + newY));
-        }
 
         if (pen) {
             Segment seg = new Segment(this.color, new Point(position.getX(), position.getY()), new Point(newX, newY));
@@ -112,7 +98,6 @@ public class Turtle extends Observable {
 
         newY = newY < 0 ? Sheet.DEFAULT_HEIGHT + newY : newY;
         newY = newY > Sheet.DEFAULT_HEIGHT ? newY % Sheet.DEFAULT_HEIGHT : newY;
-
 
         this.setPosition(newX, newY);
     }
