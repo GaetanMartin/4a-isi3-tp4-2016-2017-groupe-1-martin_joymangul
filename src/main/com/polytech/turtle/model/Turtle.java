@@ -26,11 +26,11 @@ public class Turtle extends Observable {
 
     public static final int ARROW_HEIGHT = 10, ARROW_BASE_WIDTH = 5; // Taille de la pointe et de la base de la fleche
 
-    protected ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
-    protected Point position;
-    protected int dir;
-    protected boolean pen;
-    protected Color color;
+    private ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
+    private Point position;
+    private int dir;
+    private boolean pen;
+    private Color color;
 
 
     public Turtle() {
@@ -61,7 +61,7 @@ public class Turtle extends Observable {
     }
 
 
-    protected void notifyView() {
+    void notifyView() {
         this.setChanged();
         this.notifyObservers();
     }
@@ -83,8 +83,22 @@ public class Turtle extends Observable {
 
 
     public void moveForward(int dist) {
+        float width = 600;
+        float height = 400;
+
         int newX = (int) Math.round(position.getX() + dist * Math.cos(Math.toRadians(dir)));
         int newY = (int) Math.round(position.getY() + dist * Math.sin(Math.toRadians(dir)));
+
+        if(newX > width){
+            newX = ((int) (newX % width));
+        }else if(newX < 0){
+            newX = ((int) (width + newX));
+        }
+        if(newY > height){
+            newY = ((int) (newY % height));
+        }else if(newY < 0){
+            newY = ((int) (height + newY));
+        }
 
         if (pen) {
             Segment seg = new Segment(this.color, new Point(position.getX(), position.getY()), new Point(newX, newY));
