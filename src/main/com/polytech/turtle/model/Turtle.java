@@ -106,7 +106,7 @@ public class Turtle extends Observable {
             listSegments.add(seg);
         }
 
-        // Toroidal
+        // Toroidal b
         newX = newX < 0 ? Sheet.DEFAULT_WIDTH + newX : newX;
         newX = newX > Sheet.DEFAULT_WIDTH ? newX % Sheet.DEFAULT_WIDTH : newX;
 
