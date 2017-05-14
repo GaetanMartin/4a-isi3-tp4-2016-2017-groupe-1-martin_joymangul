@@ -18,13 +18,17 @@ import java.util.List;
  */
 
 public class Sheet extends JPanel implements Observer {
+	public static final int DEFAULT_WIDTH = 600;
+
+	public static final int DEFAULT_HEIGHT = 400;
+
 	private List<Turtle> turtles; // la liste des turtles enregistrees
 	
 	public Sheet() {
 		turtles = new ArrayList<>();
 		this.setBackground(Color.white);
-		this.setSize(new Dimension(600, 400));
-		this.setPreferredSize(new Dimension(600, 400));
+		this.setSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+		this.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}
 
 	public void addTortue(Turtle o) {

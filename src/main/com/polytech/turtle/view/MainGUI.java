@@ -39,6 +39,9 @@ public class MainGUI extends JFrame {
     private JButton buttonSquare = new JButton("Carré");
     private JButton buttonPolygon = new JButton("Polygone");
     private JButton buttonSpiral = new JButton("Spiral");
+    private JButton buttonManual = new JButton("Manuelle");
+    private JButton buttonAutomatic = new JButton("Autonomes");
+    private JButton buttonFlocking = new JButton("Flocking");
 
     private JMenuItem menuItemMove = new JMenuItem("Avancer");
     private JMenuItem menuItemRight = new JMenuItem("Droite");
@@ -92,6 +95,18 @@ public class MainGUI extends JFrame {
     }
 
     public JButton getButtonAddTurtle() {return buttonAddTurtle; }
+
+    public JButton getButtonManual() {
+        return buttonManual;
+    }
+
+    public JButton getButtonAutomatic() {
+        return buttonAutomatic;
+    }
+
+    public JButton getButtonFlocking() {
+        return buttonFlocking;
+    }
 
     public JMenuItem getMenuItemMove() {
         return menuItemMove;
@@ -222,13 +237,19 @@ public class MainGUI extends JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        // les boutons du bas
-        JPanel p2 = new JPanel(new GridLayout());
-        p2.add(buttonSquare);
-        p2.add(buttonPolygon);
-        p2.add(buttonSpiral);
+        // First row of button at the bottom
+        JPanel bottomButtonPanel = new JPanel(new GridLayout(0,3));
+        bottomButtonPanel.add(buttonManual);
+        bottomButtonPanel.add(buttonAutomatic);
+        bottomButtonPanel.add(buttonFlocking);
 
-        getContentPane().add(p2, "South");
+        // Second row of button at the bottom
+        bottomButtonPanel.add(buttonSquare);
+        bottomButtonPanel.add(buttonPolygon);
+        bottomButtonPanel.add(buttonSpiral);
+
+        getContentPane().add(bottomButtonPanel, "South");
+        //getContentPane().add(p2, "South");
 
         pack();
         setVisible(true);

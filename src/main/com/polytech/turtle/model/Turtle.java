@@ -1,6 +1,7 @@
 package com.polytech.turtle.model;// package logo;
 
 import com.polytech.turtle.Utils.Colors;
+import com.polytech.turtle.view.Sheet;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.Random;
 
 
 public class Turtle extends Observable {
-
+    private static final Color DEFAULT_COLOR = Color.BLACK;
     public static final int ARROW_HEIGHT = 10, ARROW_BASE_WIDTH = 5; // Taille de la pointe et de la base de la fleche
 
     protected ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
@@ -67,9 +68,9 @@ public class Turtle extends Observable {
     }
 
     public void reset() {
-        this.position = new Point(300, 200);
+        this.position = new Point(Sheet.DEFAULT_WIDTH/2, Sheet.DEFAULT_HEIGHT/2);
         dir = -90;
-        this.setColor(Color.BLACK);
+        this.setColor(DEFAULT_COLOR);
         pen = true;
         listSegments.clear();
         notifyView();
@@ -90,6 +91,14 @@ public class Turtle extends Observable {
             Segment seg = new Segment(this.color, new Point(position.getX(), position.getY()), new Point(newX, newY));
             listSegments.add(seg);
         }
+
+        // Toroidal
+        newX = newX < 0 ? Sheet.DEFAULT_WIDTH + newX : newX;
+        newX = newX > Sheet.DEFAULT_WIDTH ? newX % Sheet.DEFAULT_WIDTH : newX;
+
+        newY = newY < 0 ? Sheet.DEFAULT_HEIGHT + newY : newY;
+        newY = newY > Sheet.DEFAULT_HEIGHT ? newY % Sheet.DEFAULT_HEIGHT : newY;
+
 
         this.setPosition(newX, newY);
     }
@@ -115,7 +124,6 @@ public class Turtle extends Observable {
     }
 
     public void nextColor() {
-        // TODO : this
         Color color = Colors.getColors().get(new Random().nextInt(Colors.getColors().size()));
         this.setColor(color);
     }
