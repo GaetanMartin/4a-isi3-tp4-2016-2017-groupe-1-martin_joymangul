@@ -35,6 +35,7 @@ public class TurtleController {
         this.initTextField();
         this.initTopButton();
         this.initBottomButton();
+        this.initMenuItem();
         this.initColorList();
     }
 
@@ -52,6 +53,7 @@ public class TurtleController {
         turtleView.getButtonUp().addActionListener(e -> this.up());
         turtleView.getButtonReset().addActionListener(e -> this.reset());
         turtleView.getButtonAddTurtle().addActionListener(e -> this.addTurtle());
+        turtleView.getButtonAutomatic().addActionListener(e -> this.moveRandom());
     }
 
     private void initBottomButton() {
@@ -151,6 +153,10 @@ public class TurtleController {
 
     private void initMenuItemKeyEvent(JMenuItem menuItem, int key) {
         menuItem.setAccelerator(KeyStroke.getKeyStroke(key, 0, false));
+    }
+
+    private void moveRandom() {
+        this.currentTurtle.moveRandom();
     }
 
 }

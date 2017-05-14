@@ -25,6 +25,9 @@ import java.util.Random;
 
 public class Turtle extends Observable {
     private static final Color DEFAULT_COLOR = Color.BLACK;
+    private final int MAX_DISTANCE = 150;
+    private final int MAX_ANGLE = 360;
+
     public static final int ARROW_HEIGHT = 10, ARROW_BASE_WIDTH = 5; // Taille de la pointe et de la base de la fleche
 
     private ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
@@ -80,6 +83,14 @@ public class Turtle extends Observable {
         position.setX(newX);
         position.setY(newY);
         notifyView();
+    }
+
+    public void moveRandom() {
+        Random random = new Random();
+        int randomDistance = random.nextInt(MAX_DISTANCE);
+        int randomAngle = random.nextInt(MAX_ANGLE);
+        this.turnLeft(randomAngle);
+        this.moveForward(randomDistance);
     }
 
 
