@@ -1,8 +1,11 @@
 package com.polytech.turtle.model;// package logo;
 
+import com.polytech.turtle.Utils.Colors;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Random;
 
 
 /*************************************************************************
@@ -113,5 +116,7 @@ public class Turtle extends Observable {
 
     public void nextColor() {
         // TODO : this
+        Color color = Colors.getColors().get(new Random().nextInt(Colors.getColors().size()));
+        this.setColor(color);
     }
 }

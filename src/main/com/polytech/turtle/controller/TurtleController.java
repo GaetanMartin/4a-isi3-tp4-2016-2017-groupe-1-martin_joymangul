@@ -31,8 +31,20 @@ public class TurtleController {
 
     public void initController() {
         turtleView.setSheet(sheet);
+
+        this.initTextField();
+        this.initTopButton();
+        this.initBottomButton();
+        this.initColorList();
+    }
+
+    private void initTextField()
+    {
         turtleView.getTextFieldStep().setText("45");
         turtleView.getTextFieldStep().setColumns(5);
+    }
+
+    private void initTopButton() {
         turtleView.getButtonMove().addActionListener(e -> this.move(turtleView.getStepValue()));
         turtleView.getButtonRight().addActionListener(e -> this.right(turtleView.getStepValue()));
         turtleView.getButtonLeft().addActionListener(e -> this.left(turtleView.getStepValue()));
@@ -40,7 +52,15 @@ public class TurtleController {
         turtleView.getButtonUp().addActionListener(e -> this.up());
         turtleView.getButtonReset().addActionListener(e -> this.reset());
         turtleView.getButtonAddTurtle().addActionListener(e -> this.addTurtle());
+    }
 
+    private void initBottomButton() {
+        turtleView.getButtonSquare().addActionListener(e -> square());
+        turtleView.getButtonPolygon().addActionListener(e -> polygon());
+        turtleView.getButtonSpiral().addActionListener(e -> spiral());
+    }
+
+    private void initMenuItem() {
         turtleView.getMenuItemMove().addActionListener(e -> this.move(turtleView.getStepValue()));
         turtleView.getMenuItemRight().addActionListener(e -> this.right(turtleView.getStepValue()));
         turtleView.getMenuItemLeft().addActionListener(e -> this.left(turtleView.getStepValue()));
@@ -48,31 +68,26 @@ public class TurtleController {
         turtleView.getMenuItemUp().addActionListener(e -> this.up());
         turtleView.getMenuItemAddTurtle().addActionListener(e -> this.addTurtle());
 
-
         this.initMenuItemKeyEvent(turtleView.getMenuItemReset(), KeyEvent.VK_N);
         this.initMenuItemKeyEvent(turtleView.getMenuItemQuit(), KeyEvent.VK_Q);
         turtleView.getMenuItemReset().addActionListener(e -> reset());
         turtleView.getMenuItemQuit().addActionListener(e -> quit());
 
-        Colors.getAllColorsName().forEach((String colorName) -> turtleView.getColorList().addItem(colorName));
-        turtleView.getColorList().addActionListener(this::setColor);
-
         turtleView.getMenuItemAbout().addActionListener(e -> about());
         turtleView.getMenuItemHelp().addActionListener(e -> help());
-
-        turtleView.getButtonSquare().addActionListener(e -> square());
-        turtleView.getButtonPolygon().addActionListener(e -> polygon());
-        turtleView.getButtonSpiral().addActionListener(e -> spiral());
     }
 
-    protected void move(int v)
-    {
+    private void initColorList() {
+        Colors.getColorName().forEach((String colorName) -> turtleView.getColorList().addItem(colorName));
+        turtleView.getColorList().addActionListener(this::setColor);
+    }
+
+    protected void move(int v) {
         System.out.println("command moveForward");
         currentTurtle.moveForward(v);
     }
 
-    protected void right(int v)
-    {
+    protected void right(int v) {
         currentTurtle.turnRight(v);
         //sheet.repaint();
     }
@@ -84,14 +99,14 @@ public class TurtleController {
         this.sheet.addTortue(t);
     }
 
-    protected void left(int v)
-    {
+    protected void left(int v) {
         currentTurtle.turnLeft(v);
     }
 
     private void setColor(ActionEvent e) {
         JComboBox cb = (JComboBox) e.getSource();
         Color color = Colors.getColor((String) cb.getSelectedItem());
+        System.out.println(color);
         currentTurtle.setColor(color);
     }
 
@@ -99,7 +114,7 @@ public class TurtleController {
         currentTurtle.liftPen();
     }
 
-    private void down()  {
+    private void down() {
         currentTurtle.lowerPen();
     }
 
@@ -108,7 +123,7 @@ public class TurtleController {
     }
 
     private void polygon() {
-        new Hexagon(this.currentTurtle,60);
+        new Hexagon(this.currentTurtle, 60);
     }
 
     private void spiral() {
@@ -119,11 +134,11 @@ public class TurtleController {
         sheet.reset();
         // Replace la fr.polytech.turtle au centre
         Dimension size = sheet.getSize();
-        currentTurtle.setPosition(size.width/2, size.height/2);
+        currentTurtle.setPosition(size.width / 2, size.height / 2);
     }
 
     private void help() {
-        JOptionPane.showMessageDialog(null, "C'est une aide " , "Aide", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "C'est une aide ", "Aide", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void about() {
@@ -134,8 +149,7 @@ public class TurtleController {
         System.exit(0);
     }
 
-    private void initMenuItemKeyEvent(JMenuItem menuItem, int key)
-    {
+    private void initMenuItemKeyEvent(JMenuItem menuItem, int key) {
         menuItem.setAccelerator(KeyStroke.getKeyStroke(key, 0, false));
     }
 
