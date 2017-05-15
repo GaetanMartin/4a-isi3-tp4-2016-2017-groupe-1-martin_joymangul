@@ -2,11 +2,14 @@ package com.polytech.turtle.view;// package logo;
 
 import com.polytech.turtle.model.Segment;
 import com.polytech.turtle.model.Turtle;
+import com.polytech.turtle.view.events.MouseAdapterCustom;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Titre :        Logo
@@ -59,6 +62,7 @@ public class Sheet extends JPanel implements Observer {
             g.setColor(t.getColor());
 			TurtleView turtleView = new TurtleView(t);
 			Polygon arrow = turtleView.getShape();
+			this.addMouseListener(new MouseAdapterCustom(t, turtleView));
 			g.fillPolygon(arrow);
 			drawSegments(g, t.getListSegments());
 		}

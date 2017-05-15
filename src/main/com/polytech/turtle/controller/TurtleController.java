@@ -19,15 +19,21 @@ import java.awt.event.KeyEvent;
  * Controller for a turtle
  */
 public class TurtleController {
-    private Turtle currentTurtle;
+
+
+    private static Turtle currentTurtle;
     private MainGUI turtleView;
     private Sheet sheet;
 
     public TurtleController(Turtle turtle, MainGUI turtleView) {
-        this.currentTurtle = turtle;
+        currentTurtle = turtle;
         this.sheet = new Sheet();
         this.turtleView = turtleView;
         this.sheet.addTortue(turtle);
+    }
+
+    public static void setCurrentTurtle(Turtle currentTurtle) {
+        TurtleController.currentTurtle = currentTurtle;
     }
 
     public void initController() {
