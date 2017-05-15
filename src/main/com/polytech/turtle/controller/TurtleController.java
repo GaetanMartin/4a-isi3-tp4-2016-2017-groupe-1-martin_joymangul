@@ -137,7 +137,7 @@ public class TurtleController {
         sheet.reset();
         // Replace la fr.polytech.turtle au centre
         Dimension size = sheet.getSize();
-        currentTurtle.setPosition(size.width / 2, size.height / 2);
+        currentTurtle.setPosition(new Point(size.width / 2, size.height / 2));
     }
 
     private void help() {

@@ -79,9 +79,9 @@ public class Turtle extends Observable {
         notifyView();
     }
 
-    public void setPosition(int newX, int newY) {
-        position.setX(newX);
-        position.setY(newY);
+    public void setPosition(Point point) {
+        position.setX(point.getX());
+        position.setY(point.getY());
         notifyView();
     }
 
@@ -95,45 +95,49 @@ public class Turtle extends Observable {
 
 
     public void moveForward(int dist) {
-        int newX = (int) Math.round(position.getX() + dist * Math.cos(Math.toRadians(dir)));
-        int newY = (int) Math.round(position.getY() + dist * Math.sin(Math.toRadians(dir)));
+        Point newPoint = newPoint(dist);
 
         if (pen) {
-            Segment seg = new Segment(this.color, new Point(position.getX(), position.getY()), new Point(newX, newY));
+            Segment seg = new Segment(this.color, new Point(position.getX(), position.getY()), newPoint.clone());
             listSegments.add(seg);
         }
 
-        int holdX = newX;
-        int holdY = newY;
+        int holdX = newPoint.getX();
+        int holdY = newPoint.getY();
 
         // Toroidal b
-        newX = toroidal(newX, Sheet.DEFAULT_WIDTH);
-        newY = toroidal(newY, Sheet.DEFAULT_HEIGHT);
+        newPoint = toroidal(newPoint);
 
-        if(holdX > newX){
-            System.out.printf("selon les X");
+        if(holdX > newPoint.getX()){
             position.setX(position.getX() - Sheet.DEFAULT_WIDTH);
-        }else if(holdX < newX){
+        }else if(holdX < newPoint.getX()){
             position.setX(position.getX() + Sheet.DEFAULT_WIDTH);
-        }else if(holdY > newY){
+        }else if(holdY > newPoint.getY()){
             position.setY(position.getY() - Sheet.DEFAULT_HEIGHT);
-        }else if(holdY < newY){
-            System.out.printf("Selon les Y");
+        }else if(holdY < newPoint.getY()){
             position.setY(position.getY() + Sheet.DEFAULT_HEIGHT);
         }
 
-        if(holdX != newX || holdY != newY){
-            Segment seg = new Segment(this.color, new Point(position.getX(), position.getY()), new Point(newX, newY));
+        if(holdX != newPoint.getX() || holdY != newPoint.getY()){
+            Segment seg = new Segment(this.color, new Point(position.getX(), position.getY()), newPoint);
             listSegments.add(seg);
         }
 
-        this.setPosition(newX, newY);
+        this.setPosition(newPoint);
     }
 
-    public int toroidal(int x, int width){
-        x = x < 0 ? width + x : x;
-        x = x > width ? x % width : x;
-        return x;
+    public Point newPoint(int dist){
+        return new Point((int) Math.round(position.getX() + dist * Math.cos(Math.toRadians(dir))),
+                (int) Math.round(position.getY() + dist * Math.sin(Math.toRadians(dir))));
+    }
+
+    public Point toroidal(Point point){
+        point.setX(point.getX() < 0 ? Sheet.DEFAULT_WIDTH + point.getX() : point.getX());
+        point.setX(point.getX() > Sheet.DEFAULT_WIDTH ? point.getX() % Sheet.DEFAULT_WIDTH : point.getX());
+
+        point.setY(point.getY() < 0 ? Sheet.DEFAULT_HEIGHT + point.getY() : point.getY());
+        point.setY(point.getY() > Sheet.DEFAULT_HEIGHT ? point.getY() % Sheet.DEFAULT_HEIGHT : point.getY());
+        return point;
     }
 
     public void turnRight(int ang) {

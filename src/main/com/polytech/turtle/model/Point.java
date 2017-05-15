@@ -3,7 +3,7 @@ package com.polytech.turtle.model;
 /**
  * Created by p1509413 on 26/04/2017.
  */
-public class Point {
+public class Point implements Cloneable {
 
     private int x;
     private int y;
@@ -11,6 +11,16 @@ public class Point {
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public Point clone(){
+        try {
+            return (Point) super.clone();
+        } catch (CloneNotSupportedException e) {
+            System.out.printf("Can't clone point");
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void setX(int x) {
