@@ -2,6 +2,7 @@ package com.polytech.turtle.controller;
 
 import com.polytech.turtle.Utils.Colors;
 import com.polytech.turtle.model.Turtle;
+import com.polytech.turtle.model.Point;
 import com.polytech.turtle.model.shapes.Hexagon;
 import com.polytech.turtle.model.shapes.Spiral;
 import com.polytech.turtle.model.shapes.Square;

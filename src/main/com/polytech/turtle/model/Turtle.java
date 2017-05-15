@@ -103,14 +103,37 @@ public class Turtle extends Observable {
             listSegments.add(seg);
         }
 
-        // Toroidal b
-        newX = newX < 0 ? Sheet.DEFAULT_WIDTH + newX : newX;
-        newX = newX > Sheet.DEFAULT_WIDTH ? newX % Sheet.DEFAULT_WIDTH : newX;
+        int holdX = newX;
+        int holdY = newY;
 
-        newY = newY < 0 ? Sheet.DEFAULT_HEIGHT + newY : newY;
-        newY = newY > Sheet.DEFAULT_HEIGHT ? newY % Sheet.DEFAULT_HEIGHT : newY;
+        // Toroidal b
+        newX = toroidal(newX, Sheet.DEFAULT_WIDTH);
+        newY = toroidal(newY, Sheet.DEFAULT_HEIGHT);
+
+        if(holdX > newX){
+            System.out.printf("selon les X");
+            position.setX(position.getX() - Sheet.DEFAULT_WIDTH);
+        }else if(holdX < newX){
+            position.setX(position.getX() + Sheet.DEFAULT_WIDTH);
+        }else if(holdY > newY){
+            position.setY(position.getY() - Sheet.DEFAULT_HEIGHT);
+        }else if(holdY < newY){
+            System.out.printf("Selon les Y");
+            position.setY(position.getY() + Sheet.DEFAULT_HEIGHT);
+        }
+
+        if(holdX != newX || holdY != newY){
+            Segment seg = new Segment(this.color, new Point(position.getX(), position.getY()), new Point(newX, newY));
+            listSegments.add(seg);
+        }
 
         this.setPosition(newX, newY);
+    }
+
+    public int toroidal(int x, int width){
+        x = x < 0 ? width + x : x;
+        x = x > width ? x % width : x;
+        return x;
     }
 
     public void turnRight(int ang) {
