@@ -40,6 +40,10 @@ public class Sheet extends JPanel implements Observer {
 		repaint();
 	}
 
+	public List<Turtle> getTurtles() {
+		return turtles;
+	}
+
 	public void reset() {
 		turtles.forEach(Turtle::reset);
 	}

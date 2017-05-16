@@ -90,6 +90,7 @@ public class Turtle extends Observable {
         int randomDistance = random.nextInt(MAX_DISTANCE);
         int randomAngle = random.nextInt(MAX_ANGLE);
         this.turnLeft(randomAngle);
+        this.nextColor();
         this.moveForward(randomDistance);
     }
 
@@ -161,7 +162,10 @@ public class Turtle extends Observable {
     }
 
     public void nextColor() {
-        Color color = Colors.getColors().get(new Random().nextInt(Colors.getColors().size()));
-        this.setColor(color);
+        this.setColor(getRandomColor());
+    }
+
+    private Color getRandomColor(){
+        return color = Colors.getColors().get(new Random().nextInt(Colors.getColors().size()));
     }
 }

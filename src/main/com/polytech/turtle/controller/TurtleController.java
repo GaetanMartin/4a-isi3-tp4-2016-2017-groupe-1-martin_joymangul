@@ -1,6 +1,8 @@
 package com.polytech.turtle.controller;
 
 import com.polytech.turtle.Utils.Colors;
+import com.polytech.turtle.environment.AutomaticEnvironment;
+import com.polytech.turtle.environment.EnvironmentInterface;
 import com.polytech.turtle.model.Turtle;
 import com.polytech.turtle.model.Point;
 import com.polytech.turtle.model.shapes.Hexagon;
@@ -19,7 +21,7 @@ import java.awt.event.KeyEvent;
  * Controller for a turtle
  */
 public class TurtleController {
-
+    private final int SPEED = 500; // in milliseconds
 
     private static Turtle currentTurtle;
     private MainGUI turtleView;
@@ -60,7 +62,7 @@ public class TurtleController {
         turtleView.getButtonUp().addActionListener(e -> this.up());
         turtleView.getButtonReset().addActionListener(e -> this.reset());
         turtleView.getButtonAddTurtle().addActionListener(e -> this.addTurtle());
-        turtleView.getButtonAutomatic().addActionListener(e -> this.moveRandom());
+        turtleView.getButtonAutomatic().addActionListener(e -> this.automaticEnvironment());
     }
 
     private void initBottomButton() {
@@ -162,8 +164,11 @@ public class TurtleController {
         menuItem.setAccelerator(KeyStroke.getKeyStroke(key, 0, false));
     }
 
-    private void moveRandom() {
-        this.currentTurtle.moveRandom();
+    private void automaticEnvironment() {
+        EnvironmentInterface environment = new AutomaticEnvironment(sheet.getTurtles(), SPEED);
+        environment.start();
     }
+
+
 
 }
