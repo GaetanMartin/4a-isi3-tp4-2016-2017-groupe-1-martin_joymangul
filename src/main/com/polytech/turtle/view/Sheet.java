@@ -85,6 +85,7 @@ public class Sheet extends JPanel implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		System.out.println("Repaint");
+        revalidate();
 		repaint();
 	}
 }

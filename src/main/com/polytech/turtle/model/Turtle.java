@@ -25,20 +25,24 @@ import java.util.Random;
 
 public class Turtle extends Observable {
     private static final Color DEFAULT_COLOR = Color.BLACK;
-    private final int MAX_DISTANCE = 150;
+    private final int MAX_SPEED = 20;
+    public final int MAX_DISTANCE = 10;
     private final int MAX_ANGLE = 360;
+
 
     public static final int ARROW_HEIGHT = 10, ARROW_BASE_WIDTH = 5; // Taille de la pointe et de la base de la fleche
 
     private ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
     private Point position;
-    private int dir;
+    private int speed;
+    private int direction;
     private boolean pen;
     private Color color;
 
 
     public Turtle() {
         listSegments = new ArrayList<>();
+        this.setSpeed();
         reset();
     }
 
@@ -46,8 +50,12 @@ public class Turtle extends Observable {
         return position;
     }
 
-    public int getDir() {
-        return dir;
+    public int getDirection() {
+        return direction;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
     }
 
     public void setColor(Color color) {
@@ -64,15 +72,34 @@ public class Turtle extends Observable {
         return listSegments;
     }
 
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setSpeed() {
+        this.speed = new Random().nextInt(MAX_SPEED) + 1 ;
+    }
 
     void notifyView() {
         this.setChanged();
         this.notifyObservers();
     }
 
+    public void randonmise() {
+        Random random = new Random();
+        this.speed = random.nextInt(MAX_SPEED) + 1 ;
+        this.position = new Point(random.nextInt(Sheet.DEFAULT_WIDTH), random.nextInt(Sheet.DEFAULT_HEIGHT));
+        this. direction = new Random().nextInt(MAX_ANGLE);
+        notifyView();
+    }
+
     public void reset() {
         this.position = new Point(Sheet.DEFAULT_WIDTH/2, Sheet.DEFAULT_HEIGHT/2);
-        dir = -90;
+        direction = -90;
         this.setColor(DEFAULT_COLOR);
         pen = true;
         listSegments.clear();
@@ -87,9 +114,9 @@ public class Turtle extends Observable {
 
     public void moveRandom() {
         Random random = new Random();
-        int randomDistance = random.nextInt(MAX_DISTANCE);
+        int randomDistance = random.nextInt(MAX_DISTANCE) * this.speed;
         int randomAngle = random.nextInt(MAX_ANGLE);
-        this.turnLeft(randomAngle);
+        direction = (direction - randomAngle) % 360;
         this.nextColor();
         this.moveForward(randomDistance);
     }
@@ -106,7 +133,7 @@ public class Turtle extends Observable {
         int holdX = newPoint.getX();
         int holdY = newPoint.getY();
 
-        // Toroidal b
+        // Toroidal
         newPoint = toroidal(newPoint);
 
         if(holdX > newPoint.getX()){
@@ -128,8 +155,8 @@ public class Turtle extends Observable {
     }
 
     public Point newPoint(int dist){
-        return new Point((int) Math.round(position.getX() + dist * Math.cos(Math.toRadians(dir))),
-                (int) Math.round(position.getY() + dist * Math.sin(Math.toRadians(dir))));
+        return new Point((int) Math.round(position.getX() + dist * Math.cos(Math.toRadians(direction))),
+                (int) Math.round(position.getY() + dist * Math.sin(Math.toRadians(direction))));
     }
 
     public Point toroidal(Point point){
@@ -142,12 +169,12 @@ public class Turtle extends Observable {
     }
 
     public void turnRight(int ang) {
-        dir = (dir + ang) % 360;
+        direction = (direction + ang) % 360;
         notifyView();
     }
 
     public void turnLeft(int ang) {
-        dir = (dir - ang) % 360;
+        direction = (direction - ang) % 360;
         notifyView();
     }
 

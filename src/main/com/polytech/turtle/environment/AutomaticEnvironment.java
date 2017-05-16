@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class AutomaticEnvironment implements EnvironmentInterface{
     private List<Turtle> listTurtle;
     private Thread thread;
-    private int speed;
+    private int refreshRate;
 
     public List<Turtle> getListTurtle() {
         return listTurtle;
@@ -22,17 +22,17 @@ public class AutomaticEnvironment implements EnvironmentInterface{
         this.listTurtle = listTurtle;
     }
 
-    public int getSpeed() {
-        return speed;
+    public int getRefreshRate() {
+        return refreshRate;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public void setRefreshRate(int refreshRate) {
+        this.refreshRate = refreshRate;
     }
 
-    public AutomaticEnvironment(List<Turtle> listTurtle, int speed) {
+    public AutomaticEnvironment(List<Turtle> listTurtle, int refreshRate) {
         this.listTurtle = listTurtle;
-        this.speed = speed;
+        this.refreshRate = refreshRate;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class AutomaticEnvironment implements EnvironmentInterface{
             {
                 listTurtle.forEach((Turtle turtle) -> turtle.moveRandom());
                 try {
-                    TimeUnit.MILLISECONDS.sleep(speed);
+                    TimeUnit.MILLISECONDS.sleep(refreshRate);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

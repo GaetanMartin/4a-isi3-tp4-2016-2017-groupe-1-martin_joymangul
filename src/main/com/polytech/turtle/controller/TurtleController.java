@@ -3,6 +3,7 @@ package com.polytech.turtle.controller;
 import com.polytech.turtle.Utils.Colors;
 import com.polytech.turtle.environment.AutomaticEnvironment;
 import com.polytech.turtle.environment.EnvironmentInterface;
+import com.polytech.turtle.environment.FlockingEnvironment;
 import com.polytech.turtle.model.Turtle;
 import com.polytech.turtle.model.Point;
 import com.polytech.turtle.model.shapes.Hexagon;
@@ -21,11 +22,12 @@ import java.awt.event.KeyEvent;
  * Controller for a turtle
  */
 public class TurtleController {
-    private final int SPEED = 500; // in milliseconds
+    private final int SPEED = 100; // in milliseconds
 
     private static Turtle currentTurtle;
     private MainGUI turtleView;
     private Sheet sheet;
+    private EnvironmentInterface environment;
 
     public TurtleController(Turtle turtle, MainGUI turtleView) {
         currentTurtle = turtle;
@@ -63,6 +65,7 @@ public class TurtleController {
         turtleView.getButtonReset().addActionListener(e -> this.reset());
         turtleView.getButtonAddTurtle().addActionListener(e -> this.addTurtle());
         turtleView.getButtonAutomatic().addActionListener(e -> this.automaticEnvironment());
+        turtleView.getButtonFlocking().addActionListener(e -> this.flockingEnvironment());
     }
 
     private void initBottomButton() {
@@ -165,7 +168,12 @@ public class TurtleController {
     }
 
     private void automaticEnvironment() {
-        EnvironmentInterface environment = new AutomaticEnvironment(sheet.getTurtles(), SPEED);
+        environment = new AutomaticEnvironment(sheet.getTurtles(), SPEED);
+        environment.start();
+    }
+
+    private void flockingEnvironment() {
+        environment = new FlockingEnvironment(sheet.getTurtles(), SPEED);
         environment.start();
     }
 

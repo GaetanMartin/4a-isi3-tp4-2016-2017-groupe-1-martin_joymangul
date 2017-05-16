@@ -21,7 +21,7 @@ public class TurtleView {
         Polygon arrow = new Polygon();
 
         //Angle de la turnRight
-        double theta= Math.toRadians(-turtle.getDir());
+        double theta= Math.toRadians(-turtle.getDirection());
 
         float rb = turtle.ARROW_BASE_WIDTH, rp = turtle.ARROW_HEIGHT;
 
