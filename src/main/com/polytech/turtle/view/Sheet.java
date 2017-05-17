@@ -2,6 +2,7 @@ package com.polytech.turtle.view;// package logo;
 
 import com.polytech.turtle.controller.TurtleController;
 import com.polytech.turtle.model.Segment;
+import com.polytech.turtle.view.events.ObstacleDrawer;
 import com.polytech.turtle.view.events.TurtleSelector;
 import com.polytech.turtle.model.ITurtle;
 import com.polytech.turtle.view.shapes.TurtleView;
@@ -33,6 +34,7 @@ public class Sheet extends JPanel implements Observer {
 		this.setBackground(Color.white);
 		this.setSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		this.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+		this.addMouseListener(new ObstacleDrawer());
 	}
 
 	public void addTurtle(ITurtle turtle) {
