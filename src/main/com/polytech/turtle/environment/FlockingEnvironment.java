@@ -1,9 +1,11 @@
 package com.polytech.turtle.environment;
 
 import com.polytech.turtle.model.TurtleInterface;
+import org.omg.PortableInterceptor.DISCARDING;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -11,8 +13,7 @@ import java.util.concurrent.TimeUnit;
  * on 5/16/2017.
  */
 public class FlockingEnvironment implements EnvironmentInterface {
-    private final int MAX_NEIGHTBOUR_DISTANCE = 15;
-    private final int NUMBER_OF_TURTLE = 20;
+    private final int MAX_NEIGHTBOUR_DISTANCE = 10;
     private List<TurtleInterface> listTurtle;
     private Thread thread;
     private int refreshRate;
@@ -60,7 +61,7 @@ public class FlockingEnvironment implements EnvironmentInterface {
                 try {
                     TimeUnit.MILLISECONDS.sleep(refreshRate);
                 } catch (InterruptedException e) {
-
+                    Thread.currentThread().interrupt();
                 }
             }
 
@@ -83,7 +84,7 @@ public class FlockingEnvironment implements EnvironmentInterface {
     private List<TurtleInterface> getNeighbours(TurtleInterface currentTurtle) {
         List<TurtleInterface> result = new ArrayList<>();
         for (TurtleInterface turtle : this.getListTurtle()) {
-            if (this.getDistance(currentTurtle, turtle) <= MAX_NEIGHTBOUR_DISTANCE) {
+            if (this.getDistance(currentTurtle, turtle) <= MAX_NEIGHTBOUR_DISTANCE && turtle.getColor() == currentTurtle.getColor()) {
                 result.add(turtle);
             }
         }

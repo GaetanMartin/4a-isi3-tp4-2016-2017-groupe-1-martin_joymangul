@@ -24,9 +24,8 @@ import java.util.Random;
 
 public class Turtle extends Observable implements TurtleInterface {
     private static final Color DEFAULT_COLOR = Color.BLACK;
-    private final int MAX_SPEED = 20;
-    public final int MAX_DISTANCE = 10;
-    private final int MAX_ANGLE = 360;
+    private final int MAX_SPEED = 25;
+    private final int MAX_ANGLE = 180;
     public static final int NUMBER_OF_TURTLE = 20;
 
     private ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
@@ -99,6 +98,7 @@ public class Turtle extends Observable implements TurtleInterface {
         this.speed = random.nextInt(MAX_SPEED) + 1 ;
         this.position = new Point(random.nextInt(Sheet.DEFAULT_WIDTH), random.nextInt(Sheet.DEFAULT_HEIGHT));
         this. direction = new Random().nextInt(MAX_ANGLE);
+        this.nextColor();
         notifyView();
     }
 
@@ -125,7 +125,7 @@ public class Turtle extends Observable implements TurtleInterface {
         int randomDistance = random.nextInt(MAX_SPEED);
         int randomAngle = random.nextInt(MAX_ANGLE);
         direction = (direction - randomAngle) % 360;
-        this.nextColor();
+        //this.nextColor();
         this.moveForward(randomDistance);
     }
 
