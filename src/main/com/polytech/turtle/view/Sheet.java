@@ -34,7 +34,7 @@ public class Sheet extends JPanel implements Observer {
 		this.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}
 
-	public void addTortue(Turtle turtle) {
+	public void addTurtle(Turtle turtle) {
 		turtle.addObserver(this);
 		turtles.add(turtle);
 		TurtleView turtleView = new TurtleView(turtle);
@@ -52,7 +52,7 @@ public class Sheet extends JPanel implements Observer {
 		turtles.clear();
 		first.reset();
 		TurtleController.setCurrentTurtle(first);
-		this.addTortue(first);
+		this.addTurtle(first);
 	}
 
 	public void paintComponent(Graphics g) {

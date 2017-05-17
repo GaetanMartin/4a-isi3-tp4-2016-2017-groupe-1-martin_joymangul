@@ -33,7 +33,7 @@ public class TurtleController {
         currentTurtle = turtle;
         this.sheet = new Sheet();
         this.turtleView = turtleView;
-        this.sheet.addTortue(turtle);
+        this.sheet.addTurtle(turtle);
     }
 
     public static void setCurrentTurtle(Turtle currentTurtle) {
@@ -110,7 +110,7 @@ public class TurtleController {
         System.out.println("Nouvelle Tortue");
         Turtle t = new Turtle();
         this.currentTurtle = t;
-        this.sheet.addTortue(t);
+        this.sheet.addTurtle(t);
     }
 
     protected void left(int v) {
@@ -167,11 +167,34 @@ public class TurtleController {
     }
 
     private void automaticEnvironment() {
+        if(environment != null)
+        {
+            environment.stop();
+        }
+
+
+        sheet.getTurtles().clear();
+        for (int i = 0; i < Turtle.NUMBER_OF_TURTLE; i++) {
+            Turtle turtle = new Turtle();
+            turtle.randonmise();
+            sheet.addTurtle(turtle);
+        }
         environment = new AutomaticEnvironment(sheet.getTurtles(), SPEED);
         environment.start();
     }
 
     private void flockingEnvironment() {
+        if(environment != null)
+        {
+            environment.stop();
+        }
+        sheet.getTurtles().clear();
+        for (int i = 0; i < Turtle.NUMBER_OF_TURTLE; i++) {
+            Turtle turtle = new Turtle();
+            turtle.randonmise();
+            sheet.addTurtle(turtle);
+        }
+
         environment = new FlockingEnvironment(sheet.getTurtles(), SPEED);
         environment.start();
     }

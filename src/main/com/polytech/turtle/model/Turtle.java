@@ -28,6 +28,7 @@ public class Turtle extends Observable {
     private final int MAX_SPEED = 20;
     public final int MAX_DISTANCE = 10;
     private final int MAX_ANGLE = 360;
+    public static final int NUMBER_OF_TURTLE = 20;
 
 
     public static final int ARROW_HEIGHT = 10, ARROW_BASE_WIDTH = 5; // Taille de la pointe et de la base de la fleche
@@ -114,7 +115,7 @@ public class Turtle extends Observable {
 
     public void moveRandom() {
         Random random = new Random();
-        int randomDistance = random.nextInt(MAX_DISTANCE) * this.speed;
+        int randomDistance = random.nextInt(MAX_SPEED);
         int randomAngle = random.nextInt(MAX_ANGLE);
         direction = (direction - randomAngle) % 360;
         this.nextColor();

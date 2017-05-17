@@ -3,6 +3,7 @@ package com.polytech.turtle.environment;
 import com.polytech.turtle.model.Turtle;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -33,6 +34,11 @@ public class FlockingEnvironment implements EnvironmentInterface {
         this.refreshRate = refreshRate;
     }
 
+    public Thread getThread() {
+        return thread;
+    }
+
+
     public FlockingEnvironment(List<Turtle> listTurtle, int refreshRate) {
         this.listTurtle = listTurtle;
         this.refreshRate = refreshRate;
@@ -41,17 +47,12 @@ public class FlockingEnvironment implements EnvironmentInterface {
     @Override
     public Runnable task() {
         Runnable task = () -> {
-            for (int i = 0; i < NUMBER_OF_TURTLE; i++) {
-                Turtle turtle = new Turtle();
-                turtle.randonmise();
-                listTurtle.add(turtle);
-            }
-            while(true)
-            {
-                for(Turtle turtle: this.getListTurtle()) {
+
+            while (true) {
+
+                for (Turtle turtle : this.getListTurtle()) {
                     List<Turtle> neighbours = this.getNeighbours(turtle);
-                    if(!neighbours.isEmpty())
-                    {
+                    if (!neighbours.isEmpty()) {
                         Double avg_direction = neighbours
                                 .stream()
                                 .mapToInt(a -> a.getDirection())
@@ -68,15 +69,14 @@ public class FlockingEnvironment implements EnvironmentInterface {
                         turtle.setDirection(avg_direction.intValue());
 
                         turtle.moveForward(avg_speed.intValue());
-                    }
-                    else {
+                    } else {
                         turtle.moveRandom();
                     }
                 }
                 try {
                     TimeUnit.MILLISECONDS.sleep(refreshRate);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+
                 }
             }
 
@@ -92,7 +92,8 @@ public class FlockingEnvironment implements EnvironmentInterface {
 
     @Override
     public void stop() {
-
+        thread.interrupt();
+        Thread.currentThread().interrupt(); // restore interrupted status
     }
 
     private List<Turtle> getNeighbours(Turtle currentTurtle) {
