@@ -1,8 +1,7 @@
 package com.polytech.turtle;
 
-import com.polytech.turtle.controller.TurtleController;
-import com.polytech.turtle.model.Turtle;
-import com.polytech.turtle.view.MainGUI;
+import com.polytech.turtle.controller.HomeController;
+import com.polytech.turtle.view.Home;
 
 /**
  * Created by JOYMANGUL Jensen Selwyn
@@ -10,10 +9,13 @@ import com.polytech.turtle.view.MainGUI;
  */
 public class App {
     public static void main(String[] args) {
-        // Assemble all the pieces of the MVC
-        Turtle model = new Turtle();
-        MainGUI view = new MainGUI();
-        TurtleController c = new TurtleController(model, view);
-        c.initController();
+
+        // Display Home Menu Window
+        javax.swing.SwingUtilities.invokeLater(App::createAndShowHome);
+    }
+
+    private static void createAndShowHome() {
+        Home view = new Home("Home - Turtle Project");
+        new HomeController(view);
     }
 }

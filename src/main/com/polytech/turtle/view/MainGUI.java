@@ -173,17 +173,10 @@ public class MainGUI extends JFrame {
     public MainGUI() {
         super("un logo tout simple");
         logoInit();
-
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent arg0) {
-                super.windowClosing(arg0);
-                System.exit(0);
-            }
-        });
     }
 
     private void logoInit() {
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout(10, 10));
 
         // Boutons
@@ -235,7 +228,7 @@ public class MainGUI extends JFrame {
         menuHelp.add(menuItemHelp);
         menuHelp.add(menuItemAbout);
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // First row of button at the bottom
         JPanel bottomButtonPanel = new JPanel(new GridLayout(0,3));
