@@ -120,7 +120,6 @@ public class TurtleController {
     private void setColor(ActionEvent e) {
         JComboBox cb = (JComboBox) e.getSource();
         Color color = Colors.getColor((String) cb.getSelectedItem());
-        System.out.println(color);
         currentTurtle.setColor(color);
     }
 

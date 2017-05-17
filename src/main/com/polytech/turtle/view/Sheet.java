@@ -1,5 +1,6 @@
 package com.polytech.turtle.view;// package logo;
 
+import com.polytech.turtle.controller.TurtleController;
 import com.polytech.turtle.model.Segment;
 import com.polytech.turtle.model.Turtle;
 import com.polytech.turtle.view.events.MouseAdapterCustom;
@@ -47,7 +48,11 @@ public class Sheet extends JPanel implements Observer {
 	}
 
 	public void reset() {
-		turtles.forEach(Turtle::reset);
+		Turtle first = turtles.get(0);
+		turtles.clear();
+		first.reset();
+		TurtleController.setCurrentTurtle(first);
+		this.addTortue(first);
 	}
 
 	public void paintComponent(Graphics g) {
