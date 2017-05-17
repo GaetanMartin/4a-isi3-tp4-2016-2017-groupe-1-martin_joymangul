@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * on 5/16/2017.
  */
 public class FlockingEnvironment implements EnvironmentInterface {
-    private final int MAX_NEIGHTBOUR_DISTANCE = 20;
+    private final int MAX_NEIGHBOUR_DISTANCE = 20;
     private List<ITurtle> listTurtle;
     private Thread thread;
     private int refreshRate;
@@ -82,7 +82,7 @@ public class FlockingEnvironment implements EnvironmentInterface {
     protected List<ITurtle> getNeighbours(ITurtle currentTurtle) {
         List<ITurtle> result = new ArrayList<>();
         for (ITurtle turtle : this.getListTurtle()) {
-            if (currentTurtle.getDistance(turtle) <= MAX_NEIGHTBOUR_DISTANCE && turtle.getColor() == currentTurtle.getColor()) {
+            if (currentTurtle.getDistance(turtle) <= MAX_NEIGHBOUR_DISTANCE && turtle.getColor() == currentTurtle.getColor()) {
                 result.add(turtle);
             }
         }
