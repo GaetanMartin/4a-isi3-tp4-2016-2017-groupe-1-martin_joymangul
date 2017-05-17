@@ -4,12 +4,13 @@ import com.polytech.turtle.view.Sheet;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Created by p1509413 on 17/05/2017.
  * Turtle Interface
  */
-public interface TurtleInterface {
+public interface ITurtle {
 
     int ARROW_HEIGHT = 10, ARROW_BASE_WIDTH = 5; // Taille de la pointe et de la base de la fleche
 
@@ -23,7 +24,7 @@ public interface TurtleInterface {
 
     Color getColor();
 
-    ArrayList<Segment> getListSegments();
+    LinkedList<Segment> getListSegments();
 
     int getSpeed();
 
@@ -48,4 +49,6 @@ public interface TurtleInterface {
     void addObserver(Sheet sheet);
 
     void nextColor();
+
+    int getDistance(ITurtle turtle);
 }

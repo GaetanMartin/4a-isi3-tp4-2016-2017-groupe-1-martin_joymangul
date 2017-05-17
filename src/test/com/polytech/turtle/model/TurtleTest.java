@@ -1,20 +1,19 @@
 package com.polytech.turtle.model;
 
-import com.polytech.turtle.model.Point;
-import com.polytech.turtle.model.Segment;
 import com.polytech.turtle.model.Turtle;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
 /**
- * Created by p1511785 on 10/05/2017.
+ * Created by matthieu moisson on 10/05/2017.
+ *
  */
 public class TurtleTest {
     private Turtle turtle;
@@ -28,7 +27,7 @@ public class TurtleTest {
     @Before
     public void setUp() {
 
-        this.listSegments = new ArrayList<Segment>();
+        this.listSegments = new ArrayList<>();
         for(int i = 0; i < 10; i++){
             Segment segment = mock(Segment.class);
             when(segment.getStart()).thenReturn(new Point(i,10-i));
@@ -41,15 +40,17 @@ public class TurtleTest {
         this.turtle = new Turtle();
     }
 
-
     @Test
-    public void should_give_true_on_test_notify_view(){
+    public void should_give_true_on_test_get_distance(){
         //Given
+        Turtle otherTurtle = mock(Turtle.class);
+        when(otherTurtle.getPosition()).thenReturn((new Point(1,1)));
         //When
-        this.turtle.notifyView();
+        //java.util.List<ITurtle> result = this.flockingEnvironment.getNeighbours(turtle);
+        int result = this.turtle.getDistance(otherTurtle);
         //Then
-        //verify(this.turtle, atLeastOnce()).setChanged();
-        verify(this.turtle, atLeastOnce()).notifyObservers();
+        //System.out.printf("Size : " + result.size());
+        assertThat(result == 359).isTrue();
     }
 
 /*

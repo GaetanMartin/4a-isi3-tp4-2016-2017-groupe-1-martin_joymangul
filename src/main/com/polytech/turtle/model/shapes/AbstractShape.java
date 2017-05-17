@@ -1,6 +1,6 @@
 package com.polytech.turtle.model.shapes;
 
-import com.polytech.turtle.model.TurtleInterface;
+import com.polytech.turtle.model.ITurtle;
 
 /**
  * Created by p1509413 on 10/05/2017.
@@ -8,13 +8,13 @@ import com.polytech.turtle.model.TurtleInterface;
  */
 abstract class AbstractShape {
 
-    protected final TurtleInterface turtle;
+    protected final ITurtle turtle;
 
     /**
      * Default constructor
      * @param turtle the drawer
      */
-    AbstractShape(TurtleInterface turtle) {
+    AbstractShape(ITurtle turtle) {
         this.turtle = turtle;
     }
 

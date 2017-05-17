@@ -1,6 +1,6 @@
 package com.polytech.turtle.environment;
 
-import com.polytech.turtle.model.TurtleInterface;
+import com.polytech.turtle.model.ITurtle;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -10,16 +10,16 @@ import java.util.concurrent.TimeUnit;
  * on 5/16/2017.
  */
 public class AutomaticEnvironment implements EnvironmentInterface{
-    private List<TurtleInterface> listTurtle;
+    private List<ITurtle> listTurtle;
     private Thread thread;
     private int refreshRate;
     private Boolean stop;
 
-    public List<TurtleInterface> getListTurtle() {
+    public List<ITurtle> getListTurtle() {
         return listTurtle;
     }
 
-    public void setListTurtle(List<TurtleInterface> listTurtle) {
+    public void setListTurtle(List<ITurtle> listTurtle) {
         this.listTurtle = listTurtle;
     }
 
@@ -31,7 +31,7 @@ public class AutomaticEnvironment implements EnvironmentInterface{
         this.refreshRate = refreshRate;
     }
 
-    public AutomaticEnvironment(List<TurtleInterface> listTurtle, int refreshRate) {
+    public AutomaticEnvironment(List<ITurtle> listTurtle, int refreshRate) {
         this.listTurtle = listTurtle;
         this.refreshRate = refreshRate;
         this.stop = false;
@@ -42,7 +42,7 @@ public class AutomaticEnvironment implements EnvironmentInterface{
         return () -> {
             while(!stop)
             {
-                listTurtle.forEach(TurtleInterface::moveRandom);
+                listTurtle.forEach(ITurtle::moveRandom);
                 try {
                     TimeUnit.MILLISECONDS.sleep(refreshRate);
                 } catch (InterruptedException e) {

@@ -1,11 +1,9 @@
 package com.polytech.turtle.environment;
 
-import com.polytech.turtle.model.TurtleInterface;
-import org.omg.PortableInterceptor.DISCARDING;
+import com.polytech.turtle.model.ITurtle;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -14,16 +12,16 @@ import java.util.concurrent.TimeUnit;
  */
 public class FlockingEnvironment implements EnvironmentInterface {
     private final int MAX_NEIGHTBOUR_DISTANCE = 20;
-    private List<TurtleInterface> listTurtle;
+    private List<ITurtle> listTurtle;
     private Thread thread;
     private int refreshRate;
     private Boolean stop;
 
-    private List<TurtleInterface> getListTurtle() {
+    private List<ITurtle> getListTurtle() {
         return listTurtle;
     }
 
-    public FlockingEnvironment(List<TurtleInterface> listTurtle, int refreshRate) {
+    public FlockingEnvironment(List<ITurtle> listTurtle, int refreshRate) {
         this.listTurtle = listTurtle;
         this.refreshRate = refreshRate;
         this.stop = false;
@@ -35,18 +33,18 @@ public class FlockingEnvironment implements EnvironmentInterface {
 
             while (!stop) {
 
-                for (TurtleInterface turtle : this.getListTurtle()) {
-                    List<TurtleInterface> neighbours = this.getNeighbours(turtle);
+                for (ITurtle turtle : this.getListTurtle()) {
+                    List<ITurtle> neighbours = this.getNeighbours(turtle);
                     if (!neighbours.isEmpty()) {
                         Double avg_direction = neighbours
                                 .stream()
-                                .mapToInt(TurtleInterface::getDirection)
+                                .mapToInt(ITurtle::getDirection)
                                 .average()
                                 .orElse(1);
 
                         Double avg_speed = neighbours
                                 .stream()
-                                .mapToInt(TurtleInterface::getSpeed)
+                                .mapToInt(ITurtle::getSpeed)
                                 .average()
                                 .orElse(1);
 
@@ -81,17 +79,15 @@ public class FlockingEnvironment implements EnvironmentInterface {
         Thread.currentThread().interrupt(); // restore interrupted status
     }
 
-    protected List<TurtleInterface> getNeighbours(TurtleInterface currentTurtle) {
-        List<TurtleInterface> result = new ArrayList<>();
-        for (TurtleInterface turtle : this.getListTurtle()) {
-            if (this.getDistance(currentTurtle, turtle) <= MAX_NEIGHTBOUR_DISTANCE && turtle.getColor() == currentTurtle.getColor()) {
+    protected List<ITurtle> getNeighbours(ITurtle currentTurtle) {
+        List<ITurtle> result = new ArrayList<>();
+        for (ITurtle turtle : this.getListTurtle()) {
+            if (currentTurtle.getDistance(turtle) <= MAX_NEIGHTBOUR_DISTANCE && turtle.getColor() == currentTurtle.getColor()) {
                 result.add(turtle);
             }
         }
         return result;
     }
 
-    protected int getDistance(TurtleInterface source, TurtleInterface destination) {
-        return (int) Math.sqrt(Math.pow(destination.getPosition().getX() - source.getPosition().getX(), 2) + Math.pow(destination.getPosition().getY() - source.getPosition().getY(), 2));
-    }
+
 }

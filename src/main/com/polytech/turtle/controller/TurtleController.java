@@ -4,9 +4,9 @@ import com.polytech.turtle.Utils.Colors;
 import com.polytech.turtle.environment.AutomaticEnvironment;
 import com.polytech.turtle.environment.EnvironmentInterface;
 import com.polytech.turtle.environment.FlockingEnvironment;
+import com.polytech.turtle.model.ITurtle;
 import com.polytech.turtle.model.Turtle;
 import com.polytech.turtle.model.Point;
-import com.polytech.turtle.model.TurtleInterface;
 import com.polytech.turtle.model.shapes.Hexagon;
 import com.polytech.turtle.model.shapes.Spiral;
 import com.polytech.turtle.model.shapes.Square;
@@ -25,23 +25,23 @@ import java.awt.event.KeyEvent;
 public class TurtleController {
     private final int SPEED = 100; // in milliseconds
 
-    private static TurtleInterface currentTurtle;
+    private static ITurtle currentTurtle;
     private MainGUI turtleView;
     private Sheet sheet;
     private EnvironmentInterface environment;
 
-    public TurtleController(TurtleInterface turtle, MainGUI turtleView) {
+    public TurtleController(ITurtle turtle, MainGUI turtleView) {
         currentTurtle = turtle;
         this.sheet = new Sheet();
         this.turtleView = turtleView;
         this.sheet.addTurtle(turtle);
     }
 
-    public static void setCurrentTurtle(TurtleInterface currentTurtle) {
+    public static void setCurrentTurtle(ITurtle currentTurtle) {
         TurtleController.currentTurtle = currentTurtle;
     }
 
-    public void initController() {
+    void initController() {
         turtleView.setSheet(sheet);
 
         this.initTextField();
