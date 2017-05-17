@@ -13,6 +13,7 @@ public class AutomaticEnvironment implements EnvironmentInterface{
     private List<TurtleInterface> listTurtle;
     private Thread thread;
     private int refreshRate;
+    private Boolean stop;
 
     public List<TurtleInterface> getListTurtle() {
         return listTurtle;
@@ -33,12 +34,13 @@ public class AutomaticEnvironment implements EnvironmentInterface{
     public AutomaticEnvironment(List<TurtleInterface> listTurtle, int refreshRate) {
         this.listTurtle = listTurtle;
         this.refreshRate = refreshRate;
+        this.stop = false;
     }
 
     @Override
     public Runnable task() {
         return () -> {
-            while(true)
+            while(!stop)
             {
                 listTurtle.forEach(TurtleInterface::moveRandom);
                 try {
@@ -58,6 +60,7 @@ public class AutomaticEnvironment implements EnvironmentInterface{
 
     @Override
     public void stop() {
+        stop = true;
         thread.interrupt();
         Thread.currentThread().interrupt(); // restore interrupted status
 

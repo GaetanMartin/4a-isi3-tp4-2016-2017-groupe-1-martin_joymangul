@@ -16,6 +16,7 @@ public class FlockingEnvironment implements EnvironmentInterface {
     private List<TurtleInterface> listTurtle;
     private Thread thread;
     private int refreshRate;
+    private Boolean stop;
 
     private List<TurtleInterface> getListTurtle() {
         return listTurtle;
@@ -24,13 +25,14 @@ public class FlockingEnvironment implements EnvironmentInterface {
     public FlockingEnvironment(List<TurtleInterface> listTurtle, int refreshRate) {
         this.listTurtle = listTurtle;
         this.refreshRate = refreshRate;
+        this.stop = false;
     }
 
     @Override
     public Runnable task() {
         return () -> {
 
-            while (true) {
+            while (!stop) {
 
                 for (TurtleInterface turtle : this.getListTurtle()) {
                     List<TurtleInterface> neighbours = this.getNeighbours(turtle);
@@ -73,6 +75,7 @@ public class FlockingEnvironment implements EnvironmentInterface {
 
     @Override
     public void stop() {
+        stop = true;
         thread.interrupt();
         Thread.currentThread().interrupt(); // restore interrupted status
     }
