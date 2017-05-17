@@ -60,7 +60,7 @@ public class FlockingEnvironment implements EnvironmentInterface {
                 try {
                     TimeUnit.MILLISECONDS.sleep(refreshRate);
                 } catch (InterruptedException e) {
-
+                    Thread.currentThread().interrupt();
                 }
             }
 
