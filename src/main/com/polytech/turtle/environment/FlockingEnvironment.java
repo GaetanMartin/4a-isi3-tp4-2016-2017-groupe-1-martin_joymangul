@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  * on 5/16/2017.
  */
 public class FlockingEnvironment implements EnvironmentInterface {
-    private final int MAX_NEIGHTBOUR_DISTANCE = 10;
+    private final int MAX_NEIGHTBOUR_DISTANCE = 20;
     private List<TurtleInterface> listTurtle;
     private Thread thread;
     private int refreshRate;
