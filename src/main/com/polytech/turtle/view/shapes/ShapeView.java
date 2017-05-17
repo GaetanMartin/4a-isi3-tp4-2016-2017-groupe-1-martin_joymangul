@@ -1,4 +1,4 @@
-package com.polytech.turtle.view;
+package com.polytech.turtle.view.shapes;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 

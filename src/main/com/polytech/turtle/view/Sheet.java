@@ -4,6 +4,7 @@ import com.polytech.turtle.controller.TurtleController;
 import com.polytech.turtle.model.Segment;
 import com.polytech.turtle.view.events.TurtleSelector;
 import com.polytech.turtle.model.ITurtle;
+import com.polytech.turtle.view.shapes.TurtleView;
 
 import javax.swing.*;
 import java.awt.*;

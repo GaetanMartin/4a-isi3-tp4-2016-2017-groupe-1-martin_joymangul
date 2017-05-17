@@ -1,6 +1,5 @@
-package com.polytech.turtle.view;
+package com.polytech.turtle.view.shapes;
 
-import com.polytech.turtle.model.TurtleInterface;
 
 import java.awt.*;
 import java.util.ArrayList;

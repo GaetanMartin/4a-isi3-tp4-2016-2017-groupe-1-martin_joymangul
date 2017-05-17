@@ -1,4 +1,4 @@
-package com.polytech.turtle.view;
+package com.polytech.turtle.view.shapes;
 
 import com.polytech.turtle.model.ITurtle;
 
@@ -13,7 +13,7 @@ public class TurtleView extends TriangleView {
 
     private final ITurtle turtle;
 
-    TurtleView(ITurtle turtle) {
+    public TurtleView(ITurtle turtle) {
         this.turtle = turtle;
     }
 

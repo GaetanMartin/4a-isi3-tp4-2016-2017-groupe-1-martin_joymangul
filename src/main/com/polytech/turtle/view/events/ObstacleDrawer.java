@@ -1,11 +1,6 @@
 package com.polytech.turtle.view.events;
 
-import com.polytech.turtle.controller.TurtleController;
-import com.polytech.turtle.model.TurtleInterface;
-import com.polytech.turtle.view.TurtleView;
-
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  * Created by Gaetan on 15/05/2017.

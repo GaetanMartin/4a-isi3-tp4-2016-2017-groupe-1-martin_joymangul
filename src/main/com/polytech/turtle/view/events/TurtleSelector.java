@@ -2,7 +2,7 @@ package com.polytech.turtle.view.events;
 
 import com.polytech.turtle.controller.TurtleController;
 import com.polytech.turtle.model.ITurtle;
-import com.polytech.turtle.view.TurtleView;
+import com.polytech.turtle.view.shapes.TurtleView;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
