@@ -1,7 +1,7 @@
 package com.polytech.turtle.model.shapes;
 
 import com.polytech.turtle.model.Turtle;
-import com.polytech.turtle.model.TurtleInterface;
+import com.polytech.turtle.model.ITurtle;
 
 /**
  * Created by p1509413 on 10/05/2017.
@@ -24,7 +24,7 @@ public class Hexagon extends Polygon {
      * @param turtle the drawer
      * @param side_size Side size
      */
-    public Hexagon(TurtleInterface turtle, int side_size) {
+    public Hexagon(ITurtle turtle, int side_size) {
         super(turtle, side_size, 6);
     }
 

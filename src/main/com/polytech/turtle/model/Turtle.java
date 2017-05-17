@@ -4,7 +4,6 @@ import com.polytech.turtle.Utils.Colors;
 import com.polytech.turtle.view.Sheet;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Random;
@@ -23,12 +22,12 @@ import java.util.Random;
  **************************************************************************/
 
 
-public class Turtle extends Observable implements TurtleInterface {
+public class Turtle extends Observable implements ITurtle {
     private static final Color DEFAULT_COLOR = Color.BLACK;
     private final int MAX_SPEED = 25;
     private final int MAX_ANGLE = 180;
     public static final int NUMBER_OF_TURTLE = 20;
-    public static final int NUMBER_OF_SEGMENT = 20;
+    private static final int NUMBER_OF_SEGMENT = 20;
 
     private LinkedList<Segment> listSegments; // Trace de la fr.polytech.turtle
     private Point position;
@@ -166,7 +165,7 @@ public class Turtle extends Observable implements TurtleInterface {
     }
 
     protected void addSegmentsToList(Segment seg){
-        if(this.listSegments.size() >= this.NUMBER_OF_SEGMENT) {
+        if(this.listSegments.size() >= NUMBER_OF_SEGMENT) {
             this.listSegments.removeFirst();
         }
         this.listSegments.addLast(seg);
@@ -221,5 +220,10 @@ public class Turtle extends Observable implements TurtleInterface {
 
     private Color getRandomColor(){
         return color = Colors.getColors().get(new Random().nextInt(Colors.getColors().size()));
+    }
+
+    @Override
+    public int getDistance(ITurtle destination) {
+        return (int) Math.sqrt(Math.pow(destination.getPosition().getX() - this.getPosition().getX(), 2) + Math.pow(destination.getPosition().getY() - this.getPosition().getY(), 2));
     }
 }

@@ -1,6 +1,6 @@
 package com.polytech.turtle.model.shapes;
 
-import com.polytech.turtle.model.TurtleInterface;
+import com.polytech.turtle.model.ITurtle;
 
 /**
  * Created by p1509413 on 10/05/2017.
@@ -13,7 +13,7 @@ public class Spiral extends AbstractShape {
      *
      * @param turtle the drawer
      */
-    public Spiral(TurtleInterface turtle, int n, int k, int a) {
+    public Spiral(ITurtle turtle, int n, int k, int a) {
         super(turtle);
         for (int i = 0; i < k; i++) {
             turtle.nextColor();

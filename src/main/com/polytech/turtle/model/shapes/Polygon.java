@@ -1,7 +1,7 @@
 package com.polytech.turtle.model.shapes;
 
+import com.polytech.turtle.model.ITurtle;
 import com.polytech.turtle.model.Turtle;
-import com.polytech.turtle.model.TurtleInterface;
 
 /**
  * Created by p1509413 on 10/05/2017.
@@ -21,7 +21,7 @@ class Polygon extends AbstractShape {
      *
      * @param turtle the drawer
      */
-    Polygon(TurtleInterface turtle, int sideSize, int nbSide) {
+    Polygon(ITurtle turtle, int sideSize, int nbSide) {
         super(turtle);
         polygon(sideSize, nbSide);
     }

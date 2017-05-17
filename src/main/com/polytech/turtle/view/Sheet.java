@@ -2,7 +2,7 @@ package com.polytech.turtle.view;// package logo;
 
 import com.polytech.turtle.controller.TurtleController;
 import com.polytech.turtle.model.Segment;
-import com.polytech.turtle.model.TurtleInterface;
+import com.polytech.turtle.model.ITurtle;
 import com.polytech.turtle.view.events.MouseAdapterCustom;
 
 import javax.swing.*;
@@ -24,8 +24,8 @@ public class Sheet extends JPanel implements Observer {
 
 	public static final int DEFAULT_HEIGHT = 400;
 
-	private List<TurtleInterface> turtles = new ArrayList<>(); // la liste des turtles enregistrees
-	private Map<TurtleInterface, TurtleView> turtleViewMap = new HashMap<>();
+	private List<ITurtle> turtles = new ArrayList<>(); // la liste des turtles enregistrees
+	private Map<ITurtle, TurtleView> turtleViewMap = new HashMap<>();
 
 
 	public Sheet() {
@@ -34,7 +34,7 @@ public class Sheet extends JPanel implements Observer {
 		this.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}
 
-	public void addTurtle(TurtleInterface turtle) {
+	public void addTurtle(ITurtle turtle) {
 		turtle.addObserver(this);
 		turtles.add(turtle);
 		TurtleView turtleView = new TurtleView(turtle);
@@ -43,12 +43,12 @@ public class Sheet extends JPanel implements Observer {
 		repaint();
 	}
 
-	public List<TurtleInterface> getTurtles() {
+	public List<ITurtle> getTurtles() {
 		return turtles;
 	}
 
 	public void reset() {
-        TurtleInterface first = turtles.get(0);
+        ITurtle first = turtles.get(0);
 		turtles.clear();
 		first.reset();
 		TurtleController.setCurrentTurtle(first);
@@ -69,10 +69,10 @@ public class Sheet extends JPanel implements Observer {
 	}
 
 	private void drawTurtles(Graphics g) {
-		turtles.forEach((TurtleInterface turtle) -> drawTurtle(turtle, g));
+		turtles.forEach((ITurtle turtle) -> drawTurtle(turtle, g));
 	}
 
-	private void drawTurtle(TurtleInterface t, Graphics g) {
+	private void drawTurtle(ITurtle t, Graphics g) {
 		Polygon arrow = turtleViewMap.get(t).getShape();
 		g.setColor(t.getColor());
 		g.fillPolygon(arrow);

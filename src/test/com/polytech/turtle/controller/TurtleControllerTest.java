@@ -1,8 +1,5 @@
 package com.polytech.turtle.controller;
 
-import static org.junit.Assert.*;
-
-import com.polytech.turtle.controller.TurtleController;
 import com.polytech.turtle.model.Turtle;
 import com.polytech.turtle.view.MainGUI;
 import com.polytech.turtle.view.Sheet;
@@ -11,14 +8,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-
 import static org.mockito.Mockito.*;
 
 /**
- * Created by p1511785 on 10/05/2017.
+ * Created by matthieu moisson on 10/05/2017.
+ *
  */
 public class TurtleControllerTest {
     private TurtleController turtleController;
