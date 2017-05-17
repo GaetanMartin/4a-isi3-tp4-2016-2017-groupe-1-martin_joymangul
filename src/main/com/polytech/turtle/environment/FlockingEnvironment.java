@@ -80,7 +80,7 @@ public class FlockingEnvironment implements EnvironmentInterface {
         Thread.currentThread().interrupt(); // restore interrupted status
     }
 
-    private List<TurtleInterface> getNeighbours(TurtleInterface currentTurtle) {
+    protected List<TurtleInterface> getNeighbours(TurtleInterface currentTurtle) {
         List<TurtleInterface> result = new ArrayList<>();
         for (TurtleInterface turtle : this.getListTurtle()) {
             if (this.getDistance(currentTurtle, turtle) <= MAX_NEIGHTBOUR_DISTANCE) {
@@ -90,7 +90,7 @@ public class FlockingEnvironment implements EnvironmentInterface {
         return result;
     }
 
-    private int getDistance(TurtleInterface source, TurtleInterface destination) {
+    protected int getDistance(TurtleInterface source, TurtleInterface destination) {
         return (int) Math.sqrt(Math.pow(destination.getPosition().getX() - source.getPosition().getX(), 2) + Math.pow(destination.getPosition().getY() - source.getPosition().getY(), 2));
     }
 }
