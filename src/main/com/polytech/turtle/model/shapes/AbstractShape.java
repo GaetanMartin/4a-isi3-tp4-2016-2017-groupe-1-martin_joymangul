@@ -1,21 +1,20 @@
 package com.polytech.turtle.model.shapes;
 
-import com.polytech.turtle.model.Turtle;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import com.polytech.turtle.model.TurtleInterface;
 
 /**
  * Created by p1509413 on 10/05/2017.
  * Shape
  */
-public abstract class AbstractShape {
+abstract class AbstractShape {
 
-    protected final Turtle turtle;
+    protected final TurtleInterface turtle;
 
     /**
      * Default constructor
      * @param turtle the drawer
      */
-    AbstractShape(Turtle turtle) {
+    AbstractShape(TurtleInterface turtle) {
         this.turtle = turtle;
     }
 

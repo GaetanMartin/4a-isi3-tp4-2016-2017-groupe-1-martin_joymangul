@@ -1,6 +1,6 @@
 package com.polytech.turtle.view;
 
-import com.polytech.turtle.model.Turtle;
+import com.polytech.turtle.model.TurtleInterface;
 
 import java.awt.*;
 
@@ -10,9 +10,9 @@ import java.awt.*;
  */
 public class TurtleView {
 
-    private final Turtle turtle;
+    private final TurtleInterface turtle;
 
-    public TurtleView(Turtle turtle) {
+    TurtleView(TurtleInterface turtle) {
         this.turtle = turtle;
     }
 
@@ -23,7 +23,7 @@ public class TurtleView {
         //Angle de la turnRight
         double theta= Math.toRadians(-turtle.getDirection());
 
-        float rb = turtle.ARROW_BASE_WIDTH, rp = turtle.ARROW_HEIGHT;
+        float rb = TurtleInterface.ARROW_BASE_WIDTH, rp = TurtleInterface.ARROW_HEIGHT;
 
         //Demi angle au sommet du triangle
         double alpha=Math.atan(rb / rp);

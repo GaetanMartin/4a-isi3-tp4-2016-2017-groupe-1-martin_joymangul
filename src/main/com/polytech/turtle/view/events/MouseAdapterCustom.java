@@ -1,7 +1,7 @@
 package com.polytech.turtle.view.events;
 
 import com.polytech.turtle.controller.TurtleController;
-import com.polytech.turtle.model.Turtle;
+import com.polytech.turtle.model.TurtleInterface;
 import com.polytech.turtle.view.TurtleView;
 
 import java.awt.event.MouseAdapter;
@@ -12,10 +12,10 @@ import java.awt.event.MouseEvent;
  * MouseAdapter for clicks on turtleView
  */
 public class MouseAdapterCustom extends MouseAdapter {
-    private Turtle turtle;
+    private TurtleInterface turtle;
     private TurtleView turtleView;
 
-    public MouseAdapterCustom(Turtle turtle, TurtleView turtleView) {
+    public MouseAdapterCustom(TurtleInterface turtle, TurtleView turtleView) {
         this.turtle = turtle;
         this.turtleView = turtleView;
     }

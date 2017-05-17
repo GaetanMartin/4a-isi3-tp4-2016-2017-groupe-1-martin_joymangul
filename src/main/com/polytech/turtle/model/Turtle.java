@@ -18,20 +18,16 @@ import java.util.Random;
  Cours de DESS TNI - Montpellier II
 
  @version 2.0
- @date 25/09/2001
 
  **************************************************************************/
 
 
-public class Turtle extends Observable {
+public class Turtle extends Observable implements TurtleInterface {
     private static final Color DEFAULT_COLOR = Color.BLACK;
     private final int MAX_SPEED = 20;
     public final int MAX_DISTANCE = 10;
     private final int MAX_ANGLE = 360;
     public static final int NUMBER_OF_TURTLE = 20;
-
-
-    public static final int ARROW_HEIGHT = 10, ARROW_BASE_WIDTH = 5; // Taille de la pointe et de la base de la fleche
 
     private ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
     private Point position;
@@ -47,41 +43,49 @@ public class Turtle extends Observable {
         reset();
     }
 
+    @Override
     public Point getPosition() {
         return position;
     }
 
+    @Override
     public int getDirection() {
         return direction;
     }
 
+    @Override
     public void setDirection(int direction) {
         this.direction = direction;
     }
 
+    @Override
     public void setColor(Color color) {
         this.color = color;
         notifyView();
     }
 
+    @Override
     public Color getColor() {
         return color;
     }
 
 
+    @Override
     public ArrayList<Segment> getListSegments() {
         return listSegments;
     }
 
+    @Override
     public int getSpeed() {
         return speed;
     }
 
+    @Override
     public void setSpeed(int speed) {
         this.speed = speed;
     }
 
-    public void setSpeed() {
+    private void setSpeed() {
         this.speed = new Random().nextInt(MAX_SPEED) + 1 ;
     }
 
@@ -98,6 +102,7 @@ public class Turtle extends Observable {
         notifyView();
     }
 
+    @Override
     public void reset() {
         this.position = new Point(Sheet.DEFAULT_WIDTH/2, Sheet.DEFAULT_HEIGHT/2);
         direction = -90;
@@ -107,12 +112,14 @@ public class Turtle extends Observable {
         notifyView();
     }
 
+    @Override
     public void setPosition(Point point) {
         position.setX(point.getX());
         position.setY(point.getY());
         notifyView();
     }
 
+    @Override
     public void moveRandom() {
         Random random = new Random();
         int randomDistance = random.nextInt(MAX_SPEED);
@@ -123,6 +130,7 @@ public class Turtle extends Observable {
     }
 
 
+    @Override
     public void moveForward(int dist) {
         Point newPoint = newPoint(dist);
 
@@ -155,12 +163,12 @@ public class Turtle extends Observable {
         this.setPosition(newPoint);
     }
 
-    public Point newPoint(int dist){
+    private Point newPoint(int dist){
         return new Point((int) Math.round(position.getX() + dist * Math.cos(Math.toRadians(direction))),
                 (int) Math.round(position.getY() + dist * Math.sin(Math.toRadians(direction))));
     }
 
-    public Point toroidal(Point point){
+    private Point toroidal(Point point){
         point.setX(point.getX() < 0 ? Sheet.DEFAULT_WIDTH + point.getX() : point.getX());
         point.setX(point.getX() > Sheet.DEFAULT_WIDTH ? point.getX() % Sheet.DEFAULT_WIDTH : point.getX());
 
@@ -169,24 +177,33 @@ public class Turtle extends Observable {
         return point;
     }
 
+    @Override
     public void turnRight(int ang) {
         direction = (direction + ang) % 360;
         notifyView();
     }
 
+    @Override
     public void turnLeft(int ang) {
         direction = (direction - ang) % 360;
         notifyView();
     }
 
+    @Override
     public void lowerPen() {
         pen = true;
         notifyView();
     }
 
+    @Override
     public void liftPen() {
         pen = false;
         notifyView();
+    }
+
+    @Override
+    public void addObserver(Sheet sheet) {
+        super.addObserver(sheet);
     }
 
     public void nextColor() {

@@ -6,6 +6,7 @@ import com.polytech.turtle.environment.EnvironmentInterface;
 import com.polytech.turtle.environment.FlockingEnvironment;
 import com.polytech.turtle.model.Turtle;
 import com.polytech.turtle.model.Point;
+import com.polytech.turtle.model.TurtleInterface;
 import com.polytech.turtle.model.shapes.Hexagon;
 import com.polytech.turtle.model.shapes.Spiral;
 import com.polytech.turtle.model.shapes.Square;
@@ -24,19 +25,19 @@ import java.awt.event.KeyEvent;
 public class TurtleController {
     private final int SPEED = 100; // in milliseconds
 
-    private static Turtle currentTurtle;
+    private static TurtleInterface currentTurtle;
     private MainGUI turtleView;
     private Sheet sheet;
     private EnvironmentInterface environment;
 
-    public TurtleController(Turtle turtle, MainGUI turtleView) {
+    public TurtleController(TurtleInterface turtle, MainGUI turtleView) {
         currentTurtle = turtle;
         this.sheet = new Sheet();
         this.turtleView = turtleView;
         this.sheet.addTurtle(turtle);
     }
 
-    public static void setCurrentTurtle(Turtle currentTurtle) {
+    public static void setCurrentTurtle(TurtleInterface currentTurtle) {
         TurtleController.currentTurtle = currentTurtle;
     }
 
@@ -96,24 +97,24 @@ public class TurtleController {
         turtleView.getColorList().addActionListener(this::setColor);
     }
 
-    protected void move(int v) {
+    void move(int v) {
         System.out.println("command moveForward");
         currentTurtle.moveForward(v);
     }
 
-    protected void right(int v) {
+    void right(int v) {
         currentTurtle.turnRight(v);
         //sheet.repaint();
     }
 
-    public void addTurtle() {
+    private void addTurtle() {
         System.out.println("Nouvelle Tortue");
         Turtle t = new Turtle();
-        this.currentTurtle = t;
+        currentTurtle = t;
         this.sheet.addTurtle(t);
     }
 
-    protected void left(int v) {
+    void left(int v) {
         currentTurtle.turnLeft(v);
     }
 
@@ -132,15 +133,15 @@ public class TurtleController {
     }
 
     private void square() {
-        new Square(this.currentTurtle, 100);
+        new Square(currentTurtle, 100);
     }
 
     private void polygon() {
-        new Hexagon(this.currentTurtle, 60);
+        new Hexagon(currentTurtle, 60);
     }
 
     private void spiral() {
-        new Spiral(this.currentTurtle, 50, 40, 6);
+        new Spiral(currentTurtle, 50, 40, 6);
     }
 
     private void reset() {

@@ -6,8 +6,6 @@ package com.polytech.turtle.environment;
  */
 public interface EnvironmentInterface {
 
-    Thread getThread();
-
     Runnable task();
 
     void start();

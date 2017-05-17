@@ -1,6 +1,6 @@
 package com.polytech.turtle.model.shapes;
 
-import com.polytech.turtle.model.Turtle;
+import com.polytech.turtle.model.TurtleInterface;
 
 /**
  * Created by p1509413 on 10/05/2017.
@@ -14,7 +14,7 @@ public class Square extends Polygon {
      * @param turtle the drawer
      * @param side_size side size
      */
-    public Square(Turtle turtle, int side_size) {
+    public Square(TurtleInterface turtle, int side_size) {
         super(turtle, side_size, 4);
     }
 
