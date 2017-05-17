@@ -5,6 +5,7 @@ import com.polytech.turtle.view.Sheet;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Random;
 
@@ -27,8 +28,9 @@ public class Turtle extends Observable implements TurtleInterface {
     private final int MAX_SPEED = 25;
     private final int MAX_ANGLE = 180;
     public static final int NUMBER_OF_TURTLE = 20;
+    public static final int NUMBER_OF_SEGMENT = 20;
 
-    private ArrayList<Segment> listSegments; // Trace de la fr.polytech.turtle
+    private LinkedList<Segment> listSegments; // Trace de la fr.polytech.turtle
     private Point position;
     private int speed;
     private int direction;
@@ -37,7 +39,7 @@ public class Turtle extends Observable implements TurtleInterface {
 
 
     public Turtle() {
-        listSegments = new ArrayList<>();
+        listSegments = new LinkedList<>();
         this.setSpeed();
         reset();
     }
@@ -70,7 +72,7 @@ public class Turtle extends Observable implements TurtleInterface {
 
 
     @Override
-    public ArrayList<Segment> getListSegments() {
+    public LinkedList<Segment> getListSegments() {
         return listSegments;
     }
 
@@ -136,7 +138,7 @@ public class Turtle extends Observable implements TurtleInterface {
 
         if (pen) {
             Segment seg = new Segment(this.color, new Point(position.getX(), position.getY()), newPoint.clone());
-            listSegments.add(seg);
+            this.addSegmentsToList(seg);
         }
 
         int holdX = newPoint.getX();
@@ -157,10 +159,17 @@ public class Turtle extends Observable implements TurtleInterface {
 
         if(holdX != newPoint.getX() || holdY != newPoint.getY()){
             Segment seg = new Segment(this.color, new Point(position.getX(), position.getY()), newPoint);
-            listSegments.add(seg);
+            this.addSegmentsToList(seg);
         }
 
         this.setPosition(newPoint);
+    }
+
+    protected void addSegmentsToList(Segment seg){
+        if(this.listSegments.size() >= this.NUMBER_OF_SEGMENT) {
+            this.listSegments.removeFirst();
+        }
+        this.listSegments.addLast(seg);
     }
 
     private Point newPoint(int dist){

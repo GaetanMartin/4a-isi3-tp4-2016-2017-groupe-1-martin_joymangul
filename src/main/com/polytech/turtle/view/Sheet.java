@@ -76,10 +76,10 @@ public class Sheet extends JPanel implements Observer {
 		Polygon arrow = turtleViewMap.get(t).getShape();
 		g.setColor(t.getColor());
 		g.fillPolygon(arrow);
-		//drawSegments(g, t.getListSegments());
+		drawSegments(g, t.getListSegments());
 	}
 
-	private void drawSegments(Graphics graph, ArrayList<Segment> listSegment)
+	private void drawSegments(Graphics graph, LinkedList<Segment> listSegment)
 	{
 		listSegment.forEach((Segment segment) -> drawSegment(graph, segment));
 	}

@@ -4,6 +4,7 @@ import com.polytech.turtle.view.Sheet;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Created by p1509413 on 17/05/2017.
@@ -23,7 +24,7 @@ public interface TurtleInterface {
 
     Color getColor();
 
-    ArrayList<Segment> getListSegments();
+    LinkedList<Segment> getListSegments();
 
     int getSpeed();
 
