@@ -2,8 +2,8 @@ package com.polytech.turtle.view;// package logo;
 
 import com.polytech.turtle.controller.TurtleController;
 import com.polytech.turtle.model.Segment;
+import com.polytech.turtle.view.events.TurtleSelector;
 import com.polytech.turtle.model.ITurtle;
-import com.polytech.turtle.view.events.MouseAdapterCustom;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,7 +39,7 @@ public class Sheet extends JPanel implements Observer {
 		turtles.add(turtle);
 		TurtleView turtleView = new TurtleView(turtle);
 		turtleViewMap.put(turtle, turtleView);
-		this.addMouseListener(new MouseAdapterCustom(turtle, turtleView));
+		this.addMouseListener(new TurtleSelector(turtle, turtleView));
 		repaint();
 	}
 

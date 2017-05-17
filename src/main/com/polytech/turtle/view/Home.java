@@ -30,7 +30,7 @@ public class Home extends JFrame {
 
     public Home(String name) {
         super(name);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addComponentsToPane(getContentPane());
         setVisible(true);
         pack();

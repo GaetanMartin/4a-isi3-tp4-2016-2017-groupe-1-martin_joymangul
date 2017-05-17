@@ -11,11 +11,11 @@ import java.awt.event.MouseEvent;
  * Created by Gaetan on 15/05/2017.
  * MouseAdapter for clicks on turtleView
  */
-public class MouseAdapterCustom extends MouseAdapter {
+public class TurtleSelector extends MouseAdapter {
     private ITurtle turtle;
     private TurtleView turtleView;
 
-    public MouseAdapterCustom(ITurtle turtle, TurtleView turtleView) {
+    public TurtleSelector(ITurtle turtle, TurtleView turtleView) {
         this.turtle = turtle;
         this.turtleView = turtleView;
     }
@@ -23,6 +23,7 @@ public class MouseAdapterCustom extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (turtleView.getShape().contains(e.getX(), e.getY())) {
+            System.out.println("Turtle Selected");
             TurtleController.setCurrentTurtle(turtle);
         }
     }
