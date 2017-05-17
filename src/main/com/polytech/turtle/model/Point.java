@@ -39,4 +39,8 @@ public class Point implements Cloneable {
     public int getY() {
         return y;
     }
+
+    public int getDistance(Point destination){
+        return (int) Math.sqrt(Math.pow(destination.getX() - this.getX(), 2) + Math.pow(destination.getY() - this.getY(), 2));
+    }
 }

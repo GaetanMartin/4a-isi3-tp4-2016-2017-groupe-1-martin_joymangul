@@ -73,6 +73,7 @@ public class ColorsTest{
         List<Color> colorsNeeded = new ArrayList<>();
         colorsNeeded.add(Color.BLACK);
         colorsNeeded.add(Color.BLUE);
+        /*
         colorsNeeded.add(Color.CYAN);
         colorsNeeded.add(Color.DARK_GRAY);
         colorsNeeded.add(Color.RED);
@@ -81,6 +82,7 @@ public class ColorsTest{
         colorsNeeded.add(Color.MAGENTA);
         colorsNeeded.add(Color.ORANGE);
         colorsNeeded.add(Color.GRAY);
+        */
         colorsNeeded.add(Color.PINK);
         colorsNeeded.add(Color.YELLOW);
         return colorsNeeded;
@@ -90,6 +92,7 @@ public class ColorsTest{
         List<String> colorsNameNeeded = new ArrayList<>();
         colorsNameNeeded.add("Noire");
         colorsNameNeeded.add("Bleu");
+        /*
         colorsNameNeeded.add("Cyan");
         colorsNameNeeded.add("Gris Foncé");
         colorsNameNeeded.add("Rouge");
@@ -98,6 +101,7 @@ public class ColorsTest{
         colorsNameNeeded.add("Magenta");
         colorsNameNeeded.add("Orange");
         colorsNameNeeded.add("Gris");
+        */
         colorsNameNeeded.add("Rose");
         colorsNameNeeded.add("Jaune");
         return colorsNameNeeded;
