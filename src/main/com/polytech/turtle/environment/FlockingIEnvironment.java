@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  * Created by JOYMANGUL Jensen Selwyn
  * on 5/16/2017.
  */
-public class FlockingEnvironment implements EnvironmentInterface {
+public class FlockingIEnvironment implements IEnvironment {
     private final int MAX_NEIGHBOUR_DISTANCE = 20;
     private List<ITurtle> listTurtle;
     private Thread thread;
@@ -21,7 +21,7 @@ public class FlockingEnvironment implements EnvironmentInterface {
         return listTurtle;
     }
 
-    public FlockingEnvironment(List<ITurtle> listTurtle, int refreshRate) {
+    public FlockingIEnvironment(List<ITurtle> listTurtle, int refreshRate) {
         this.listTurtle = listTurtle;
         this.refreshRate = refreshRate;
         this.stop = false;

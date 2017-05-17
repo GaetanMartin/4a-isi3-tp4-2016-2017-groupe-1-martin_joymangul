@@ -1,7 +1,6 @@
 package com.polytech.turtle.environment;
 
 import com.polytech.turtle.model.ITurtle;
-import com.polytech.turtle.model.Turtle;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +18,7 @@ import static org.mockito.Mockito.when;
  *
  */
 public class FlockingEnvironmentTest {
-    private FlockingEnvironment flockingEnvironment;
+    private FlockingIEnvironment flockingEnvironment;
 
     private ITurtle turtle;
     private List<ITurtle> listTurtle;
@@ -33,7 +32,7 @@ public class FlockingEnvironmentTest {
             ITurtle turtleNeighbours = mock(ITurtle.class);
             this.listTurtle.add(turtleNeighbours);
         }
-        flockingEnvironment = new FlockingEnvironment(listTurtle, 1);
+        flockingEnvironment = new FlockingIEnvironment(listTurtle, 1);
         for (int i = 0; i < 10; i++) {
             when(turtle.getDistance(listTurtle.get(i))).thenReturn(2*i);
         }

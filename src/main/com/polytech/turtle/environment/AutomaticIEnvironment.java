@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
  * Created by JOYMANGUL Jensen Selwyn
  * on 5/16/2017.
  */
-public class AutomaticEnvironment implements EnvironmentInterface{
+public class AutomaticIEnvironment implements IEnvironment {
     private List<ITurtle> listTurtle;
     private Thread thread;
     private int refreshRate;
@@ -31,7 +31,7 @@ public class AutomaticEnvironment implements EnvironmentInterface{
         this.refreshRate = refreshRate;
     }
 
-    public AutomaticEnvironment(List<ITurtle> listTurtle, int refreshRate) {
+    public AutomaticIEnvironment(List<ITurtle> listTurtle, int refreshRate) {
         this.listTurtle = listTurtle;
         this.refreshRate = refreshRate;
         this.stop = false;

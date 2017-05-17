@@ -1,9 +1,9 @@
 package com.polytech.turtle.controller;
 
 import com.polytech.turtle.Utils.Colors;
-import com.polytech.turtle.environment.AutomaticEnvironment;
-import com.polytech.turtle.environment.EnvironmentInterface;
-import com.polytech.turtle.environment.FlockingEnvironment;
+import com.polytech.turtle.environment.AutomaticIEnvironment;
+import com.polytech.turtle.environment.IEnvironment;
+import com.polytech.turtle.environment.FlockingIEnvironment;
 import com.polytech.turtle.model.ITurtle;
 import com.polytech.turtle.model.Turtle;
 import com.polytech.turtle.model.Point;
@@ -28,7 +28,7 @@ public class TurtleController {
     private static ITurtle currentTurtle;
     private MainGUI turtleView;
     private Sheet sheet;
-    private EnvironmentInterface environment;
+    private IEnvironment environment;
 
     public TurtleController(ITurtle turtle, MainGUI turtleView) {
         currentTurtle = turtle;
@@ -180,7 +180,7 @@ public class TurtleController {
             turtle.randonmise();
             sheet.addTurtle(turtle);
         }
-        environment = new AutomaticEnvironment(sheet.getTurtles(), SPEED);
+        environment = new AutomaticIEnvironment(sheet.getTurtles(), SPEED);
         environment.start();
     }
 
@@ -196,7 +196,7 @@ public class TurtleController {
             sheet.addTurtle(turtle);
         }
 
-        environment = new FlockingEnvironment(sheet.getTurtles(), SPEED);
+        environment = new FlockingIEnvironment(sheet.getTurtles(), SPEED);
         environment.start();
     }
 
