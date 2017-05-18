@@ -9,17 +9,19 @@ import java.util.Observer;
 import java.util.Random;
 
 public class Obstacle extends Observable {
-    private List points;
+    private final int MAX_EDGES = 3;
+    private final int MAX_WIDTH = 200;
+
+    private Polygon shape;
     private Color color;
 
-    public List getPoints() {
-        return points;
+    public Polygon getShape() {
+        return shape;
     }
 
-    public void setPoints(List points) {
-        this.points = points;
+    public void setShape(Polygon shape) {
+        this.shape = shape;
     }
-
 
     public Color getColor() {
         return color;
@@ -29,14 +31,21 @@ public class Obstacle extends Observable {
         this.color = color;
     }
 
-    public Obstacle()
-    {
+    public Obstacle(Point startPoint) {
+        int nb_edges = MAX_EDGES;
+        this.shape = new Polygon();
+        this.shape.addPoint(startPoint.getX(), startPoint.getY());
+        for (int i = 0; i < nb_edges; i++) {
+            Point randomPoint = this.randomPoint();
+            this.shape.addPoint(randomPoint.getX(), randomPoint.getY());
+        }
         this.setColor(this.getRandomColor());
     }
 
-    private void buildPoints() {
-        // TODO
-        notifyView();
+    private Point randomPoint() {
+        int randomX = new Random().nextInt(MAX_WIDTH);
+        int randomY = new Random().nextInt(MAX_WIDTH);
+        return new Point(randomX, randomY);
     }
 
     private Color getRandomColor(){
@@ -48,7 +57,7 @@ public class Obstacle extends Observable {
         return true;
     }
 
-    void notifyView() {
+    public void notifyView() {
         this.setChanged();
         this.notifyObservers();
     }

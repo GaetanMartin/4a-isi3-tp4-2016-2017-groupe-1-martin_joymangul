@@ -1,6 +1,7 @@
 package com.polytech.turtle.view;// package logo;
 
 import com.polytech.turtle.controller.TurtleController;
+import com.polytech.turtle.model.Obstacle;
 import com.polytech.turtle.model.Segment;
 import com.polytech.turtle.view.events.ObstacleDrawer;
 import com.polytech.turtle.view.events.TurtleSelector;
@@ -28,14 +29,20 @@ public class Sheet extends JPanel implements Observer {
 
 	private List<ITurtle> turtles = new ArrayList<>(); // la liste des turtles enregistrees
 	private Map<ITurtle, TurtleView> turtleViewMap = new HashMap<>();
+	private List<Obstacle> obstacles = new ArrayList<>();
 
 
 	public Sheet() {
 		this.setBackground(Color.white);
 		this.setSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		this.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
-		this.addMouseListener(new ObstacleDrawer());
+		this.addMouseListener(new ObstacleDrawer(this));
 	}
+
+	public void addObstacle(Obstacle obstacle) {
+	    obstacle.addObserver(this);
+	    this.obstacles.add(obstacle);
+    }
 
 	public void addTurtle(ITurtle turtle) {
 		turtle.addObserver(this);
@@ -69,7 +76,20 @@ public class Sheet extends JPanel implements Observer {
         g.setColor(c);
 
 		drawTurtles(g);
+        drawObstacles(g);
 	}
+
+    private void drawObstacles(Graphics g) {
+        System.out.println("add");
+        obstacles.forEach((Obstacle obstacle) -> drawObstacle(obstacle, g));
+    }
+
+
+    private void drawObstacle(Obstacle obstacle, Graphics g) {
+        System.out.println("toto");
+        g.setColor(obstacle.getColor());
+	    g.fillPolygon(obstacle.getShape());
+    }
 
 	private void drawTurtles(Graphics g) {
 		turtles.forEach((ITurtle turtle) -> drawTurtle(turtle, g));
