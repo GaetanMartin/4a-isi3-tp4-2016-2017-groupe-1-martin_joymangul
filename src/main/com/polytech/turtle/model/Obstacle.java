@@ -4,6 +4,7 @@ import com.polytech.turtle.Utils.Colors;
 import com.polytech.turtle.view.Sheet;
 
 import java.awt.*;
+import java.awt.geom.Area;
 import java.util.Observable;
 import java.util.Random;
 
@@ -43,9 +44,11 @@ public class Obstacle extends Observable {
         return color = Colors.getColors().get(new Random().nextInt(Colors.getColors().size()));
     }
 
-    public Boolean isCollide(Turtle turle) {
-        // TODO
-        return true;
+    public Boolean isCollide(ITurtle turtle) {
+        Rectangle turtleShape = new Rectangle(turtle.getPosition().getX(), turtle.getPosition().getY(), turtle.ARROW_BASE_WIDTH, turtle.ARROW_HEIGHT);
+        Area aresObstable = new Area(this.getShape());
+        aresObstable.intersect(new Area(turtleShape));
+        return !aresObstable.isEmpty();
     }
 
     public void notifyView() {

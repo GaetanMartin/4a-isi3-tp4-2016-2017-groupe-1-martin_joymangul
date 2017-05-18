@@ -1,6 +1,7 @@
 package com.polytech.turtle.environment;
 
 import com.polytech.turtle.model.ITurtle;
+import com.polytech.turtle.model.Obstacle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class FlockingIEnvironment implements IEnvironment {
     private final int MAX_NEIGHBOUR_DISTANCE = 20;
     private List<ITurtle> listTurtle;
+    private List<Obstacle> listObstacles;
     private Thread thread;
     private int refreshRate;
     private Boolean stop;
@@ -21,8 +23,13 @@ public class FlockingIEnvironment implements IEnvironment {
         return listTurtle;
     }
 
-    public FlockingIEnvironment(List<ITurtle> listTurtle, int refreshRate) {
+    public List<Obstacle> getListObstacles() {
+        return listObstacles;
+    }
+
+    public FlockingIEnvironment(List<ITurtle> listTurtle, List<Obstacle> listObstacles, int refreshRate) {
         this.listTurtle = listTurtle;
+        this.listObstacles = listObstacles;
         this.refreshRate = refreshRate;
         this.stop = false;
     }
@@ -54,6 +61,12 @@ public class FlockingIEnvironment implements IEnvironment {
                         turtle.moveForward(avg_speed.intValue());
                     } else {
                         turtle.moveRandom();
+                    }
+                    for(Obstacle obstacle : this.listObstacles)
+                    {
+                        if(obstacle.isCollide(turtle)){
+                            turtle.setDirection(-turtle.getDirection());
+                        }
                     }
                 }
                 try {

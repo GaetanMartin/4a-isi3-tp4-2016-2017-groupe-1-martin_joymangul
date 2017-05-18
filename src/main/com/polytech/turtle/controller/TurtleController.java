@@ -196,7 +196,7 @@ public class TurtleController {
             sheet.addTurtle(turtle);
         }
 
-        environment = new FlockingIEnvironment(sheet.getTurtles(), SPEED);
+        environment = new FlockingIEnvironment(sheet.getTurtles(), sheet.getObstacles(), SPEED);
         environment.start();
     }
 }

@@ -29,6 +29,9 @@ public class Sheet extends JPanel implements Observer {
 	private Map<ITurtle, TurtleView> turtleViewMap = new HashMap<>();
 	private List<Obstacle> obstacles = new ArrayList<>();
 
+	public List<Obstacle> getObstacles() {
+		return obstacles;
+	}
 
 	public Sheet() {
 		this.setBackground(Color.white);
