@@ -5,22 +5,17 @@ import com.polytech.turtle.view.Sheet;
 
 import java.awt.*;
 import java.util.Observable;
-import java.util.Observer;
 import java.util.Random;
 
 public class Obstacle extends Observable {
     private final int MAX_EDGES = 3;
     private final int MAX_WIDTH = 200;
 
-    private Polygon shape;
+    private Rectangle shape;
     private Color color;
 
-    public Polygon getShape() {
+    public Rectangle getShape() {
         return shape;
-    }
-
-    public void setShape(Polygon shape) {
-        this.shape = shape;
     }
 
     public Color getColor() {
@@ -32,13 +27,9 @@ public class Obstacle extends Observable {
     }
 
     public Obstacle(Point startPoint) {
-        int nb_edges = MAX_EDGES;
-        this.shape = new Polygon();
-        this.shape.addPoint(startPoint.getX(), startPoint.getY());
-        for (int i = 0; i < nb_edges; i++) {
-            Point randomPoint = this.randomPoint();
-            this.shape.addPoint(randomPoint.getX(), randomPoint.getY());
-        }
+        int width = new Random().nextInt(MAX_WIDTH);
+        int height = new Random().nextInt(MAX_WIDTH);
+        this.shape = new Rectangle(startPoint.getX(), startPoint.getY(), width, height);
         this.setColor(this.getRandomColor());
     }
 

@@ -1,4 +1,4 @@
-package com.polytech.turtle.view.events;
+package com.polytech.turtle.controller;
 
 import com.polytech.turtle.model.Obstacle;
 import com.polytech.turtle.model.Point;
@@ -9,18 +9,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * Created by Gaetan on 15/05/2017.
- * MouseAdapter for clicks on turtleView
+ * Created by JOYMANGUL Jensen Selwyn
+ * on 5/18/2017.
  */
-public class ObstacleDrawer extends MouseAdapter {
+public class ObstacleMouseAdapter extends MouseAdapter {
     private Sheet sheet;
 
-    public ObstacleDrawer(Sheet sheet) {
+    public ObstacleMouseAdapter(Sheet sheet) {
         this.sheet = sheet;
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseReleased(MouseEvent e) {
         if (SwingUtilities.isRightMouseButton(e)) {
             System.out.println("New Obstacle");
             Obstacle obstacle = new Obstacle(new Point(e.getX(), e.getY()));

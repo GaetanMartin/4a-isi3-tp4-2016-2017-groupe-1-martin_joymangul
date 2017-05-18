@@ -2,11 +2,11 @@ package com.polytech.turtle.controller;
 
 import com.polytech.turtle.Utils.Colors;
 import com.polytech.turtle.environment.AutomaticIEnvironment;
-import com.polytech.turtle.environment.IEnvironment;
 import com.polytech.turtle.environment.FlockingIEnvironment;
+import com.polytech.turtle.environment.IEnvironment;
 import com.polytech.turtle.model.ITurtle;
-import com.polytech.turtle.model.Turtle;
 import com.polytech.turtle.model.Point;
+import com.polytech.turtle.model.Turtle;
 import com.polytech.turtle.model.shapes.Hexagon;
 import com.polytech.turtle.model.shapes.Spiral;
 import com.polytech.turtle.model.shapes.Square;
@@ -43,7 +43,7 @@ public class TurtleController {
 
     void initController() {
         turtleView.setSheet(sheet);
-
+        this.sheet.addMouseListener(new ObstacleMouseAdapter(this.sheet));
         this.initTextField();
         this.initTopButton();
         this.initBottomButton();
@@ -199,7 +199,4 @@ public class TurtleController {
         environment = new FlockingIEnvironment(sheet.getTurtles(), SPEED);
         environment.start();
     }
-
-
-
 }

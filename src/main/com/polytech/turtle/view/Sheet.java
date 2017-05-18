@@ -1,11 +1,10 @@
 package com.polytech.turtle.view;// package logo;
 
 import com.polytech.turtle.controller.TurtleController;
+import com.polytech.turtle.model.ITurtle;
 import com.polytech.turtle.model.Obstacle;
 import com.polytech.turtle.model.Segment;
-import com.polytech.turtle.view.events.ObstacleDrawer;
 import com.polytech.turtle.view.events.TurtleSelector;
-import com.polytech.turtle.model.ITurtle;
 import com.polytech.turtle.view.shapes.TurtleView;
 
 import javax.swing.*;
@@ -24,7 +23,6 @@ import java.util.List;
 
 public class Sheet extends JPanel implements Observer {
 	public static final int DEFAULT_WIDTH = 600;
-
 	public static final int DEFAULT_HEIGHT = 400;
 
 	private List<ITurtle> turtles = new ArrayList<>(); // la liste des turtles enregistrees
@@ -36,7 +34,6 @@ public class Sheet extends JPanel implements Observer {
 		this.setBackground(Color.white);
 		this.setSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		this.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
-		this.addMouseListener(new ObstacleDrawer(this));
 	}
 
 	public void addObstacle(Obstacle obstacle) {
@@ -80,15 +77,13 @@ public class Sheet extends JPanel implements Observer {
 	}
 
     private void drawObstacles(Graphics g) {
-        System.out.println("add");
         obstacles.forEach((Obstacle obstacle) -> drawObstacle(obstacle, g));
     }
 
 
     private void drawObstacle(Obstacle obstacle, Graphics g) {
-        System.out.println("toto");
         g.setColor(obstacle.getColor());
-	    g.fillPolygon(obstacle.getShape());
+	    g.fillRect(obstacle.getShape().x, obstacle.getShape().y, obstacle.getShape().width, obstacle.getShape().height);
     }
 
 	private void drawTurtles(Graphics g) {
