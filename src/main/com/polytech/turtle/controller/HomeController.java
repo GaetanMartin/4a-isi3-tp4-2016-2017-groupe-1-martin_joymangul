@@ -9,35 +9,35 @@ import com.polytech.turtle.view.MainGUI;
  * Controller for view window
  */
 public class HomeController {
+    private TurtleController turtleController;
 
     public HomeController(Home home) {
-        home.getManualModeBtn().addActionListener(e -> javax.swing.SwingUtilities.invokeLater(HomeController::manualMode));
-        home.getAutomaticModeBtn().addActionListener(e -> javax.swing.SwingUtilities.invokeLater(HomeController::automaticMode));
-        home.getFlockingModeBtn().addActionListener(e -> javax.swing.SwingUtilities.invokeLater(HomeController::flockingMode));
+        home.getManualModeBtn().addActionListener(e ->this.manualMode());
+        home.getAutomaticModeBtn().addActionListener((e ->this.automaticMode()));
+        home.getFlockingModeBtn().addActionListener((e ->this.flockingMode()));
     }
 
-    private static void flockingMode() {
+    private void initTurtleController() {
         System.out.println("flocking");
         Turtle model = new Turtle();
         MainGUI view = new MainGUI(); // Todo Put Flocking View
-        TurtleController c = new TurtleController(model, view);
-        c.initController();
+        turtleController = new TurtleController(model, view);
+        turtleController.initController();
     }
 
-    private static void automaticMode() {
-        System.out.println("flocking");
-        Turtle model = new Turtle();
-        MainGUI view = new MainGUI(); // Todo Put Automatic View
-        TurtleController c = new TurtleController(model, view);
-        c.initController();
+    private void flockingMode() {
+        initTurtleController();
+        turtleController.flockingEnvironment();
     }
 
-    private static void manualMode() {
-        System.out.println("manual");
-        Turtle model = new Turtle();
-        MainGUI view = new MainGUI();
-        TurtleController c = new TurtleController(model, view);
-        c.initController();
+    private void automaticMode() {
+        initTurtleController();
+        turtleController.automaticEnvironment();
+    }
+
+    private void manualMode() {
+        initTurtleController();
+        turtleController.controlledEnvironment();
     }
 
 

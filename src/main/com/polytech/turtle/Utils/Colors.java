@@ -18,14 +18,14 @@ public class Colors {
                     new AbstractMap.SimpleEntry<>("Bleu", Color.BLUE),
                     /*new AbstractMap.SimpleEntry<>("Cyan", Color.CYAN),
                     new AbstractMap.SimpleEntry<>("Gris Foncé", Color.DARK_GRAY),
-                    new AbstractMap.SimpleEntry<>("Rouge", Color.RED),
+                    new AbstractMap.SimpleEntry<>("Jaune", Color.YELLOW),
                     new AbstractMap.SimpleEntry<>("Vert", Color.GREEN),
                     new AbstractMap.SimpleEntry<>("Gris Claire", Color.LIGHT_GRAY),
-                    new AbstractMap.SimpleEntry<>("Magenta", Color.MAGENTA),
-                    new AbstractMap.SimpleEntry<>("Orange", Color.ORANGE),
-                    new AbstractMap.SimpleEntry<>("Gris", Color.GRAY),*/
                     new AbstractMap.SimpleEntry<>("Rose", Color.PINK),
-                    new AbstractMap.SimpleEntry<>("Jaune", Color.YELLOW))
+                    new AbstractMap.SimpleEntry<>("Magenta", Color.MAGENTA),
+                    new AbstractMap.SimpleEntry<>("Gris", Color.GRAY),*/
+                    new AbstractMap.SimpleEntry<>("Orange", Color.ORANGE),
+                    new AbstractMap.SimpleEntry<>("Rouge", Color.RED))
                     .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue)));
 
     public static List<String> getColorName()

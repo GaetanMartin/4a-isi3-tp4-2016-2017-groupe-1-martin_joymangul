@@ -59,6 +59,8 @@ public class Sheet extends JPanel implements Observer {
 
 	public void reset() {
         ITurtle first = turtles.get(0);
+        turtleViewMap.clear();
+        obstacles.clear();
 		turtles.clear();
 		first.reset();
 		TurtleController.setCurrentTurtle(first);
@@ -75,8 +77,13 @@ public class Sheet extends JPanel implements Observer {
 		g.fillRect(0,0,dim.width, dim.height);
         g.setColor(c);
 
-		drawTurtles(g);
-        drawObstacles(g);
+        try{
+			drawTurtles(g);
+			drawObstacles(g);
+		} catch (ConcurrentModificationException e){
+			System.out.println("Repaint is too fast");
+		}
+
 	}
 
     private void drawObstacles(Graphics g) {

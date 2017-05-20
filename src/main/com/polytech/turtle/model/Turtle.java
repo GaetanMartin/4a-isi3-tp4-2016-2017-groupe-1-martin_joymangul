@@ -24,8 +24,8 @@ import java.util.Random;
 
 public class Turtle extends Observable implements ITurtle {
     private static final Color DEFAULT_COLOR = Color.BLACK;
-    private final int MAX_SPEED = 25;
-    private final int MAX_ANGLE = 180;
+    private final int MAX_SPEED = 50;
+    private final int MAX_ANGLE = 360;
     private final int VISION_ANGLE = 90;
     public static final int NUMBER_OF_TURTLE = 20;
     private static final int NUMBER_OF_SEGMENT = 20;

@@ -1,9 +1,10 @@
 package com.polytech.turtle.controller;
 
 import com.polytech.turtle.Utils.Colors;
+import com.polytech.turtle.environment.AbstractEnvironment;
 import com.polytech.turtle.environment.AutomaticIEnvironment;
+import com.polytech.turtle.environment.ControlledEnvironment;
 import com.polytech.turtle.environment.FlockingIEnvironment;
-import com.polytech.turtle.environment.IEnvironment;
 import com.polytech.turtle.model.ITurtle;
 import com.polytech.turtle.model.Point;
 import com.polytech.turtle.model.Turtle;
@@ -28,7 +29,7 @@ public class TurtleController {
     private static ITurtle currentTurtle;
     private MainGUI turtleView;
     private Sheet sheet;
-    private IEnvironment environment;
+    private AbstractEnvironment environment;
 
     public TurtleController(ITurtle turtle, MainGUI turtleView) {
         currentTurtle = turtle;
@@ -65,6 +66,7 @@ public class TurtleController {
         turtleView.getButtonUp().addActionListener(e -> this.up());
         turtleView.getButtonReset().addActionListener(e -> this.reset());
         turtleView.getButtonAddTurtle().addActionListener(e -> this.addTurtle());
+        turtleView.getButtonManual().addActionListener(e -> this.controlledEnvironment());
         turtleView.getButtonAutomatic().addActionListener(e -> this.automaticEnvironment());
         turtleView.getButtonFlocking().addActionListener(e -> this.flockingEnvironment());
     }
@@ -167,12 +169,20 @@ public class TurtleController {
         menuItem.setAccelerator(KeyStroke.getKeyStroke(key, 0, false));
     }
 
-    private void automaticEnvironment() {
+    public void controlledEnvironment() {
         if(environment != null)
         {
             environment.stop();
         }
+        environment =  new ControlledEnvironment(sheet.getTurtles(), sheet.getObstacles());
+        this.sheet.reset();
+    }
 
+    public void automaticEnvironment() {
+        if(environment != null)
+        {
+            environment.stop();
+        }
 
         sheet.getTurtles().clear();
         for (int i = 0; i < Turtle.NUMBER_OF_TURTLE; i++) {
@@ -180,11 +190,11 @@ public class TurtleController {
             turtle.randonmise();
             sheet.addTurtle(turtle);
         }
-        environment = new AutomaticIEnvironment(sheet.getTurtles(), SPEED);
+        environment = new AutomaticIEnvironment(sheet.getTurtles(), sheet.getObstacles(), SPEED);
         environment.start();
     }
 
-    private void flockingEnvironment() {
+    public void flockingEnvironment() {
         if(environment != null)
         {
             environment.stop();

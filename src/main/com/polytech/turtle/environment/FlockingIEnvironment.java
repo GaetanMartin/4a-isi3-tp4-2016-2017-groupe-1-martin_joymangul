@@ -11,36 +11,18 @@ import java.util.concurrent.TimeUnit;
  * Created by JOYMANGUL Jensen Selwyn
  * on 5/16/2017.
  */
-public class FlockingIEnvironment implements IEnvironment {
-    private final int MAX_NEIGHBOUR_DISTANCE = 20;
-    private List<ITurtle> listTurtle;
-    private List<Obstacle> listObstacles;
-    private Thread thread;
-    private int refreshRate;
-    private Boolean stop;
-
-    private List<ITurtle> getListTurtle() {
-        return listTurtle;
-    }
-
-    public List<Obstacle> getListObstacles() {
-        return listObstacles;
-    }
-
+public class FlockingIEnvironment extends AbstractEnvironment{
     public FlockingIEnvironment(List<ITurtle> listTurtle, List<Obstacle> listObstacles, int refreshRate) {
-        this.listTurtle = listTurtle;
-        this.listObstacles = listObstacles;
-        this.refreshRate = refreshRate;
-        this.stop = false;
+        super(listTurtle, listObstacles, refreshRate);
     }
 
     @Override
     public Runnable task() {
         return () -> {
 
-            while (!stop) {
+            while (!super.stop) {
 
-                for (ITurtle turtle : this.getListTurtle()) {
+                for (ITurtle turtle : super.getListTurtle()) {
                     List<ITurtle> neighbours = this.getNeighbours(turtle);
                     if (!neighbours.isEmpty()) {
                         Double avg_direction = neighbours
@@ -62,15 +44,10 @@ public class FlockingIEnvironment implements IEnvironment {
                     } else {
                         turtle.moveRandom();
                     }
-                    for(Obstacle obstacle : this.listObstacles)
-                    {
-                        if(obstacle.isCollide(turtle)){
-                            turtle.setDirection(-turtle.getDirection());
-                        }
-                    }
+                    super.avoidObstacle(turtle);
                 }
                 try {
-                    TimeUnit.MILLISECONDS.sleep(refreshRate);
+                    TimeUnit.MILLISECONDS.sleep(super.refreshRate);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
@@ -79,23 +56,10 @@ public class FlockingIEnvironment implements IEnvironment {
         };
     }
 
-    @Override
-    public void start() {
-        thread = new Thread(this.task());
-        thread.start();
-    }
-
-    @Override
-    public void stop() {
-        stop = true;
-        thread.interrupt();
-        Thread.currentThread().interrupt(); // restore interrupted status
-    }
-
-    protected List<ITurtle> getNeighbours(ITurtle currentTurtle) {
+    private List<ITurtle> getNeighbours(ITurtle currentTurtle) {
         List<ITurtle> result = new ArrayList<>();
         for (ITurtle turtle : this.getListTurtle()) {
-            if (currentTurtle.getDistance(turtle) <= MAX_NEIGHBOUR_DISTANCE && turtle.getColor() == currentTurtle.getColor()) {
+            if (currentTurtle.getDistance(turtle) <= super.MAX_NEIGHBOUR_DISTANCE && turtle.getColor() == currentTurtle.getColor()) {
                 result.add(turtle);
             }
         }
