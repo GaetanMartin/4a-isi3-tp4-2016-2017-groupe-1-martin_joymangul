@@ -32,7 +32,7 @@ public class FlockingEnvironmentTest {
             ITurtle turtleNeighbours = mock(ITurtle.class);
             this.listTurtle.add(turtleNeighbours);
         }
-        flockingEnvironment = new FlockingIEnvironment(listTurtle, 1);
+        //flockingEnvironment = new FlockingIEnvironment(listTurtle, 1);
         for (int i = 0; i < 10; i++) {
             when(turtle.getDistance(listTurtle.get(i))).thenReturn(2*i);
         }
