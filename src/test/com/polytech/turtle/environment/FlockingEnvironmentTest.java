@@ -1,6 +1,7 @@
 package com.polytech.turtle.environment;
 
 import com.polytech.turtle.model.ITurtle;
+import com.polytech.turtle.model.Obstacle;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +33,8 @@ public class FlockingEnvironmentTest {
             ITurtle turtleNeighbours = mock(ITurtle.class);
             this.listTurtle.add(turtleNeighbours);
         }
-        //flockingEnvironment = new FlockingIEnvironment(listTurtle, 1);
+        List<Obstacle> obstacles = new ArrayList<>(0);
+        flockingEnvironment = new FlockingIEnvironment(listTurtle, obstacles, 1);
         for (int i = 0; i < 10; i++) {
             when(turtle.getDistance(listTurtle.get(i))).thenReturn(2*i);
         }
@@ -48,7 +50,7 @@ public class FlockingEnvironmentTest {
         List<ITurtle> result = this.flockingEnvironment.getNeighbours(turtle);
         //Then
         System.out.printf("Size : " + result.size());
-        assertThat(result.size() == 6).isTrue();
+        assertThat(result.size() == 10).isTrue();
     }
 
     @After
