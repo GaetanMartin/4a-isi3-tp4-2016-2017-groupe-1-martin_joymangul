@@ -76,15 +76,15 @@ public class ColorsTest{
         /*
         colorsNeeded.add(Color.CYAN);
         colorsNeeded.add(Color.DARK_GRAY);
-        colorsNeeded.add(Color.RED);
         colorsNeeded.add(Color.GREEN);
         colorsNeeded.add(Color.lightGray);
         colorsNeeded.add(Color.MAGENTA);
-        colorsNeeded.add(Color.ORANGE);
-        colorsNeeded.add(Color.GRAY);
-        */
         colorsNeeded.add(Color.PINK);
         colorsNeeded.add(Color.YELLOW);
+        colorsNeeded.add(Color.GRAY);
+        */
+        colorsNeeded.add(Color.ORANGE);
+        colorsNeeded.add(Color.RED);
         return colorsNeeded;
     }
 
@@ -95,15 +95,15 @@ public class ColorsTest{
         /*
         colorsNameNeeded.add("Cyan");
         colorsNameNeeded.add("Gris Foncé");
-        colorsNameNeeded.add("Rouge");
         colorsNameNeeded.add("Vert");
+        colorsNameNeeded.add("Rose");
         colorsNameNeeded.add("Gris Claire");
         colorsNameNeeded.add("Magenta");
-        colorsNameNeeded.add("Orange");
+        colorsNameNeeded.add("Jaune");
         colorsNameNeeded.add("Gris");
         */
-        colorsNameNeeded.add("Rose");
-        colorsNameNeeded.add("Jaune");
+        colorsNameNeeded.add("Orange");
+        colorsNameNeeded.add("Rouge");
         return colorsNameNeeded;
     }
 }
