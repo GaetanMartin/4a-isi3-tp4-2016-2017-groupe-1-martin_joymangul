@@ -1,6 +1,7 @@
 package com.polytech.turtle.controller;
 
 import com.polytech.turtle.Utils.Colors;
+import com.polytech.turtle.controller.events.ObstacleMouseAdapter;
 import com.polytech.turtle.environment.AbstractEnvironment;
 import com.polytech.turtle.environment.AutomaticIEnvironment;
 import com.polytech.turtle.environment.ControlledEnvironment;
@@ -13,6 +14,8 @@ import com.polytech.turtle.model.shapes.Spiral;
 import com.polytech.turtle.model.shapes.Square;
 import com.polytech.turtle.view.MainGUI;
 import com.polytech.turtle.view.Sheet;
+import com.polytech.turtle.controller.events.TurtleSelector;
+import com.polytech.turtle.view.shapes.TurtleView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,16 +29,16 @@ import java.awt.event.KeyEvent;
 public class TurtleController {
     private final int SPEED = 100; // in milliseconds
 
-    private static ITurtle currentTurtle;
+    static ITurtle currentTurtle;
     private MainGUI turtleView;
     private Sheet sheet;
     private AbstractEnvironment environment;
 
-    public TurtleController(ITurtle turtle, MainGUI turtleView) {
+    TurtleController(ITurtle turtle, MainGUI turtleView) {
         currentTurtle = turtle;
         this.sheet = new Sheet();
         this.turtleView = turtleView;
-        this.sheet.addTurtle(turtle);
+        this.addTurtle(turtle);
     }
 
     public static void setCurrentTurtle(ITurtle currentTurtle) {
@@ -45,44 +48,19 @@ public class TurtleController {
     void initController() {
         turtleView.setSheet(sheet);
         this.sheet.addMouseListener(new ObstacleMouseAdapter(this.sheet));
-        this.initTextField();
-        this.initTopButton();
-        this.initBottomButton();
-        this.initMenuItem();
-        this.initColorList();
+        initTopButton();
+        initMenuItem();
+        initColorList();
     }
 
-    private void initTextField()
-    {
-        turtleView.getTextFieldStep().setText("45");
-        turtleView.getTextFieldStep().setColumns(5);
-    }
-
-    private void initTopButton() {
-        turtleView.getButtonMove().addActionListener(e -> this.move(turtleView.getStepValue()));
-        turtleView.getButtonRight().addActionListener(e -> this.right(turtleView.getStepValue()));
-        turtleView.getButtonLeft().addActionListener(e -> this.left(turtleView.getStepValue()));
-        turtleView.getButtonDown().addActionListener(e -> this.down());
-        turtleView.getButtonUp().addActionListener(e -> this.up());
+    protected void initTopButton() {
         turtleView.getButtonReset().addActionListener(e -> this.reset());
         turtleView.getButtonAddTurtle().addActionListener(e -> this.addTurtle());
-        turtleView.getButtonManual().addActionListener(e -> this.controlledEnvironment());
-        turtleView.getButtonAutomatic().addActionListener(e -> this.automaticEnvironment());
-        turtleView.getButtonFlocking().addActionListener(e -> this.flockingEnvironment());
     }
 
-    private void initBottomButton() {
-        turtleView.getButtonSquare().addActionListener(e -> square());
-        turtleView.getButtonPolygon().addActionListener(e -> polygon());
-        turtleView.getButtonSpiral().addActionListener(e -> spiral());
-    }
 
-    private void initMenuItem() {
-        turtleView.getMenuItemMove().addActionListener(e -> this.move(turtleView.getStepValue()));
-        turtleView.getMenuItemRight().addActionListener(e -> this.right(turtleView.getStepValue()));
-        turtleView.getMenuItemLeft().addActionListener(e -> this.left(turtleView.getStepValue()));
-        turtleView.getMenuItemDown().addActionListener(e -> this.down());
-        turtleView.getMenuItemUp().addActionListener(e -> this.up());
+    protected void initMenuItem() {
+
         turtleView.getMenuItemAddTurtle().addActionListener(e -> this.addTurtle());
 
         this.initMenuItemKeyEvent(turtleView.getMenuItemReset(), KeyEvent.VK_N);
@@ -110,10 +88,16 @@ public class TurtleController {
     }
 
     private void addTurtle() {
-        System.out.println("Nouvelle Tortue");
         Turtle t = new Turtle();
-        currentTurtle = t;
-        this.sheet.addTurtle(t);
+        this.addTurtle(t);
+    }
+
+    private void addTurtle(ITurtle turtle) {
+        System.out.println("Nouvelle Tortue");
+        currentTurtle = turtle;
+        TurtleView turtleView = this.sheet.addTurtle(turtle);
+        this.sheet.addMouseListener(new TurtleSelector(turtle, turtleView));
+
     }
 
     void left(int v) {
@@ -124,26 +108,6 @@ public class TurtleController {
         JComboBox cb = (JComboBox) e.getSource();
         Color color = Colors.getColor((String) cb.getSelectedItem());
         currentTurtle.setColor(color);
-    }
-
-    private void up() {
-        currentTurtle.liftPen();
-    }
-
-    private void down() {
-        currentTurtle.lowerPen();
-    }
-
-    private void square() {
-        new Square(currentTurtle, 100);
-    }
-
-    private void polygon() {
-        new Hexagon(currentTurtle, 60);
-    }
-
-    private void spiral() {
-        new Spiral(currentTurtle, 50, 40, 6);
     }
 
     private void reset() {
@@ -169,7 +133,7 @@ public class TurtleController {
         menuItem.setAccelerator(KeyStroke.getKeyStroke(key, 0, false));
     }
 
-    public void controlledEnvironment() {
+    void controlledEnvironment() {
         if(environment != null)
         {
             environment.stop();
@@ -178,7 +142,7 @@ public class TurtleController {
         this.sheet.reset();
     }
 
-    public void automaticEnvironment() {
+    void automaticEnvironment() {
         if(environment != null)
         {
             environment.stop();
@@ -194,7 +158,7 @@ public class TurtleController {
         environment.start();
     }
 
-    public void flockingEnvironment() {
+    void flockingEnvironment() {
         if(environment != null)
         {
             environment.stop();

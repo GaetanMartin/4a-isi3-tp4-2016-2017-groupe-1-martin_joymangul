@@ -4,7 +4,6 @@ import com.polytech.turtle.controller.TurtleController;
 import com.polytech.turtle.model.ITurtle;
 import com.polytech.turtle.model.Obstacle;
 import com.polytech.turtle.model.Segment;
-import com.polytech.turtle.view.events.TurtleSelector;
 import com.polytech.turtle.view.shapes.TurtleView;
 
 import javax.swing.*;
@@ -44,13 +43,13 @@ public class Sheet extends JPanel implements Observer {
 	    this.obstacles.add(obstacle);
     }
 
-	public void addTurtle(ITurtle turtle) {
+	public TurtleView addTurtle(ITurtle turtle) {
 		turtle.addObserver(this);
 		turtles.add(turtle);
 		TurtleView turtleView = new TurtleView(turtle);
 		turtleViewMap.put(turtle, turtleView);
-		this.addMouseListener(new TurtleSelector(turtle, turtleView));
 		repaint();
+		return turtleView;
 	}
 
 	public List<ITurtle> getTurtles() {

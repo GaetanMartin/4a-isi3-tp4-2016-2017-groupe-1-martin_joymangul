@@ -3,12 +3,14 @@ package com.polytech.turtle.controller;
 import com.polytech.turtle.model.Turtle;
 import com.polytech.turtle.view.Home;
 import com.polytech.turtle.view.MainGUI;
+import com.polytech.turtle.view.ManualGUI;
 
 /**
  * Created by p1509413 on 17/05/2017.
  * Controller for view window
  */
 public class HomeController {
+
     private TurtleController turtleController;
 
     public HomeController(Home home) {
@@ -18,25 +20,28 @@ public class HomeController {
     }
 
     private void initTurtleController() {
-        System.out.println("flocking");
         Turtle model = new Turtle();
-        MainGUI view = new MainGUI(); // Todo Put Flocking View
+        MainGUI view = new MainGUI();
         turtleController = new TurtleController(model, view);
         turtleController.initController();
     }
 
     private void flockingMode() {
+        System.out.println("Flocking");
         initTurtleController();
         turtleController.flockingEnvironment();
     }
 
     private void automaticMode() {
+        System.out.println("Automatic");
         initTurtleController();
         turtleController.automaticEnvironment();
     }
 
     private void manualMode() {
-        initTurtleController();
+        System.out.println("Manual");
+        turtleController = new TurtleManualController(new Turtle(), new ManualGUI());
+        turtleController.initController();
         turtleController.controlledEnvironment();
     }
 

@@ -1,4 +1,4 @@
-package com.polytech.turtle.controller;
+package com.polytech.turtle.controller.events;
 
 import com.polytech.turtle.model.Obstacle;
 import com.polytech.turtle.model.Point;

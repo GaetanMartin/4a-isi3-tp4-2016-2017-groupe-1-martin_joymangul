@@ -1,4 +1,4 @@
-package com.polytech.turtle.view.events;
+package com.polytech.turtle.controller.events;
 
 import com.polytech.turtle.controller.TurtleController;
 import com.polytech.turtle.model.ITurtle;
