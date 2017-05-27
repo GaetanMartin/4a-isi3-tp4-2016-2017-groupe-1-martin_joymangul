@@ -1,6 +1,4 @@
-package com.polytech.turtle.environment;
-
-import com.polytech.turtle.model.Turtle;
+package com.polytech.turtle.model.environment;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;

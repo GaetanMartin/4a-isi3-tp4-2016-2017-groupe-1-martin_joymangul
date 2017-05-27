@@ -1,4 +1,4 @@
-package com.polytech.turtle.environment;
+package com.polytech.turtle.model.environment;
 
 import com.polytech.turtle.model.ITurtle;
 import com.polytech.turtle.model.Obstacle;
