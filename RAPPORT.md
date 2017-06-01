@@ -1,6 +1,6 @@
-**MARTIN Gaetan :**
-
-**JOYMANGUL Jensen :**
+**MARTIN Gaetan**
+**JOYMANGUL Jensen**
+**MOISSON Matthieu**
 
 # Rapport TP4
 
@@ -14,6 +14,7 @@ https://github.com/PolytechLyon/4a-isi3-tp4-2016-2017-groupe-1-martin_joymangul/
 ![Package mvc-flocking](images/UMLAvantModif.png)
 
 ###Motif aprés refactoring
+![Package mvc-flocking](images/Diagramme de Classe.png)
 ## Question 3
 *Rien à rédiger*
 
