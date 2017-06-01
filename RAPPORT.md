@@ -12,11 +12,14 @@ Les améliorations possibles sont répertoriées dans les issues de GitHub
 https://github.com/PolytechLyon/4a-isi3-tp4-2016-2017-groupe-1-martin_joymangul/issues
 
 ## Question 2
-###Motif avant le refactoring
+### Diagramme de classes avant le refactoring
+
 ![Package mvc-flocking](images/UMLAvantModif.png)
 
-###Motif aprés refactoring
+### Diagramme de classes aprés refactoring
+
 ![Package mvc-flocking](images/ClassDiagram.png)
+
 ## Question 3
 *Rien à rédiger*
 
