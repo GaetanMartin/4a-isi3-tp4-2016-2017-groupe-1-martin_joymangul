@@ -57,12 +57,14 @@ En cour de projet le client a décidé de faire un flocking par couleur et ainsi
 ``` java
 turtle.getColor() == currentTurtle.getColor() ;
 ```
+Le client à encore changer d'avis et voulait cette fois un flocking avec champ de vision. Mais comme précédement nous avons put répondre au besoin en ajoutant encore une fois une simple condition. Que nous avons pensé à mettre dans le bon sens pour éviter trop de calcule inutile.
 
 ## Question 7
 *Rien à rédiger*
 
 ## Question 8
 *Expliquer l'intérêt du mock*
+Nous avons utilisé mock pour pouvoir tester certaines fonctionnalité sans avoir à tester les fonctionnalitées déjà tester. Ce qui permet de tester les fonctionnalitées sepparement.
 
 ## Question 9
 *Montrer les résultats de vos rapports d'analyse*

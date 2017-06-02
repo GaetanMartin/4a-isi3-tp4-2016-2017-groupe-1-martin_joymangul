@@ -67,10 +67,7 @@ public class FlockingIEnvironment extends AbstractEnvironment{
     }
 
     protected boolean isNeighbour(ITurtle currentTurtle, ITurtle turtle){
-        if(turtle.getColor() == currentTurtle.getColor() && currentTurtle.getDistance(turtle) <= super.MAX_NEIGHBOUR_DISTANCE && currentTurtle.isInVision(turtle))
-            return true;
-        else
-            return false;
+        return turtle.getColor() == currentTurtle.getColor() && currentTurtle.getDistance(turtle) <= super.MAX_NEIGHBOUR_DISTANCE && currentTurtle.isInVision(turtle);
     }
 
 
