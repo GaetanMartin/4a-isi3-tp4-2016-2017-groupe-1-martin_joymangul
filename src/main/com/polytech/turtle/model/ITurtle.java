@@ -51,4 +51,6 @@ public interface ITurtle {
     void nextColor();
 
     int getDistance(ITurtle turtle);
+
+    boolean isInVision(ITurtle destination);
 }

@@ -59,11 +59,18 @@ public class FlockingIEnvironment extends AbstractEnvironment{
     protected List<ITurtle> getNeighbours(ITurtle currentTurtle) {
         List<ITurtle> result = new ArrayList<>();
         for (ITurtle turtle : this.getListTurtle()) {
-            if (currentTurtle.getDistance(turtle) <= super.MAX_NEIGHBOUR_DISTANCE && turtle.getColor() == currentTurtle.getColor()) {
+            if (isNeighbour(currentTurtle, turtle)) {
                 result.add(turtle);
             }
         }
         return result;
+    }
+
+    protected boolean isNeighbour(ITurtle currentTurtle, ITurtle turtle){
+        if(turtle.getColor() == currentTurtle.getColor() && currentTurtle.getDistance(turtle) <= super.MAX_NEIGHBOUR_DISTANCE && currentTurtle.isInVision(turtle))
+            return true;
+        else
+            return false;
     }
 
 

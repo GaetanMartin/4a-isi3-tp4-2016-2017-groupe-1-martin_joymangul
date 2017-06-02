@@ -227,4 +227,13 @@ public class Turtle extends Observable implements ITurtle {
     public int getDistance(ITurtle destination) {
         return this.position.getDistance(destination.getPosition());
     }
+
+    @Override
+    public boolean isInVision(ITurtle destination) {
+        if(this.position.getAngle(this.newPoint(20), destination.getPosition())<=90) {
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
