@@ -1,5 +1,7 @@
 package com.polytech.turtle.model;
 
+import static java.lang.Math.pow;
+
 /**
  * Created by p1509413 on 26/04/2017.
  */
@@ -41,7 +43,7 @@ public class Point implements Cloneable {
     }
 
     public int getDistance(Point destination){
-        return (int) Math.sqrt(Math.pow(destination.getX() - this.getX(), 2) + Math.pow(destination.getY() - this.getY(), 2));
+        return (int) Math.sqrt(pow(destination.getX() - this.getX(), 2) + pow(destination.getY() - this.getY(), 2));
     }
 
     public int getAngle(Point direction, Point otherTurtle){
@@ -51,8 +53,9 @@ public class Point implements Cloneable {
         if(a==0 || b==0 || c==0){
             return 0;
         }
-        double result =Math.acos((a*a+b*b-c*c)/(2*a*b));
-        double result_bis = Math.toDegrees(result);
-        return (int) result;
+        double result = (-(pow(c,2)-pow(a,2)-pow(b,2))/(2*a*c));
+        double radian =Math.acos(result);
+        double result_bis = Math.toDegrees(radian);
+        return (int) result_bis;
     }
 }
