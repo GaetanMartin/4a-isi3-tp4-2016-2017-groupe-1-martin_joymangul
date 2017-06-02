@@ -10,6 +10,13 @@ import com.polytech.turtle.view.ManualGUI;
  * Controller for view window
  */
 public class HomeController {
+    public TurtleController getTurtleController() {
+        return turtleController;
+    }
+
+    public void setTurtleController(TurtleController turtleController) {
+        this.turtleController = turtleController;
+    }
 
     private TurtleController turtleController;
 
@@ -17,6 +24,7 @@ public class HomeController {
         home.getManualModeBtn().addActionListener(e ->this.manualMode());
         home.getAutomaticModeBtn().addActionListener((e ->this.automaticMode()));
         home.getFlockingModeBtn().addActionListener((e ->this.flockingMode()));
+        initTurtleController();
     }
 
     private void initTurtleController() {
@@ -26,19 +34,17 @@ public class HomeController {
         turtleController.initController();
     }
 
-    private void flockingMode() {
+    protected void flockingMode() {
         System.out.println("Flocking");
-        initTurtleController();
         turtleController.flockingEnvironment();
     }
 
-    private void automaticMode() {
+    protected void automaticMode() {
         System.out.println("Automatic");
-        initTurtleController();
         turtleController.automaticEnvironment();
     }
 
-    private void manualMode() {
+    protected void manualMode() {
         System.out.println("Manual");
         turtleController = new TurtleManualController(new Turtle(), new ManualGUI());
         turtleController.initController();

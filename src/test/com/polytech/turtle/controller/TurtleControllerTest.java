@@ -19,14 +19,11 @@ public class TurtleControllerTest {
 
     private Turtle turtleModel;
     private MainGUI turtleView;
-    private Sheet turtlePanel;
 
     @Before
     public void setUp() {
-
         this.turtleModel = mock(Turtle.class);
         this.turtleView = mock(MainGUI.class);
-        this.turtlePanel = mock(Sheet.class);
         this.turtleController = new TurtleController(this.turtleModel, this.turtleView);
     }
 
@@ -56,34 +53,5 @@ public class TurtleControllerTest {
         this.turtleController.left(1);
         //Then
         verify(this.turtleModel, atLeastOnce()).turnLeft(any(Integer.class));
-    }
-
-    @Test
-    public void should_give_true_on_test_init_controller(){
-        //Given
-
-        //When
-        //this.turtleController.initController();
-        //Then
-        //verify(this.turtleView, atLeastOnce()).setSheet(any(Sheet.class));
-    }
-
-/*
-    @Test
-    public void should_give_true_on_test_color(){
-        //Given
-        JComboBox jComboBox = mock(JComboBox.class);
-        jComboBox.setSelectedItem();
-        ActionEvent actionEvent = mock(ActionEvent.class);
-        actionEvent.setSource(jComboBox);
-        //When
-        this.turtleController.setColor(actionEvent);
-        //Then
-        verify(this.turtleModel, atLeastOnce()).setColor(any(Color.class));
-    }
-*/
-
-    @After
-    public void testApresTeste(){
     }
 }
